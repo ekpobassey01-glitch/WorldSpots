@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorldSpots — One World. Countless Places.</title>
+  <meta name="description" content="Discover verified restaurants, sit-outs, hotels, gadgets, wears, offers, and local spots worldwide on WorldSpots." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-orange-500 selection:text-white">
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="#" class="flex items-center gap-2.5 shrink-0">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center font-extrabold text-white text-lg shadow-lg shadow-orange-500/20">
+          W
+        </div>
+        <div>
+          <span class="font-extrabold tracking-tight text-lg text-white">WORLD<span class="text-orange-500">SPOTS</span></span>
+          <p class="text-[10px] text-slate-400 leading-none hidden sm:block">One world. Countless places.</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <button onclick="setQuickFilter('All')" class="hover:text-orange-400 transition">Home</button>
+        <button onclick="setQuickFilter('All')" class="hover:text-orange-400 transition">Explore</button>
+        <button onclick="setQuickFilter('Offers')" class="hover:text-orange-400 transition flex items-center gap-1">
+          Offers <span class="bg-orange-500/20 text-orange-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold">HOT</span>
+        </button>
+        <button onclick="scrollToSection('spots-grid')" class="hover:text-orange-400 transition">Trending</button>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button onclick="openAdvertiseModal()" class="bg-orange-600 hover:bg-orange-500 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl transition shadow-lg shadow-orange-600/20">
+          + List Your Spot
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Secondary Nav -->
+    <div class="flex md:hidden items-center gap-4 px-4 py-2 border-t border-slate-900 text-xs font-medium text-slate-400 overflow-x-auto no-scrollbar">
+      <button onclick="setQuickFilter('All')" class="text-white font-semibold shrink-0">Home</button>
+      <button onclick="scrollToSection('spots-grid')" class="hover:text-white shrink-0">Explore</button>
+      <button onclick="setQuickFilter('Eateries')" class="hover:text-white shrink-0">Eateries & Sit-outs</button>
+      <button onclick="setQuickFilter('Hotels')" class="hover:text-white shrink-0">Hotels</button>
+      <button onclick="setQuickFilter('Electronics')" class="hover:text-white shrink-0">Electronics</button>
+      <button onclick="setQuickFilter('Wears')" class="hover:text-white shrink-0">Wears</button>
+      <button onclick="setQuickFilter('Jobs')" class="hover:text-white shrink-0">Jobs</button>
+      <button onclick="setQuickFilter('Offers')" class="text-orange-400 font-semibold shrink-0">Offers & Promos</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden border-b border-slate-900 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 py-10 md:py-16">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-full px-3 py-1 text-xs text-slate-300 mb-4">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Verified Places, Deals & Businesses Worldwide
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          One world. <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-400">Countless places.</span>
+        </h1>
+        <p class="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl">
+          Explore top-rated eateries, sit-outs, hotels, gadgets, fashion wears, job openings, and verified brand promotions—connect directly with business owners in one tap.
+        </p>
+
+        <!-- Search & Location Bar -->
+        <div class="mt-6 bg-slate-900/90 border border-slate-800 p-2 rounded-2xl flex flex-col sm:flex-row gap-2 shadow-xl">
+          <div class="flex-1 flex items-center px-3 bg-slate-950 rounded-xl border border-slate-800/80">
+            <svg class="w-4 h-4 text-slate-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input id="searchInput" type="text" oninput="filterSpots()" placeholder="Search restaurants, iPhones, wears, hotels, jobs..." class="w-full bg-transparent py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none" />
+          </div>
+          <div class="sm:w-48 flex items-center px-3 bg-slate-950 rounded-xl border border-slate-800/80">
+            <svg class="w-4 h-4 text-orange-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <select id="cityFilter" onchange="filterSpots()" class="w-full bg-transparent py-2.5 text-sm text-slate-200 focus:outline-none">
+              <option value="All" class="bg-slate-900">All Cities</option>
+              <option value="Lagos" class="bg-slate-900">Lagos</option>
+              <option value="Abuja" class="bg-slate-900">Abuja</option>
+              <option value="Uyo" class="bg-slate-900">Uyo</option>
+              <option value="Port Harcourt" class="bg-slate-900">Port Harcourt</option>
+              <option value="Global" class="bg-slate-900">Global / Online</option>
+            </select>
+          </div>
+          <button onclick="filterSpots()" class="bg-orange-600 hover:bg-orange-500 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition shrink-0">
+            Explore
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Pills -->
+  <section class="max-w-7xl mx-auto px-4 pt-6">
+    <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+      <button data-cat="All" onclick="setQuickFilter('All')" class="cat-btn active bg-orange-600 text-white px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">All Spots</button>
+      <button data-cat="Eateries" onclick="setQuickFilter('Eateries')" class="cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">🍽️ Eateries & Sit-outs</button>
+      <button data-cat="Hotels" onclick="setQuickFilter('Hotels')" class="cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">🏨 Hotels & Stays</button>
+      <button data-cat="Electronics" onclick="setQuickFilter('Electronics')" class="cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">📱 Phones & Gadgets</button>
+      <button data-cat="Wears" onclick="setQuickFilter('Wears')" class="cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">👟 Wears & Fashion</button>
+      <button data-cat="Attractions" onclick="setQuickFilter('Attractions')" class="cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">🌴 Relaxation & Tours</button>
+      <button data-cat="Jobs" onclick="setQuickFilter('Jobs')" class="cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">💼 Jobs & Vacancies</button>
+      <button data-cat="Offers" onclick="setQuickFilter('Offers')" class="cat-btn bg-slate-900 text-orange-400 border border-orange-500/30 hover:border-orange-500 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition">🔥 Promos & Offers</button>
+    </div>
+  </section>
+
+  <!-- Main Listings Grid -->
+  <main id="spots-grid" class="max-w-7xl mx-auto px-4 py-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 id="sectionHeading" class="text-lg sm:text-xl font-bold text-white">Trending & Verified Spots</h2>
+        <p id="resultCount" class="text-xs text-slate-400">Showing curated places & active promotions</p>
+      </div>
+      <label class="inline-flex items-center gap-2 text-xs text-slate-300 cursor-pointer select-none">
+        <input id="verifiedOnly" type="checkbox" onchange="filterSpots()" class="rounded bg-slate-900 border-slate-700 text-orange-500 focus:ring-orange-500" />
+        Verified Only
+      </label>
+    </div>
+
+    <div id="listingsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Cards injected by JS -->
+    </div>
+  </main>
+
+  <!-- For Businesses Banner -->
+  <section class="max-w-7xl mx-auto px-4 py-10">
+    <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-orange-950/40 border border-slate-800 rounded-3xl p-6 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="max-w-xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-orange-400">WorldSpots For Businesses</span>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Get Verified. Reach Ready Buyers.</h3>
+        <p class="text-sm text-slate-300 mt-2">
+          Showcase your eatery, gadget store, fashion brand, hotel, or job opening to thousands of daily visitors. Track every customer inquiry sent to your WhatsApp.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 shrink-0">
+        <button onclick="openAdvertiseModal()" class="bg-orange-600 hover:bg-orange-500 text-white font-bold px-6 py-3 rounded-xl text-sm transition shadow-lg shadow-orange-600/20">
+          Advertise Your Business
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-8 px-4 text-center text-xs text-slate-500">
+    <p class="font-semibold text-slate-300">WORLDSPOTS — One world. Countless places.</p>
+    <p class="mt-1">Global Discovery, Verified Business Directory & Promotional Intelligence.</p>
+  </footer>
+
+  <!-- Advertise / OPay Submission Modal -->
+  <div id="advertiseModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-5 sm:p-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white">Promote on WorldSpots</h3>
+        <button onclick="closeAdvertiseModal()" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
+      </div>
+
+      <!-- OPay Payment Box -->
+      <div class="mt-4 bg-emerald-950/30 border border-emerald-500/30 rounded-xl p-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-emerald-400 uppercase">Step 1: Subscription Payment (OPay)</span>
+          <span class="text-[11px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">Verified Spotlight</span>
+        </div>
+        <p class="text-xs text-slate-300 mt-1">Transfer your ad plan fee (Weekly: ₦3,000 | Monthly: ₦10,000) to activate your Verified Badge & Lead Tracker:</p>
+        <div class="mt-2 bg-slate-950 border border-slate-800 rounded-lg p-2.5 flex items-center justify-between">
+          <div>
+            <p class="text-[11px] text-slate-400">OPay Account Number</p>
+            <p id="opayNumber" class="text-sm font-extrabold text-white tracking-wider">UPDATE_OPAY_NUMBER</p>
+          </div>
+          <button onclick="copyOpay()" class="text-xs bg-slate-800 hover:bg-slate-700 text-orange-400 font-semibold px-3 py-1.5 rounded-lg">
+            Copy
+          </button>
+        </div>
+      </div>
+
+      <!-- Submission Form -->
+      <form onsubmit="submitVendorRequest(event)" class="mt-4 space-y-3">
+        <p class="text-xs font-bold text-orange-400 uppercase">Step 2: Send Spot & Payment Details</p>
+        <input id="vName" required type="text" placeholder="Business or Brand Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
+        <div class="grid grid-cols-2 gap-2">
+          <select id="vCategory" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-200 focus:border-orange-500 focus:outline-none">
+            <option value="Eateries">Eateries & Sit-outs</option>
+            <option value="Hotels">Hotels & Stays</option>
+            <option value="Electronics">Phones & Gadgets</option>
+            <option value="Wears">Wears & Fashion</option>
+            <option value="Attractions">Relaxation & Tours</option>
+            <option value="Jobs">Jobs & Vacancies</option>
+          </select>
+          <input id="vCity" required type="text" placeholder="City (e.g. Lagos, Uyo)" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
+        </div>
+        <input id="vPrice" required type="text" placeholder="Price List / Promo Offer (e.g. Plates from ₦3,500)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
+        <input id="vPhone" required type="tel" placeholder="Your WhatsApp Number (e.g. 2348012345678)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
+        <input id="vRef" type="text" placeholder="OPay Transaction Ref / Sender Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
+        <button type="submit" class="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 rounded-xl text-sm transition">
+          Submit & Send Pictures via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Your Admin WhatsApp number for receiving vendor pictures & OPay receipts
+    const ADMIN_WHATSAPP = "2348000000000";
+
+    // Starter Curated Spots (Automatically replaced/merged when /api/listings is live on Cloudflare D1)
+    let spotsData = [
+      {
+        id: "spot_101",
+        name: "Breeze Lounge & Grill Sit-Out",
+        category: "Eateries",
+        city: "Lagos",
+        address: "Admiralty Way, Lekki Phase 1",
+        hours: "Open • 11:00 AM – 11:30 PM",
+        price: "Platters from ₦8,500 • Free Drink Promo",
+        rating: "4.9 (128)",
+        verified: true,
+        isOffer: true,
+        phone: "2348000000001",
+        mapUrl: "https://maps.google.com/?q=Lekki+Phase+1+Lagos",
+        image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "spot_102",
+        name: "PrimeGadgets Hub — iPhones & Laptops",
+        category: "Electronics",
+        city: "Lagos",
+        address: "Computer Village, Ikeja",
+        hours: "Open • 8:30 AM – 6:30 PM",
+        price: "iPhone 14 Pro ₦920,000 • Swap Deals Available",
+        rating: "4.8 (94)",
+        verified: true,
+        isOffer: true,
+        phone: "2348000000002",
+        mapUrl: "https://maps.google.com/?q=Ikeja+Lagos",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "spot_103",
+        name: "Urban Drip Luxury Wears & Sneakers",
+        category: "Wears",
+        city: "Abuja",
+        address: "Wuse 2 Plaza, Abuja",
+        hours: "Open • 9:00 AM – 8:00 PM",
+        price: "Designer Tees & Kicks from ₦22,000",
+        rating: "4.7 (61)",
+        verified: true,
+        isOffer: false,
+        phone: "2348000000003",
+        mapUrl: "https://maps.google.com/?q=Wuse+2+Abuja",
+        image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "spot_104",
+        name: "Ibom Tropicana & Resort Stays",
+        category: "Hotels",
+        city: "Uyo",
+        address: "Udo Udoma Avenue, Uyo",
+        hours: "Open 24 Hours",
+        price: "Executive Suites from ₦45,000/night",
+        rating: "4.9 (210)",
+        verified: true,
+        isOffer: true,
+        phone: "2348000000004",
+        mapUrl: "https://maps.google.com/?q=Uyo+Akwa+Ibom",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "spot_105",
+        name: "Front Desk & Digital Sales Executive",
+        category: "Jobs",
+        city: "Lagos",
+        address: "Victoria Island (Hybrid Role)",
+        hours: "Apply Before Friday",
+        price: "Salary: ₦150,000/mo + Commission",
+        rating: "Verified Employer",
+        verified: true,
+        isOffer: false,
+        phone: "2348000000005",
+        mapUrl: "https://maps.google.com/?q=Victoria+Island+Lagos",
+        image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: "spot_106",
+        name: "Waterfront Serenity Park & Boat Cruise",
+        category: "Attractions",
+        city: "Port Harcourt",
+        address: "GRA Phase 2 Waterfront",
+        hours: "Open • 10:00 AM – 9:00 PM",
+        price: "Entry ₦2,000 • Weekend Family Promo",
+        rating: "4.8 (175)",
+        verified: false,
+        isOffer: true,
+        phone: "2348000000006",
+        mapUrl: "https://maps.google.com/?q=Port+Harcourt",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    let activeCategory = "All";
+
+    // Attempt to load live listings from Cloudflare D1 API if deployed
+    async function loadLiveSpots() {
+      try {
+        const res = await fetch('/api/listings');
+        if (res.ok) {
+          const liveData = await res.json();
+          if (Array.isArray(liveData) && liveData.length > 0) {
+            spotsData = liveData;
+            renderSpots(spotsData);
+          }
+        }
+      } catch (e) {
+        // Fallback smoothly to curated starter spots
+      }
+    }
+
+    function setQuickFilter(category) {
+      activeCategory = category;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === category) {
+          btn.className = "cat-btn active bg-orange-600 text-white px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition";
+        } else {
+          btn.className = "cat-btn bg-slate-900 text-slate-300 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-xs font-semibold shrink-0 transition";
+        }
+      });
+      filterSpots();
+    }
+
+    function filterSpots() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const city = document.getElementById('cityFilter').value;
+      const verifiedOnly = document.getElementById('verifiedOnly').checked;
+
+      const filtered = spotsData.filter(spot => {
+        const matchesCat =
+          activeCategory === "All" ||
+          (activeCategory === "Offers" && spot.isOffer) ||
+          spot.category.toLowerCase() === activeCategory.toLowerCase();
+
+        const matchesCity = city === "All" || spot.city.toLowerCase() === city.toLowerCase();
+        const matchesVerified = !verifiedOnly || spot.verified;
+        const matchesQuery =
+          !query ||
+          spot.name.toLowerCase().includes(query) ||
+          spot.category.toLowerCase().includes(query) ||
+          spot.city.toLowerCase().includes(query) ||
+          spot.price.toLowerCase().includes(query) ||
+          spot.address.toLowerCase().includes(query);
+
+        return matchesCat && matchesCity && matchesVerified && matchesQuery;
+      });
+
+      renderSpots(filtered);
+    }
+
+    function renderSpots(list) {
+      const container = document.getElementById('listingsContainer');
+      const countEl = document.getElementById('resultCount');
+      countEl.textContent = `Showing ${list.length} spot${list.length === 1 ? '' : 's'}`;
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full bg-slate-900/60 border border-slate-800 rounded-2xl p-8 text-center">
+            <p class="text-slate-300 font-semibold">No matching spots found.</p>
+            <p class="text-xs text-slate-500 mt-1">Try clearing your search filter or switching to All Cities.</p>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = list.map(spot => {
+        // Lead-tracking link: routes through /track on Cloudflare Worker, falls back to direct WhatsApp if worker isn't bound yet
+        const whatsappMsg = encodeURIComponent(`Hello ${spot.name}, I found your listing on WorldSpots and would like to make an inquiry.`);
+        const directWa = `https://wa.me/${spot.phone}?text=${whatsappMsg}`;
+
+        return `
+          <article class="bg-slate-900/90 border border-slate-800 hover:border-slate-700 rounded-2xl overflow-hidden flex flex-col justify-between transition group shadow-lg">
+            <div>
+              <div class="relative h-48 bg-slate-800 overflow-hidden">
+                <img src="${spot.image}" alt="${spot.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy" />
+                <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span class="bg-slate-950/85 backdrop-blur-md text-slate-200 text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-slate-700/60">
+                    ${spot.category}
+                  </span>
+                  ${spot.isOffer ? `<span class="bg-orange-600 text-white text-[10px] font-bold px-2 py-1 rounded-lg shadow">PROMO</span>` : ''}
+                </div>
+                ${spot.verified ? `
+                  <span class="absolute top-3 right-3 bg-emerald-500/95 text-slate-950 text-[10px] font-extrabold px-2.5 py-1 rounded-lg flex items-center gap-1 shadow">
+                    ✓ VERIFIED
+                  </span>` : ''}
+              </div>
+
+              <div class="p-4">
+                <div class="flex items-start justify-between gap-2">
+                  <h3 class="font-bold text-base text-white leading-snug">${spot.name}</h3>
+                  <span class="text-xs font-semibold text-amber-400 shrink-0">★ ${spot.rating}</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-1">📍 ${spot.address} • <span class="text-slate-300 font-medium">${spot.city}</span></p>
+                <p class="text-[11px] text-emerald-400 mt-1">🕒 ${spot.hours}</p>
+
+                <div class="mt-3 bg-slate-950 border border-slate-800/90 rounded-xl px-3 py-2">
+                  <p class="text-xs font-semibold text-orange-300">${spot.price}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action & Lead Tracking Buttons -->
+            <div class="px-4 pb-4 pt-1 flex items-center gap-2">
+              <a href="${directWa}" onclick="trackLead('${spot.id}', 'whatsapp')" target="_blank" rel="noopener"
+                 class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl text-center transition">
+                WhatsApp Chat
+              </a>
+              <a href="tel:+${spot.phone}" onclick="trackLead('${spot.id}', 'call')"
+                 class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 px-3 rounded-xl transition" title="Call Business">
+                Call
+              </a>
+              <a href="${spot.mapUrl}" onclick="trackLead('${spot.id}', 'map')" target="_blank" rel="noopener"
+                 class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold py-2.5 px-3 rounded-xl transition" title="View on Map">
+                Map
+              </a>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Ping Cloudflare Worker lead counter silently in background without blocking the user
+    function trackLead(spotId, action) {
+      try {
+        navigator.sendBeacon(`/track?id=${encodeURIComponent(spotId)}&action=${encodeURIComponent(action)}`);
+      } catch (e) {}
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openAdvertiseModal() {
+      document.getElementById('advertiseModal').classList.remove('hidden');
+    }
+
+    function closeAdvertiseModal() {
+      document.getElementById('advertiseModal').classList.add('hidden');
+    }
+
+    function copyOpay() {
+      const num = document.getElementById('opayNumber').textContent.trim();
+      navigator.clipboard?.writeText(num);
+      alert("OPay account number copied: " + num);
+    }
+
+    function submitVendorRequest(e) {
+      e.preventDefault();
+      const name = document.getElementById('vName').value;
+      const cat = document.getElementById('vCategory').value;
+      const city = document.getElementById('vCity').value;
+      const price = document.getElementById('vPrice').value;
+      const phone = document.getElementById('vPhone').value;
+      const ref = document.getElementById('vRef').value || "Pending Transfer";
+
+      const msg = encodeURIComponent(
+        `Hello WorldSpots Admin! I want to list my spot:\n` +
+        `• Business: ${name}\n` +
+        `• Category: ${cat}\n` +
+        `• City: ${city}\n` +
+        `• Price/Promo: ${price}\n` +
+        `• Contact WhatsApp: ${phone}\n` +
+        `• OPay Ref/Name: ${ref}\n\n` +
+        `Attaching my pictures/flyers now!`
+      );
+      window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${msg}`, '_blank');
+      closeAdvertiseModal();
+    }
+
+    // Initialize
+    renderSpots(spotsData);
+    loadLiveSpots();
+  </script>
+</body>
+</html>
