@@ -3,457 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WorldSpots — Verified Businesses & Admin Center</title>
+  <title>WorldSpots</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body class="bg-slate-950 text-white min-h-screen">
 
-  <!-- Sticky Top Navigation -->
-  <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-2.5 cursor-pointer" onclick="switchMode('public')">
-      <div class="w-8 h-8 rounded-lg bg-orange-600 flex items-center justify-center font-extrabold text-white">W</div>
-      <h1 class="text-base font-extrabold tracking-tight text-white">WORLD<span class="text-orange-500">SPOTS</span></h1>
-    </div>
-    <div class="flex items-center gap-2">
-      <button id="adminToggleBtn" onclick="toggleAdminView()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg font-semibold transition">
-        Admin Panel
-      </button>
-      <button id="listSpotBtn" onclick="openListingGuide()" class="text-xs bg-orange-600 hover:bg-orange-500 text-white font-bold px-3 py-1.5 rounded-lg transition">
-        List Your Spot
-      </button>
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 bg-slate-900 border-b border-slate-800 p-4 flex items-center justify-between">
+    <h1 class="font-extrabold text-lg tracking-tight">WORLD<span class="text-orange-500">SPOTS</span></h1>
+    <div class="flex gap-2">
+      <button onclick="openAdmin()" class="bg-slate-800 text-xs px-3 py-2 rounded-lg font-bold">Admin Panel</button>
+      <button onclick="alert('To list your spot, pay N10,000 to OPay: 8147699555 (Ekpo Bassey) and send receipt on WhatsApp!')" class="bg-orange-600 text-xs px-3 py-2 rounded-lg font-bold">List Spot</button>
     </div>
   </header>
 
-  <!-- ==================== PUBLIC DIRECTORY VIEW ==================== -->
-  <main id="publicView" class="max-w-4xl mx-auto p-4 space-y-4">
-    <!-- Search & Filters -->
-    <div class="bg-slate-900 border border-slate-800 p-3 rounded-2xl space-y-3">
-      <input id="searchInput" type="text" placeholder="Search businesses, hotels, gadgets, cities..." oninput="renderListings()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-      <div id="categoryFilters" class="flex gap-2 overflow-x-auto pb-1 text-xs">
-        <button onclick="setCategory('All')" class="cat-btn bg-orange-600 text-white px-3 py-1.5 rounded-xl font-semibold whitespace-nowrap">All Spots</button>
-        <button onclick="setCategory('Eateries')" class="cat-btn bg-slate-950 border border-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap">Eateries</button>
-        <button onclick="setCategory('Hotels')" class="cat-btn bg-slate-950 border border-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap">Hotels</button>
-        <button onclick="setCategory('Electronics')" class="cat-btn bg-slate-950 border border-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap">Electronics</button>
-        <button onclick="setCategory('Wears')" class="cat-btn bg-slate-950 border border-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap">Wears</button>
-      </div>
+  <!-- Public Directory -->
+  <main id="publicView" class="p-4 max-w-xl mx-auto space-y-4">
+    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+      <h2 class="font-bold text-sm text-orange-400">🔥 Verified Spotlights</h2>
+      <p class="text-xs text-slate-400 mt-1">Browse top businesses & promo spots.</p>
     </div>
 
-    <!-- Listings Feed -->
-    <div id="listingsContainer" class="space-y-3"></div>
+    <div id="spotList" class="space-y-3">
+      <!-- Sample Listing -->
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+        <h3 class="font-bold text-base">Breeze Lounge & Grill</h3>
+        <p class="text-xs text-slate-400">Lekki Phase 1, Lagos • Eateries</p>
+        <p class="text-xs text-emerald-400 font-semibold">₦8,500 • Free Drink Promo</p>
+        <a href="https://wa.me/2348147699555?text=Hello,%20I%20found%20your%20business%20on%20WorldSpots" target="_blank" onclick="trackLead()" class="block bg-emerald-600 text-center text-xs font-bold py-2.5 rounded-lg">Chat on WhatsApp</a>
+      </div>
+    </div>
   </main>
 
-  <!-- ==================== ADMIN COMMAND CENTER VIEW ==================== -->
-  <section id="adminView" class="hidden max-w-6xl mx-auto p-4 sm:p-6 space-y-6">
-    <div class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-2xl">
+  <!-- Admin Dashboard (Hidden until PIN is entered) -->
+  <section id="adminView" class="hidden p-4 max-w-xl mx-auto space-y-4">
+    <div class="flex items-center justify-between bg-slate-900 border border-slate-800 p-4 rounded-xl">
       <div>
-        <h2 class="text-base font-extrabold text-white">Admin Command Center</h2>
-        <p class="text-xs text-slate-400">Manage spots, track customer leads & verify OPay payments</p>
+        <h2 class="font-bold text-sm text-emerald-400">Admin Command Center</h2>
+        <p class="text-xs text-slate-400">OPay: 8147699555 (Ekpo Bassey)</p>
       </div>
-      <div class="flex gap-2">
-        <button onclick="switchMode('public')" class="text-xs bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-xl font-semibold">Live Site</button>
-        <button onclick="lockAdmin()" class="text-xs bg-red-500/20 hover:bg-red-500/30 text-red-400 px-3 py-2 rounded-xl font-semibold">Lock</button>
+      <button onclick="logoutAdmin()" class="bg-red-500/20 text-red-400 text-xs px-3 py-1.5 rounded-lg font-bold">Lock</button>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl grid grid-cols-2 gap-3 text-center">
+      <div class="bg-slate-950 p-3 rounded-lg">
+        <p class="text-xs text-slate-400">Total Leads</p>
+        <p id="leadCount" class="text-xl font-extrabold text-blue-400 mt-1">0</p>
+      </div>
+      <div class="bg-slate-950 p-3 rounded-lg">
+        <p class="text-xs text-slate-400">Revenue</p>
+        <p class="text-xl font-extrabold text-emerald-400 mt-1">₦10,000</p>
       </div>
     </div>
 
-    <!-- Live Metrics -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
-        <p class="text-xs text-slate-400">Active Spots</p>
-        <h3 id="statActive" class="text-2xl font-extrabold text-white mt-1">0</h3>
-      </div>
-      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
-        <p class="text-xs text-slate-400">Pending OPay Checks</p>
-        <h3 id="statPending" class="text-2xl font-extrabold text-orange-400 mt-1">0</h3>
-      </div>
-      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
-        <p class="text-xs text-slate-400">Referred Customers</p>
-        <h3 id="statLeads" class="text-2xl font-extrabold text-blue-400 mt-1">0</h3>
-      </div>
-      <div class="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
-        <p class="text-xs text-slate-400">Verified Revenue</p>
-        <h3 id="statRevenue" class="text-2xl font-extrabold text-emerald-400 mt-1">₦0</h3>
-      </div>
-    </div>
-
-    <!-- Publish New Spot Form -->
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6">
-      <h3 class="text-sm font-bold text-orange-400 mb-4">+ Publish New Business / Promo Spot</h3>
-      <form id="newSpotForm" onsubmit="addNewSpot(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <input id="fName" required type="text" placeholder="Business or Brand Name" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <select id="fCategory" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-200 focus:border-orange-500 focus:outline-none">
-          <option value="Eateries">Eateries & Sit-outs</option>
-          <option value="Hotels">Hotels & Stays</option>
-          <option value="Electronics">Phones & Gadgets</option>
-          <option value="Wears">Wears & Fashion</option>
-        </select>
-        <input id="fCity" required type="text" placeholder="City (e.g. Lagos, Uyo, Abuja)" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <input id="fAddress" required type="text" placeholder="Street / Area Address" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <input id="fPhone" required type="tel" placeholder="Vendor WhatsApp (e.g. 2348147699555)" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <input id="fPrice" required type="text" placeholder="Price / Promo Offer" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <input id="fHours" type="text" placeholder="Hours (e.g. Open • 9 AM – 9 PM)" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <input id="fImage" type="url" placeholder="Flyer / Product Image URL" class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white focus:border-orange-500 focus:outline-none" />
-        <div class="flex items-center gap-4 px-2">
-          <label class="inline-flex items-center gap-2 text-xs text-slate-300 cursor-pointer"><input id="fVerified" type="checkbox" checked class="rounded bg-slate-950 border-slate-700 text-emerald-500" /> Verified Badge</label>
-          <label class="inline-flex items-center gap-2 text-xs text-slate-300 cursor-pointer"><input id="fOffer" type="checkbox" class="rounded bg-slate-950 border-slate-700 text-orange-500" /> Hot Promo</label>
-        </div>
-        <button type="submit" class="sm:col-span-2 lg:col-span-3 bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 rounded-xl text-sm transition">Publish Live Now</button>
-      </form>
-    </div>
-
-    <!-- OPay Subscription Logs -->
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-      <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-        <h3 class="font-bold text-sm text-emerald-400">OPay Subscription Logs (8147699555 • Ekpo Bassey)</h3>
-        <button onclick="openOpayModal()" class="text-xs bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-3 py-2 rounded-xl">+ Log Payment</button>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-950 text-slate-400 uppercase text-[11px]">
-            <tr><th class="p-3.5">Payer</th><th class="p-3.5">OPay Ref</th><th class="p-3.5">Amount</th><th class="p-3.5">Status</th><th class="p-3.5">Action</th></tr>
-          </thead>
-          <tbody id="opayTableBody" class="divide-y divide-slate-800"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Listings & Customer Lead Tracking Table -->
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden">
-      <div class="p-4 border-b border-slate-800">
-        <h3 class="font-bold text-sm text-white">Active Listings & Customer Referral Tracking</h3>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm">
-          <thead class="bg-slate-950 text-slate-400 uppercase text-[11px]">
-            <tr><th class="p-3.5">Spot</th><th class="p-3.5">Category & City</th><th class="p-3.5">Status</th><th class="p-3.5">Referred Leads</th><th class="p-3.5">Controls</th></tr>
-          </thead>
-          <tbody id="vendorsTableBody" class="divide-y divide-slate-800"></tbody>
-        </table>
-      </div>
-    </div>
+    <button onclick="showPublic()" class="w-full bg-slate-800 text-xs font-bold py-3 rounded-xl">Back to Live Site</button>
   </section>
 
-  <!-- ==================== MODALS ==================== -->
-  <!-- PIN Unlock Modal -->
-  <div id="pinModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 text-center space-y-4">
-      <div class="w-12 h-12 rounded-2xl bg-orange-600/20 border border-orange-500/40 text-orange-500 font-extrabold text-xl flex items-center justify-center mx-auto">W</div>
-      <div>
-        <h3 class="text-base font-bold text-white">Unlock Admin Center</h3>
-        <p class="text-xs text-slate-400 mt-1">Enter your admin security PIN</p>
-      </div>
-      <input id="adminPinInput" type="password" placeholder="••••" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-center text-base tracking-widest text-white focus:border-orange-500 focus:outline-none" />
-      <p id="authError" class="text-xs text-red-400 hidden">Incorrect PIN. Try again.</p>
-      <div class="flex gap-2">
-        <button onclick="closePinModal()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-2.5 rounded-xl text-xs">Cancel</button>
-        <button onclick="verifyPin()" class="flex-1 bg-orange-600 hover:bg-orange-500 text-white font-bold py-2.5 rounded-xl text-xs">Unlock</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Vendor Payment Guide Modal -->
-  <div id="listModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <h3 class="font-bold text-white text-base">Get Your Verified Spotlight</h3>
-        <button onclick="closeListingGuide()" class="text-slate-400 hover:text-white text-xl">&times;</button>
-      </div>
-      <p class="text-xs text-slate-300 leading-relaxed">
-        Want to feature your business on WorldSpots? Pay a verified spotlight fee of <strong class="text-orange-400">₦10,000 / month</strong> to our official OPay account:
-      </p>
-      <div class="bg-slate-950 border border-slate-800 p-3.5 rounded-xl font-mono text-xs text-emerald-400 space-y-1">
-        <p>Bank: OPay</p>
-        <p>Account: 8147699555</p>
-        <p>Name: Ekpo Bassey</p>
-      </div>
-      <p class="text-xs text-slate-400">
-        After payment, send your receipt, business flyer, and details to our admin WhatsApp for instant activation.
-      </p>
-      <a href="https://wa.me/2348147699555?text=Hello%20WorldSpots,%20I%20have%20made%20my%20OPay%20payment%20for%20a%20verified%20spotlight." target="_blank" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm transition">
-        Send Receipt on WhatsApp
-      </a>
-    </div>
-  </div>
-
-  <!-- Add OPay Payment Modal -->
-  <div id="opayModal" class="fixed inset-0 z-50 hidden bg-black/80 flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-5 space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <h3 class="font-bold text-white text-sm">Record OPay Subscription</h3>
-        <button onclick="closeOpayModal()" class="text-slate-400 text-xl">&times;</button>
-      </div>
-      <form onsubmit="addOpayLog(event)" class="space-y-3">
-        <input id="pBusiness" required type="text" placeholder="Business Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white" />
-        <input id="pRef" required type="text" placeholder="OPay Reference ID" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white" />
-        <input id="pAmount" required type="number" value="10000" placeholder="Amount (₦)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-white" />
-        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm">Save Payment Log</button>
-      </form>
-    </div>
-  </div>
-
   <script>
-    const ADMIN_PIN = "2026";
-    let currentCategory = 'All';
-
-    let defaultListings = [
-      { id: "spot_101", name: "Breeze Lounge & Grill Sit-Out", category: "Eateries", city: "Lagos", address: "Admiralty Way, Lekki Phase 1", hours: "Open • 11:00 AM - 11:30 PM", price: "Platters from ₦8,500 • Free Drink Promo", verified: true, isOffer: true, phone: "2348147699555", mapUrl: "https://maps.google.com/?q=Lekki+Phase+1+Lagos", image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80", status: "Active", leads: 14 },
-      { id: "spot_102", name: "PrimeGadgets Hub — iPhones & Laptops", category: "Electronics", city: "Lagos", address: "Computer Village, Ikeja", hours: "Open • 8:30 AM - 6:30 PM", price: "iPhone 14 Pro ₦920,000 • Swap Deals Available", verified: true, isOffer: true, phone: "2348147699555", mapUrl: "https://maps.google.com/?q=Ikeja+Lagos", image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80", status: "Active", leads: 9 },
-      { id: "spot_103", name: "Urban Drip Luxury Wears & Sneakers", category: "Wears", city: "Abuja", address: "Wuse 2 Plaza, Abuja", hours: "Open • 9:00 AM - 8:00 PM", price: "Designer Tees & Kicks from ₦22,000", verified: true, isOffer: false, phone: "2348147699555", mapUrl: "https://maps.google.com/?q=Wuse+2+Abuja", image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80", status: "Active", leads: 6 }
-    ];
-
-    let defaultOpayLogs = [
-      { id: 1, payer: "Breeze Lounge & Grill", ref: "OPAY-98374120", amount: 10000, status: "Verified" },
-      { id: 2, payer: "PrimeGadgets Hub", ref: "OPAY-98374995", amount: 10000, status: "Unverified" }
-    ];
-
-    function getListings() {
-      const saved = localStorage.getItem('ws_listings');
-      return saved ? JSON.parse(saved) : defaultListings;
-    }
-
-    function getOpayLogs() {
-      const saved = localStorage.getItem('ws_opay');
-      return saved ? JSON.parse(saved) : defaultOpayLogs;
-    }
-
-    // View Switching & Auth
-    function toggleAdminView() {
-      const isAdminVisible = !document.getElementById('adminView').classList.contains('hidden');
-      if (isAdminVisible) {
-        switchMode('public');
-      } else if (sessionStorage.getItem('ws_admin') === '1') {
-        switchMode('admin');
-      } else {
-        document.getElementById('pinModal').classList.remove('hidden');
-        document.getElementById('adminPinInput').focus();
+    function openAdmin() {
+      let pin = prompt("Enter Admin PIN:");
+      if (pin === "2026") {
+        document.getElementById('publicView').classList.add('hidden');
+        document.getElementById('adminView').classList.remove('hidden');
+        let leads = localStorage.getItem('ws_leads') || 0;
+        document.getElementById('leadCount').textContent = leads;
+      } else if (pin !== null) {
+        alert("Incorrect PIN!");
       }
     }
 
-    function verifyPin() {
-      if (document.getElementById('adminPinInput').value === ADMIN_PIN) {
-        sessionStorage.setItem('ws_admin', '1');
-        document.getElementById('authError').classList.add('hidden');
-        document.getElementById('adminPinInput').value = '';
-        closePinModal();
-        switchMode('admin');
-      } else {
-        document.getElementById('authError').classList.remove('hidden');
-      }
+    function logoutAdmin() {
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('publicView').classList.remove('hidden');
     }
 
-    function closePinModal() { document.getElementById('pinModal').classList.add('hidden'); }
-
-    function lockAdmin() {
-      sessionStorage.removeItem('ws_admin');
-      switchMode('public');
+    function showPublic() {
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('publicView').classList.remove('hidden');
     }
 
-    function switchMode(mode) {
-      const pub = document.getElementById('publicView');
-      const adm = document.getElementById('adminView');
-      const toggleBtn = document.getElementById('adminToggleBtn');
-
-      if (mode === 'admin') {
-        pub.classList.add('hidden');
-        adm.classList.remove('hidden');
-        toggleBtn.textContent = 'View Public Site';
-        toggleBtn.className = 'text-xs bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg font-bold transition';
-        renderAdmin();
-      } else {
-        adm.classList.add('hidden');
-        pub.classList.remove('hidden');
-        toggleBtn.textContent = 'Admin Panel';
-        toggleBtn.className = 'text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-lg font-semibold transition';
-        renderListings();
-      }
+    function trackLead() {
+      let leads = Number(localStorage.getItem('ws_leads') || 0) + 1;
+      localStorage.setItem('ws_leads', leads);
     }
-
-    // Public Directory Logic
-    function renderListings() {
-      const container = document.getElementById('listingsContainer');
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const listings = getListings().filter(item => item.status === 'Active');
-
-      const filtered = listings.filter(item => {
-        const matchesCat = currentCategory === 'All' || item.category === currentCategory;
-        const matchesQuery = item.name.toLowerCase().includes(query) || item.city.toLowerCase().includes(query) || item.category.toLowerCase().includes(query);
-        return matchesCat && matchesQuery;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `<div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center text-slate-400 text-sm">No active spots found matching your search.</div>`;
-        return;
-      }
-
-      container.innerHTML = filtered.map(item => `
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg">
-          <div class="relative h-44 sm:h-52">
-            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-            <div class="absolute top-3 left-3 flex gap-2">
-              <span class="bg-slate-950/80 backdrop-blur-md text-orange-400 text-[11px] font-bold px-2.5 py-1 rounded-lg border border-slate-800">${item.category}</span>
-              ${item.isOffer ? '<span class="bg-orange-600 text-white text-[11px] font-extrabold px-2.5 py-1 rounded-lg">HOT PROMO</span>' : ''}
-            </div>
-            <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-              <div>
-                <h3 class="font-extrabold text-white text-base sm:text-lg flex items-center gap-1.5">
-                  ${item.name}
-                  ${item.verified ? '<span class="text-blue-400 text-xs" title="Verified Spot">✓</span>' : ''}
-                </h3>
-                <p class="text-xs text-slate-300">${item.address}, ${item.city}</p>
-              </div>
-            </div>
-          </div>
-          <div class="p-4 space-y-3">
-            <div class="flex items-center justify-between text-xs text-slate-300">
-              <span class="text-emerald-400 font-semibold">${item.price}</span>
-              <span class="text-slate-400">${item.hours}</span>
-            </div>
-            <div class="flex items-center gap-2 pt-1">
-              <a href="https://wa.me/${item.phone}?text=Hello%20${encodeURIComponent(item.name)},%20I%20found%20your%20business%20on%20WorldSpots%20and%20want%20to%20make%20an%20inquiry." target="_blank" onclick="trackClick('${item.id}')" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white text-center font-bold py-2.5 rounded-xl text-xs transition">
-                Chat on WhatsApp
-              </a>
-              <a href="${item.mapUrl || 'https://maps.google.com/?q=' + encodeURIComponent(item.address + ' ' + item.city)}" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition">
-                Map
-              </a>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function setCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-btn').forEach(btn => {
-        if (btn.textContent.includes(cat) || (cat === 'All' && btn.textContent.includes('All'))) {
-          btn.className = 'cat-btn bg-orange-600 text-white px-3 py-1.5 rounded-xl font-semibold whitespace-nowrap';
-        } else {
-          btn.className = 'cat-btn bg-slate-950 border border-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap';
-        }
-      });
-      renderListings();
-    }
-
-    function trackClick(id) {
-      let listings = getListings();
-      let item = listings.find(x => x.id === id);
-      if (item) {
-        item.leads = (item.leads || 0) + 1;
-        localStorage.setItem('ws_listings', JSON.stringify(listings));
-      }
-    }
-
-    // Admin Dashboard Logic
-    function renderAdmin() {
-      let listings = getListings();
-      let logs = getOpayLogs();
-
-      document.getElementById('statActive').textContent = listings.filter(x => x.status === 'Active').length;
-      document.getElementById('statPending').textContent = logs.filter(x => x.status === 'Unverified').length;
-      document.getElementById('statLeads').textContent = listings.reduce((a, b) => a + (Number(b.leads) || 0), 0);
-      document.getElementById('statRevenue').textContent = '₦' + logs.filter(x => x.status === 'Verified').reduce((a, b) => a + Number(b.amount), 0).toLocaleString();
-
-      document.getElementById('opayTableBody').innerHTML = logs.map((log, idx) => `
-        <tr>
-          <td class="p-3.5 font-semibold text-white">${log.payer}</td>
-          <td class="p-3.5 font-mono text-xs text-slate-300">${log.ref}</td>
-          <td class="p-3.5 font-bold text-emerald-400">₦${Number(log.amount).toLocaleString()}</td>
-          <td class="p-3.5"><span class="${log.status === 'Verified' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-orange-500/15 text-orange-400'} px-2.5 py-1 rounded-lg text-xs font-bold">${log.status}</span></td>
-          <td class="p-3.5">${log.status !== 'Verified' ? `<button onclick="verifyOpay(${idx})" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">Confirm</button>` : '<span class="text-xs text-slate-500">Verified</span>'}</td>
-        </tr>
-      `).join('');
-
-      document.getElementById('vendorsTableBody').innerHTML = listings.map((item, idx) => `
-        <tr>
-          <td class="p-3.5"><p class="font-bold text-white">${item.name}</p><p class="text-[11px] text-slate-400">${item.price}</p></td>
-          <td class="p-3.5 text-slate-300">${item.category} • ${item.city}</td>
-          <td class="p-3.5"><span class="${item.status === 'Active' ? 'bg-emerald-500/15 text-emerald-400' : 'bg-slate-800 text-slate-400'} px-2.5 py-1 rounded-lg text-xs font-semibold">${item.status}</span></td>
-          <td class="p-3.5 font-extrabold text-blue-400">${item.leads || 0} referrals</td>
-          <td class="p-3.5 flex gap-2">
-            <button onclick="toggleStatus(${idx})" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-2.5 py-1.5 rounded-lg">${item.status === 'Active' ? 'Pause' : 'Activate'}</button>
-            <button onclick="sendReport(${idx})" class="bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 text-xs px-2.5 py-1.5 rounded-lg">Send Report</button>
-            <button onclick="deleteSpot(${idx})" class="bg-red-600/20 hover:bg-red-600/30 text-red-400 text-xs px-2.5 py-1.5 rounded-lg">Delete</button>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function addNewSpot(e) {
-      e.preventDefault();
-      let listings = getListings();
-      listings.unshift({
-        id: 'spot_' + Date.now(),
-        name: document.getElementById('fName').value,
-        category: document.getElementById('fCategory').value,
-        city: document.getElementById('fCity').value,
-        address: document.getElementById('fAddress').value,
-        phone: document.getElementById('fPhone').value,
-        price: document.getElementById('fPrice').value,
-        hours: document.getElementById('fHours').value || 'Open Today',
-        image: document.getElementById('fImage').value || 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
-        verified: document.getElementById('fVerified').checked,
-        isOffer: document.getElementById('fOffer').checked,
-        status: 'Active',
-        leads: 0
-      });
-      localStorage.setItem('ws_listings', JSON.stringify(listings));
-      renderAdmin();
-      e.target.reset();
-      alert('Spot published live!');
-    }
-
-    function verifyOpay(idx) {
-      let logs = getOpayLogs();
-      logs[idx].status = 'Verified';
-      localStorage.setItem('ws_opay', JSON.stringify(logs));
-      renderAdmin();
-    }
-
-    function toggleStatus(idx) {
-      let listings = getListings();
-      listings[idx].status = listings[idx].status === 'Active' ? 'Paused' : 'Active';
-      localStorage.setItem('ws_listings', JSON.stringify(listings));
-      renderAdmin();
-    }
-
-    function deleteSpot(idx) {
-      if (!confirm('Remove this listing permanently?')) return;
-      let listings = getListings();
-      listings.splice(idx, 1);
-      localStorage.setItem('ws_listings', JSON.stringify(listings));
-      renderAdmin();
-    }
-
-    function sendReport(idx) {
-      let item = getListings()[idx];
-      let msg = encodeURIComponent(`Hello ${item.name}, your WorldSpots Spotlight has referred ${item.leads || 0} customer inquiries!`);
-      window.open(`https://wa.me/${item.phone}?text=${msg}`, '_blank');
-    }
-
-    function openListingGuide() { document.getElementById('listModal').classList.remove('hidden'); }
-    function closeListingGuide() { document.getElementById('listModal').classList.add('hidden'); }
-    function openOpayModal() { document.getElementById('opayModal').classList.remove('hidden'); }
-    function closeOpayModal() { document.getElementById('opayModal').classList.add('hidden'); }
-
-    function addOpayLog(e) {
-      e.preventDefault();
-      let logs = getOpayLogs();
-      logs.unshift({
-        id: Date.now(),
-        payer: document.getElementById('pBusiness').value,
-        ref: document.getElementById('pRef').value,
-        amount: Number(document.getElementById('pAmount').value),
-        status: 'Unverified'
-      });
-      localStorage.setItem('ws_opay', JSON.stringify(logs));
-      closeOpayModal();
-      e.target.reset();
-      renderAdmin();
-    }
-
-    // Initialize
-    renderListings();
   </script>
 </body>
 </html>
