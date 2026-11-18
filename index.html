@@ -21,7 +21,6 @@ button{cursor:pointer}
 .bell{width:36px;height:36px;background:#1E3A5F;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
 .avatar{width:36px;height:36px;background:#C9A227;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
 .layout{max-width:1200px;margin:0 auto;display:flex;gap:14px;padding:14px}
-/* SIDEBAR - FIXED DRAWER */
 .sidebar{width:260px;flex-shrink:0;background:#fff;border-radius:16px;padding:14px;height:fit-content;position:sticky;top:70px;border:1px solid #E2E8F0}
 .sidebar h3{font-size:11px;color:#94A3B8;letter-spacing:1px;margin-bottom:10px}
 .sidebarHead{display:none}
@@ -89,8 +88,36 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 .ownerBox{background:#0F2340;color:#fff;border-radius:16px;padding:16px;margin-bottom:12px}
 .ownerBox b{color:#fff}
 .ownerBox p{color:#CBD5E1}
-/* OVERLAY FOR DRAWER */
 #sidebarOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);z-index:250;display:none}
+.frontWrap{max-width:480px;margin:0 auto;padding:0 14px 20px}
+.frontHero{background:linear-gradient(135deg,#0F2340 0%,#1E3A5F 60%,#C9A227 130%);border-radius:24px;padding:28px 20px;text-align:center;color:#fff;margin:14px 0 12px;box-shadow:0 10px 30px rgba(15,35,64,.25)}
+.frontHero .heroIcon{width:72px;height:72px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 10px}
+.frontHero h1{font-size:26px;line-height:1.2}
+.frontHero p{color:#CBD5E1;font-size:13px;line-height:1.5;margin-top:8px}
+.frontHero .heroPills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.frontHero .heroPills span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.frontFeatures{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.frontFeat{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:12px;text-align:center}
+.frontFeat div{font-size:24px}
+.frontFeat b{font-size:13px;display:block;margin:4px 0 2px}
+.frontFeat span{font-size:11px;color:#64748B;line-height:1.4;display:block}
+.frontLogin{background:#fff;border-radius:18px;padding:16px;border:1px solid #E2E8F0;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.frontLogin h3{font-size:15px;text-align:center}
+.frontLogin p{font-size:12px;color:#64748B;text-align:center;margin:4px 0 10px}
+/* PRODUCTS LIST ON FRONTPAGE */
+.shopSection{background:#fff;border-radius:18px;padding:16px;border:1px solid #E2E8F0;margin-bottom:12px}
+.shopSection h2{font-size:17px}
+.shopSection p{font-size:12px;color:#64748B}
+.shopTabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0;padding-bottom:4px}
+.shopTab{flex-shrink:0;padding:7px 12px;border-radius:20px;background:#F1F5F9;border:1px solid #E2E8F0;font-size:12px;font-weight:700}
+.shopTab.active{background:#0F2340;color:#fff}
+.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shopCard{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:10px}
+.shopCard .emoji{font-size:26px}
+.shopCard b{font-size:13px;display:block;margin:4px 0 2px;line-height:1.3}
+.shopCard span{font-size:11px;color:#64748B;line-height:1.4;display:block}
+.shopCard .price{font-size:12px;font-weight:800;color:#0F2340;margin-top:4px}
+.shopCard .from{font-size:11px;color:#059669;font-weight:700}
 @media(max-width:820px){
 .searchTop{display:none}
 .layout{flex-direction:column;padding:10px}
@@ -112,9 +139,9 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 
 <div id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-<div class="topbar">
+<div class="topbar" id="topBar" style="display:none">
 <button class="menuBtn" onclick="toggleSidebar()">☰</button>
-<div class="logo"><div class="logoIcon">📍</div><div><b>WorldSpots</b><p>Marketplace • Chat • Safe Trade • Ekpo Bassey</p></div></div>
+<div class="logo"><div class="logoIcon">📍</div><div><b>WorldSpots</b><p>Marketplace • Chat • Safe Trade</p></div></div>
 <input class="searchTop" placeholder="Search adverts, users, transactions..." oninput="syncSearch(this.value)">
 <div class="topRight"><div class="bell">🔔</div>
 <div onclick="showPage('profile')" style="cursor:pointer">
@@ -124,28 +151,64 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 </div>
 </div>
 
-<div id="frontPage" style="max-width:480px;margin:30px auto;padding:0 14px">
-<div class="card" style="text-align:center;padding:28px">
-<div style="font-size:48px">🌍</div>
-<h2 style="font-size:22px;margin-top:8px">Welcome to WorldSpots</h2>
-<p>Real people. Real towns. Real deals. No fake adverts.</p>
-<p style="background:#FFFBEB;border:1px solid #C9A227;border-radius:10px;padding:10px;margin-top:10px"><b>Owner: Ekpo Bassey</b><br>WhatsApp: 0814 769 9555<br>OPay: 8147699555 • Ekpo Bassey</p>
-<button class="btn btn-dark" onclick="showLogin('user')">Continue as User</button>
+<!-- ============ FRONTPAGE - NO ACCOUNT DETAILS, BEAUTIFUL + PRODUCTS LIST ============ -->
+<div id="frontPage" class="frontWrap">
+<div class="frontHero">
+<div class="heroIcon">🌍</div>
+<h1>Welcome to<br>WorldSpots</h1>
+<p>Real people. Real towns. Real deals.<br>No fake adverts. Safe trading for everyone.</p>
+<div class="heroPills"><span>🛍️ Marketplace</span><span>💬 Chat Rooms</span><span>🛡️ Safe Trade</span><span>🗺️ Map</span></div>
+</div>
+
+<div class="frontFeatures">
+<div class="frontFeat"><div>🛍️</div><b>Buy & Sell</b><span>Post in seconds, reach real buyers near you</span></div>
+<div class="frontFeat"><div>🛡️</div><b>Safe Trade Escrow</b><span>Pay safely. Money released only when you confirm</span></div>
+<div class="frontFeat"><div>💬</div><b>Chat Rooms</b><span>Sports, Socials, Mingle, Education, Religion</span></div>
+<div class="frontFeat"><div>✨</div><b>Pay Small Small</b><span>Split payment. Buy now, pay in parts</span></div>
+</div>
+
+<!-- PRODUCTS & SERVICES ADVERTISED BY WORLDSPOTS -->
+<div class="shopSection">
+<h2>🛍️ What You Can Find on WorldSpots</h2>
+<p>Products & services advertised by real sellers on WorldSpots. Login to buy, chat seller, or post yours.</p>
+<div class="shopTabs" id="shopTabs">
+<button class="shopTab active" onclick="filterShop('All',this)">All</button>
+<button class="shopTab" onclick="filterShop('Food',this)">🍲 Food</button>
+<button class="shopTab" onclick="filterShop('Education',this)">🎓 Education</button>
+<button class="shopTab" onclick="filterShop('Phones',this)">📱 Phones</button>
+<button class="shopTab" onclick="filterShop('Hotels',this)">🏨 Hotels</button>
+<button class="shopTab" onclick="filterShop('Salon',this)">💇 Salon</button>
+<button class="shopTab" onclick="filterShop('Fashion',this)">👗 Fashion</button>
+<button class="shopTab" onclick="filterShop('Property',this)">🏠 Property</button>
+</div>
+<div class="shopGrid" id="shopGrid"></div>
+<p style="text-align:center;margin-top:10px"><b>Want to see prices & sellers?</b><br>Login to view full adverts, chat seller & buy safely.</p>
+<button class="btn btn-dark" onclick="showLogin('user')">Login to Buy / Sell →</button>
+</div>
+
+<div class="frontLogin">
+<h3>Login to Continue</h3>
+<p>Choose how you want to enter WorldSpots</p>
+<button class="btn btn-dark" onclick="showLogin('user')">Continue as User →</button>
 <button class="btn btn-white" onclick="showLogin('admin')">Login as Admin</button>
 <button class="btn btn-gold" onclick="enterAsGuest()">Continue as Guest</button>
+<p class="small">By continuing, you agree to trade safely and respect others.</p>
 </div>
+<p style="text-align:center;font-size:11px;color:#94A3B8;margin-top:10px">WorldSpots • Marketplace • Chat • Safe Trade • © 2026</p>
 </div>
+
 <div id="userLogin" class="card hidden" style="max-width:480px;margin:20px auto">
 <h2>Login / Create Account</h2><p>Type your own username.</p>
 <input id="uName" placeholder="Your username"><input id="uPass" type="password" placeholder="Your password">
 <button class="btn btn-dark" onclick="userLogin()">Login / Create Account →</button><button class="btn btn-white" onclick="backToFront()">Back</button>
 </div>
 <div id="adminLogin" class="card hidden" style="max-width:480px;margin:20px auto">
-<h2>Admin Login — Ekpo Bassey 👑</h2><p>Username is <b>admin</b>.</p>
+<h2>Admin Login</h2><p>Username is <b>admin</b>.</p>
 <input id="aName" value="admin" readonly><input id="aPass" type="password" placeholder="Password / Create first time"><input id="aPass2" type="password" placeholder="Confirm password (first time only)" class="hidden">
 <button class="btn btn-dark" onclick="adminLogin()">Enter Dashboard →</button><button class="btn btn-white" onclick="backToFront()">Back</button>
 </div>
 
+<!-- ============ INSIDE APP - DETAILS ONLY HERE AFTER LOGIN ============ -->
 <div id="mainSite" class="hidden">
 <div class="layout">
 <aside class="sidebar" id="sidebar">
@@ -278,7 +341,7 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <button class="btn btn-gold" onclick="buyCoins()">Buy Coins →</button>
 <button class="btn" style="background:#fff;color:#111" onclick="boostAdvert()">Boost Advert (500 Coins)</button>
 </div>
-<div class="card"><h2>💳 Pay Here — Your Owner Details</h2>
+<div class="card"><h2>💳 Pay Here — Owner Details</h2>
 <div class="payBox"><p style="font-size:12px;font-weight:800">PAY HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><span>WhatsApp: <b>0814 769 9555</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy 8147699555</button></div>
 <a class="btn btn-green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid." target="_blank">I Have Paid — Send Receipt on WhatsApp →</a>
 </div>
@@ -293,7 +356,7 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <div class="card"><h2>Verify a Seller</h2><input id="verifyInput" placeholder="Type name or phone to verify"><button class="btn btn-gold" onclick="checkVerify()">Check Verification →</button><div id="verifyResult" style="display:none;padding:10px;border-radius:10px;margin-top:8px;font-weight:700;text-align:center"></div></div>
 <div class="card" id="adminPanel" style="display:none;border:2px solid #0F2340"><h2>Admin Dashboard — Ekpo Bassey 👑</h2><p>Owner: Ekpo Bassey • WhatsApp: 0814 769 9555 • OPay: 8147699555</p><p>Escrow: <b id="tEscrow">₦0</b> • Fee: <b id="tFee">₦0</b> • Adverts: <b id="tTotal">0</b></p><input id="newVerified" placeholder="Type verified name to add"><button class="btn btn-dark" onclick="addVerified()">+ Add to Verified List</button><div id="verifiedListBox" style="margin-top:8px;font-size:13px"></div><div id="giftBox" style="display:none;margin-top:12px"><h2 style="font-size:14px">Gift Coins</h2><input id="giftUser" placeholder="Username to gift"><input id="giftAmt" placeholder="Amount"><button class="btn btn-gold" onclick="giftCoins()">Gift Coins →</button></div></div>
 <div class="card" id="adminTownBox" style="display:none;border:1px dashed #0F2340"><h2>Admin — Set Your Town</h2><input id="siteTownInput" placeholder="Type your town"><button class="btn btn-dark" onclick="saveSiteTown()">Save My Town →</button></div>
-<div class="card" id="adminSettings" style="display:none;border:1px dashed #111"><h2>Admin Settings — Your Details (Already Filled)</h2><input id="setOpayNum" value="8147699555"><input id="setOpayName" value="Ekpo Bassey"><input id="setWhatsApp" value="2348147699555"><input id="setInsta" value="edunexus2025"><button class="btn btn-dark" onclick="saveAdminSettings()">Save My Details →</button></div>
+<div class="card" id="adminSettings" style="display:none;border:1px dashed #111"><h2>Admin Settings — Your Details</h2><input id="setOpayNum" value="8147699555"><input id="setOpayName" value="Ekpo Bassey"><input id="setWhatsApp" value="2348147699555"><input id="setInsta" value="edunexus2025"><button class="btn btn-dark" onclick="saveAdminSettings()">Save My Details →</button></div>
 </div>
 
 <div id="page-profile" class="hidden">
@@ -332,6 +395,36 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 
 <script>
 const OWNER_NAME="Ekpo Bassey"; const OWNER_OPAY="8147699555"; const OWNER_OPAY_NAME="Ekpo Bassey"; const OWNER_WHATSAPP="2348147699555"; const OWNER_WHATSAPP_DISPLAY="0814 769 9555"; const OWNER_INSTA="edunexus2025";
+// PRODUCTS & SERVICES ADVERTISED BY WORLDSPOTS - SHOWN ON FRONTPAGE
+const SHOP_ITEMS=[
+{cat:"Food",emoji:"🍲",title:"Jollof Rice + Chicken",desc:"Fresh, hot, delivered near you",price:"From ₦3,500"},
+{cat:"Food",emoji:"🍔",title:"Shawarma & Grills",desc:"Chicken shawarma, suya, small chops",price:"From ₦2,500"},
+{cat:"Food",emoji:"🥘",title:"Soup & Swallow",desc:"Egusi, Ogbono, Afang + delivery",price:"From ₦4,000"},
+{cat:"Education",emoji:"🎓",title:"WAEC / JAMB Lessons",desc:"Online & physical tutorials",price:"From ₦5,000 / month"},
+{cat:"Education",emoji:"📚",title:"Scholarship Info",desc:"EduNexus - scholarships & admissions help",price:"Free Info"},
+{cat:"Education",emoji:"💻",title:"Computer Training",desc:"Excel, Graphics, Coding for beginners",price:"From ₦10,000"},
+{cat:"Phones",emoji:"📱",title:"iPhone 12 - 128GB",desc:"Clean UK used, battery healthy",price:"From ₦185,000"},
+{cat:"Phones",emoji:"📱",title:"Samsung A-Series",desc:"New & UK used phones, warranty",price:"From ₦95,000"},
+{cat:"Phones",emoji:"🎧",title:"AirPods & Accessories",desc:"Earpods, chargers, power banks",price:"From ₦8,000"},
+{cat:"Hotels",emoji:"🏨",title:"Hotel Rooms & Shortlet",desc:"Clean rooms, sit-out, relaxation centre",price:"From ₦15,000 / night"},
+{cat:"Hotels",emoji:"🏖️",title:"Sit-Out & Lounge",desc:"Relax, drinks, music, friends",price:"Walk-in"},
+{cat:"Salon",emoji:"💇",title:"Hair Styling & Braids",desc:"Braids, wig install, natural hair care",price:"From ₦5,000"},
+{cat:"Salon",emoji:"💄",title:"Makeup & Gele",desc:"Bridal makeup, party glam, photoshoot",price:"From ₦15,000"},
+{cat:"Fashion",emoji:"👗",title:"Sneakers & Wears",desc:"Nike, Adidas, thrift & new wears",price:"From ₦12,000"},
+{cat:"Fashion",emoji:"👜",title:"Bags, Watches & Jewelry",desc:"Quality fashion accessories",price:"From ₦7,500"},
+{cat:"Property",emoji:"🏠",title:"Land & Houses",desc:"Plots, self-contain, 2-bed flats",price:"From ₦150,000"},
+{cat:"Property",emoji:"🏢",title:"Shop Rent & Office",desc:"Shops, offices, warehouses for rent",price:"From ₦200,000 / year"},
+{cat:"Food",emoji:"🍕",title:"Pizza & Fast Food",desc:"Pizza, burgers, shawarma combos",price:"From ₦6,000"}
+];
+function renderShop(filter){
+  let list = filter=="All" ? SHOP_ITEMS : SHOP_ITEMS.filter(i=>i.cat==filter);
+  document.getElementById("shopGrid").innerHTML = list.map(i=>`<div class="shopCard"><div class="emoji">${i.emoji}</div><b>${i.title}</b><span>${i.desc}</span><div class="price">${i.price}</div><div class="from">✓ On WorldSpots • Login to Buy</div></div>`).join("");
+}
+function filterShop(cat,btn){
+  document.querySelectorAll(".shopTab").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  renderShop(cat);
+}
 let STAGES=[{logo:"🌱",name:"Newcomer"},{logo:"👀",name:"Visitor"},{logo:"💬",name:"Talker"},{logo:"☕",name:"Regular"},{logo:"😊",name:"Friendly Face"},{logo:"🏠",name:"Community Member"},{logo:"⚡",name:"Active Member"},{logo:"🤝",name:"Helper"},{logo:"⭐",name:"Star Talker"},{logo:"🌟",name:"Rising Star"},{logo:"📣",name:"Influencer"},{logo:"🦁",name:"Community Leader"},{logo:"🎤",name:"Voice of the Room"},{logo:"🏆",name:"Champion"},{logo:"🔥",name:"Legend"},{logo:"💎",name:"Super Legend"},{logo:"🧠",name:"Master"},{logo:"👑",name:"Grand Master"},{logo:"👸",name:"Royal"},{logo:"👑💎👑",name:"WORLDSPOTS KING"}];
 function coinsNeededForLevel(l){return 20*l;}
 let lastAdvert=""; let POSTS=[]; let BUY_POSTS=[];
@@ -340,32 +433,29 @@ let coins=parseInt(localStorage.getItem("ws_coins")||"0"); let chatCoins=parseFl
 let isAdminUser=false; let currentRoom="sports"; let currentPhoto=""; let currentVideo=""; let escrowHeld=0, feeEarned=0, escrowCount=0; let siteTown=localStorage.getItem("ws_site_town")||"";
 let chatData={sports:[{user:"Admin 👑",stage:20,text:"Welcome to Sports Room! No adverts here, just chat."}],socials:[{user:"Admin 👑",stage:20,text:"Welcome to Socials! Talk music, gist, fun."}],mingle:[{user:"Admin 👑",stage:20,text:"Welcome to Mingle! Be respectful."}],education:[{user:"Admin 👑",stage:20,text:"Welcome to Education! Ask questions."}],religion:[{user:"Admin 👑",stage:20,text:"Welcome to Religion! Share inspiration."}]};
 let roomMeta={sports:{title:"⚽ Sports Room",desc:"Football, matches, players. No marketing.",cls:"room-sports",count:"0 online"},socials:{title:"🎉 Socials Room",desc:"Music, gist, movies, fun.",cls:"room-socials",count:"0 online"},mingle:{title:"💕 Mingle Room",desc:"Make friends, chat. Be respectful.",cls:"room-mingle",count:"0 online"},education:{title:"🎓 Education Room",desc:"Ask questions, learn.",cls:"room-education",count:"0 online"},religion:{title:"🙏 Religion Room",desc:"Prayers, inspiration, peace.",cls:"room-religion",count:"0 online"}};
-// FIXED SIDEBAR - DRAWER
 function toggleSidebar(){ let sb=document.getElementById('sidebar'); let ov=document.getElementById('sidebarOverlay'); if(sb.classList.contains('open')){ closeSidebar(); } else { sb.classList.add('open'); ov.classList.add('show'); } }
-function openSidebar(){ document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('show'); }
 function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
 function showPage(page){
   ['home','market','buy','chat','map','wallet','verified','profile'].forEach(p=>{ let el=document.getElementById('page-'+p); if(el) el.classList.add('hidden'); let b=document.getElementById('btn-'+p); if(b) b.classList.remove('active'); });
   let target=page=='chat'?'home':page; document.getElementById('page-'+target).classList.remove('hidden'); let btn=document.getElementById('btn-'+target); if(btn) btn.classList.add('active');
   closeSidebar(); window.scrollTo({top:0,behavior:'smooth'});
-  document.querySelectorAll('.navItem').forEach(n=>n.classList.remove('active'));
 }
 function syncSearch(v){ let s=document.getElementById('searchBox'); if(s){s.value=v;doSearch();} showPage('market'); }
 function filterCat(c){ document.getElementById('catFilter').value=c; doSearch(); showPage('market'); }
 function saveSiteTown(){ siteTown=document.getElementById("siteTownInput").value.trim(); localStorage.setItem("ws_site_town",siteTown); alert("✅ Saved: "+(siteTown||"Not set")); }
 function saveAdminSettings(){ let n=document.getElementById("setOpayNum").value.trim()||OWNER_OPAY; let nm=document.getElementById("setOpayName").value.trim()||OWNER_OPAY_NAME; let wa=document.getElementById("setWhatsApp").value.trim()||OWNER_WHATSAPP; let ig=document.getElementById("setInsta").value.trim()||OWNER_INSTA; localStorage.setItem("ws_opay_num",n); localStorage.setItem("ws_opay_name",nm); localStorage.setItem("ws_whatsapp",wa); localStorage.setItem("ws_insta",ig); alert("✅ Saved: "+n+" / "+nm); }
-function loadAdminSettings(){ let n=localStorage.getItem("ws_opay_num")||OWNER_OPAY; let nm=localStorage.getItem("ws_opay_name")||OWNER_OPAY_NAME; if(!localStorage.getItem("ws_opay_num")) localStorage.setItem("ws_opay_num",n); if(!localStorage.getItem("ws_whatsapp")) localStorage.setItem("ws_whatsapp",OWNER_WHATSAPP); }
+function loadAdminSettings(){ if(!localStorage.getItem("ws_opay_num")) localStorage.setItem("ws_opay_num",OWNER_OPAY); if(!localStorage.getItem("ws_whatsapp")) localStorage.setItem("ws_whatsapp",OWNER_WHATSAPP); }
 function updateStageUI(){ if(isAdminUser){myLevel=20;chatCoins=999999;} let st=STAGES[myLevel-1]; let av=document.getElementById("myAvatar"); if(av&&av.style.display!="none"){av.innerText=st.logo;} document.getElementById("myStageBadge").innerText="Stage "+myLevel+" • "+st.name; document.getElementById("stageBig").innerText="Stage "+myLevel+" • "+st.logo; document.getElementById("chatCoins").innerText=chatCoins.toFixed(2); document.getElementById("msgCount").innerText=msgCount; document.getElementById("statCoins").innerText=coins; document.getElementById("menuCoins").innerText=coins; document.getElementById("statAdverts").innerText=POSTS.length; document.getElementById("menuAdverts").innerText=POSTS.length; document.getElementById("mapAds").innerText=POSTS.length; let totalChat=Object.values(chatData).reduce((a,b)=>a+b.length,0); document.getElementById("mapChats").innerText=totalChat; document.getElementById("mapEscrow").innerText=escrowCount; let need=myLevel>=20?0:coinsNeededForLevel(myLevel); document.getElementById("nextNeed").innerText=myLevel>=20?"MAX":need; document.getElementById("stageProgressText").innerText=myLevel>=20?"MAX — YOU ARE KING":chatCoins.toFixed(2)+" / "+need+" Coins to next stage"; let progress=myLevel>=20?100:Math.min(100,(chatCoins/need)*100); document.getElementById("stageProgress").style.width=progress+"%"; }
 function openStages(){ document.getElementById("stagesList").innerHTML=STAGES.map((s,i)=>{let lvl=i+1;let isMe=lvl==myLevel;return `<div style="padding:8px 10px;border-radius:10px;${isMe?'background:#FFFBEB;border:1px solid #C9A227':''}">${s.logo} <b>Stage ${lvl} - ${s.name}</b> ${i==19?'- ADMIN ONLY':''} ${isMe?'← YOU':''} • Needs ${20*lvl} coins</div>`;}).join(""); document.getElementById("stagesModal").style.display="flex"; }
 function closeStages(){ document.getElementById("stagesModal").style.display="none"; }
 function setManualTown(){ let t=document.getElementById("manualTown").value.trim(); if(!t){alert("Type your town first");return;} document.getElementById("mapFrame").src="https://www.google.com/maps?q="+encodeURIComponent(t)+"&output=embed"; document.getElementById("mapFrame2").src="https://www.google.com/maps?q="+encodeURIComponent(t)+"&output=embed"; document.getElementById("locText").innerText="📍 Location: "+t+" (typed by you)"; document.getElementById("mapLink").href="https://www.google.com/maps?q="+encodeURIComponent(t); document.getElementById("mapLink").classList.remove("hidden"); }
 function updateCoins(){ document.getElementById("coinBal").innerText=coins; document.getElementById("statCoins").innerText=coins; document.getElementById("menuCoins").innerText=coins; }
-function showLogin(type){ document.getElementById("frontPage").classList.add("hidden"); if(type=='user') document.getElementById("userLogin").classList.remove("hidden"); if(type=='admin'){ document.getElementById("adminLogin").classList.remove("hidden"); let hasPass=localStorage.getItem("ws_admin_pass"); if(!hasPass){document.getElementById("aPass2").classList.remove("hidden");} else {document.getElementById("aPass2").classList.add("hidden");} } }
-function backToFront(){ document.getElementById("userLogin").classList.add("hidden"); document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
-function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only"; document.getElementById("topAvatar").innerText="G"; isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Guest"); }
-function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){users[u]=p;localStorage.setItem("ws_users",JSON.stringify(users));alert("✅ Account created for "+u);} else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can post and chat"; document.getElementById("topAvatar").innerText=u[0].toUpperCase(); isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser(u); }
-function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("adminPanel").style.display="block"; document.getElementById("giftBox").style.display="block"; document.getElementById("adminTownBox").style.display="block"; document.getElementById("adminSettings").style.display="block"; document.getElementById("adminMini").style.display="block"; document.getElementById("whoIs").innerText="Admin 👑 — "+OWNER_NAME; document.getElementById("roleText").innerText="Admin — Stage 20 • WORLDSPOTS KING • "+OWNER_NAME; document.getElementById("topAvatar").innerText="👑"; isAdminUser=true; myLevel=20; chatCoins=999999; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Admin"); }
-function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("bottomNav").style.display="none"; document.getElementById("adminPanel").style.display="none"; document.getElementById("giftBox").style.display="none"; document.getElementById("adminTownBox").style.display="none"; document.getElementById("adminSettings").style.display="none"; document.getElementById("adminMini").style.display="none"; closeSidebar(); document.getElementById("frontPage").classList.remove("hidden"); }
+function showLogin(type){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("topBar").style.display="none"; if(type=='user') document.getElementById("userLogin").classList.remove("hidden"); if(type=='admin'){ document.getElementById("adminLogin").classList.remove("hidden"); let hasPass=localStorage.getItem("ws_admin_pass"); if(!hasPass){document.getElementById("aPass2").classList.remove("hidden");} else {document.getElementById("aPass2").classList.add("hidden");} } }
+function backToFront(){ document.getElementById("userLogin").classList.add("hidden"); document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); document.getElementById("topBar").style.display="none"; }
+function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("topBar").style.display="flex"; document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only"; document.getElementById("topAvatar").innerText="G"; isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Guest"); }
+function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){users[u]=p;localStorage.setItem("ws_users",JSON.stringify(users));alert("✅ Account created for "+u);} else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("topBar").style.display="flex"; document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can post and chat"; document.getElementById("topAvatar").innerText=u[0].toUpperCase(); isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser(u); }
+function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("topBar").style.display="flex"; document.getElementById("bottomNav").style.display="flex"; document.getElementById("adminPanel").style.display="block"; document.getElementById("giftBox").style.display="block"; document.getElementById("adminTownBox").style.display="block"; document.getElementById("adminSettings").style.display="block"; document.getElementById("adminMini").style.display="block"; document.getElementById("whoIs").innerText="Admin 👑 — "+OWNER_NAME; document.getElementById("roleText").innerText="Admin — Stage 20 • WORLDSPOTS KING • "+OWNER_NAME; document.getElementById("topAvatar").innerText="👑"; isAdminUser=true; myLevel=20; chatCoins=999999; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Admin"); }
+function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("bottomNav").style.display="none"; document.getElementById("topBar").style.display="none"; document.getElementById("adminPanel").style.display="none"; document.getElementById("giftBox").style.display="none"; document.getElementById("adminTownBox").style.display="none"; document.getElementById("adminSettings").style.display="none"; document.getElementById("adminMini").style.display="none"; closeSidebar(); document.getElementById("frontPage").classList.remove("hidden"); }
 function uploadProfilePhoto(e){ let file=e.target.files[0]; if(!file) return; if(file.size>2*1024*1024){alert("Photo too big. Use photo under 2MB");return;} let reader=new FileReader(); reader.onload=function(){ let photo=reader.result; let who=document.getElementById("whoIs").innerText||"Guest"; localStorage.setItem("ws_photo_"+who,photo); localStorage.setItem("ws_photo_current",photo); applyProfilePhoto(photo); alert("✅ Profile photo uploaded!"); renderChat(); }; reader.readAsDataURL(file); }
 function applyProfilePhoto(photo){ let topImg=document.getElementById("topAvatarImg"); let topAv=document.getElementById("topAvatar"); if(photo){topImg.src=photo;topImg.style.display="block";topAv.style.display="none";} else {topImg.style.display="none";topAv.style.display="flex";} let myImg=document.getElementById("myAvatarImg"); let myAv=document.getElementById("myAvatar"); if(myImg){ if(photo){myImg.src=photo;myImg.style.display="block";myAv.style.display="none";} else {myImg.style.display="none";myAv.style.display="flex";} } }
 function removeProfilePhoto(){ let who=document.getElementById("whoIs").innerText||"Guest"; localStorage.removeItem("ws_photo_"+who); localStorage.removeItem("ws_photo_current"); applyProfilePhoto(null); alert("Photo removed."); }
@@ -381,7 +471,6 @@ function addVerified(){ let n=document.getElementById("newVerified").value.trim(
 function renderVerified(){ let b=document.getElementById("verifiedListBox"); if(b) b.innerHTML="<b>Verified List:</b><br>"+VERIFIED.join(" • "); }
 function previewPhoto(e){ let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){currentPhoto=r.result;let img=document.getElementById("photoPreview");img.src=currentPhoto;img.classList.remove("hidden");}; r.readAsDataURL(f); }
 function previewVideo(e){ let f=e.target.files[0]; if(!f) return; let url=URL.createObjectURL(f); currentVideo=url; let v=document.getElementById("videoPreview"); v.src=url; v.classList.remove("hidden"); document.getElementById("videoCheck").checked=true; }
-function callSeller(){ let phone=document.getElementById("fPhone").value||""; if(!phone){alert("Type seller phone first");return;} window.location.href="tel:"+phone; }
 function flashSeller(){ alert("📲 Flash sent. Seller will call you back."); }
 function joinDaily(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! Add me to 7am Daily Deals Broadcast."),"_blank"); }
 function joinRoom(room){ currentRoom=room; let meta=roomMeta[room]; document.getElementById("chatHeadWrap").className="chatHead "+meta.cls; document.getElementById("roomTitle").innerText=meta.title; document.getElementById("roomDesc").innerText=meta.desc; document.getElementById("roomCount").innerText=meta.count; document.querySelectorAll(".roomPill").forEach(c=>c.classList.remove("active")); document.getElementById("pill-"+room).classList.add("active"); renderChat(); }
@@ -405,7 +494,7 @@ function confirmDelivery(){ alert('Thank you! Admin '+OWNER_NAME+' will now rele
 function requestSafeTrade(title,desc){ let amount=prompt("What is the price? (Max ₦200,000)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){alert("ABOVE ₦200,000 limit. Chat Admin first.");return;} if(num<5000){alert("Safe Trade is from ₦5,000.");return;} window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I REQUEST SAFE TRADE - Product: "+title+" Price: ₦"+num+" Pay to "+OWNER_OPAY),"_blank"); }
 function buyCoins(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy Coins for Boost. I will pay to "+OWNER_OPAY),"_blank"); }
 function boostAdvert(){ if(coins<500){alert("You need 500 Coins to Boost. Tap Buy Coins.");return;} coins-=500; localStorage.setItem("ws_coins",coins); updateCoins(); alert("Boosted! Your advert will stay at TOP for 1 day."); }
-renderPosts(POSTS); renderBuy(); updateCoins(); updateStageUI(); renderChat(); loadAdminSettings();
+renderShop("All"); renderPosts(POSTS); renderBuy(); updateCoins(); updateStageUI(); renderChat(); loadAdminSettings();
 </script>
 </body>
 </html>
