@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorldSpots - Advertise | Verified Monthly</title>
+<title>WorldSpots - Advertise | Safe Trade | Verified</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f0f2f5;color:#111}
@@ -12,7 +12,7 @@ body{background:#f0f2f5;color:#111}
 .top h1{font-size:26px;letter-spacing:1px}
 .top h1 span{color:#FFC107}
 .top p{font-size:13px;opacity:.9;margin-top:4px}
-.wrap{max-width:520px;margin:0 auto;padding:12px}
+.wrap{max-width:560px;margin:0 auto;padding:12px}
 .card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 h2{font-size:18px;margin-bottom:6px}
 p{font-size:14px;line-height:1.5;color:#444}
@@ -22,13 +22,13 @@ p{font-size:14px;line-height:1.5;color:#444}
 .gold{background:#FFC107;color:#000}
 .dark{background:#111;color:#fff}
 .red{background:#d32f2f;color:#fff}
+.purple{background:#7c3aed;color:#fff}
 .badge{display:inline-block;background:#ffe600;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:800}
 .price{font-size:26px;font-weight:900;color:#1877f2}
 .small{font-size:12px;color:#888;text-align:center;margin-top:8px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.grid div{background:#f0f2f5;padding:12px;border-radius:10px;text-align:center;font-size:13px;font-weight:700}
 input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px;font-size:14px}
 .postItem{background:#f8f9fa;border:1px solid #eee;border-radius:10px;padding:12px;margin-top:10px}
+.postItem img{width:100%;border-radius:10px;margin-top:8px;max-height:220px;object-fit:cover}
 .tag{display:inline-block;background:#e7f3ff;color:#1877f2;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800;margin-top:4px}
 .result{padding:12px;border-radius:10px;margin-top:10px;font-weight:700;text-align:center;display:none}
 .ok{background:#d4edda;color:#155724}
@@ -42,15 +42,19 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 .adGrid div{background:#EEF3FF;border:1px solid #D6E4FF;padding:10px 4px;border-radius:10px;font-size:12px;font-weight:700}
 .plan{border:2px solid #eee;border-radius:12px;padding:14px;margin-top:10px}
 .plan.active{border-color:#FFC107;background:#FFFEF5}
-.plan h3{font-size:16px}
 .plan ul{margin:8px 0 0 18px;font-size:13px;color:#444;line-height:1.6}
+.star{font-size:20px;cursor:pointer;color:#FFC107}
+.wallet{background:linear-gradient(135deg,#7c3aed,#0B2A6B);color:#fff;border-radius:14px;padding:16px;text-align:center}
+.wallet b{font-size:28px}
+.flex{display:flex;gap:8px}
+.flex button{flex:1}
 </style>
 </head>
 <body>
 <div class="top">
 <div class="logo">🌍📍</div>
 <h1>World<span>Spots</span></h1>
-<p>ADVERTISE • GET VERIFIED • STAY SAFE</p>
+<p>ADVERTISE • SAFE TRADE • VERIFIED • NEAR ME</p>
 <p>Powered by EduNexus | Future Pathways (13k)</p>
 </div>
 
@@ -58,7 +62,7 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div id="frontPage" class="card" style="text-align:center;border:2px solid #0B2A6B">
 <h2>Welcome to WorldSpots 👋</h2>
-<p>Your trusted place to <b>Advertise</b> anything to 13,000+ people.</p>
+<p>Advertise anything. Buy safely. No scam. Near you.</p>
 <button class="btn blue" onclick="showLogin('user')">👤 Login as User</button>
 <button class="btn dark" onclick="showLogin('admin')">🔐 Login as Admin</button>
 <button class="btn gold" onclick="enterAsGuest()">👀 Continue as Guest — View Adverts</button>
@@ -67,7 +71,6 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div id="userLogin" class="card hidden">
 <h2>👤 User Login / Create Account</h2>
-<p>First time? Just type a username + password, we create your account.</p>
 <input id="uName" placeholder="Choose Username e.g. JohnAgbor">
 <input id="uPass" type="password" placeholder="Choose Password">
 <button class="btn blue" onclick="userLogin()">Login / Create Account →</button>
@@ -76,9 +79,9 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div id="adminLogin" class="card hidden" style="border:2px solid #d32f2f">
 <h2>🔐 Admin Login</h2>
-<p id="adminMsg">Username is <b>admin</b>. First time? You will CREATE your password now.</p>
+<p id="adminMsg">Username is <b>admin</b>.</p>
 <input id="aName" value="admin" readonly style="background:#f0f0f0">
-<input id="aPass" type="password" placeholder="Enter Password / Create First Time Password">
+<input id="aPass" type="password" placeholder="Enter Password / Create First Time">
 <input id="aPass2" type="password" placeholder="Confirm Password (First Time Only)" class="hidden">
 <button class="btn red" onclick="adminLogin()">Enter Admin Dashboard →</button>
 <button class="btn" style="background:#eee" onclick="backToFront()">← Back</button>
@@ -88,195 +91,147 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div class="card" style="background:#0B2A6B;color:#fff">
 <h2 style="color:#fff">👋 Hello, <span id="whoIs">Guest</span></h2>
-<p style="color:#ddd" id="roleText">You are viewing as Guest</p>
+<p style="color:#ddd" id="roleText">Guest</p>
 <button class="btn gold" onclick="logout()">Logout</button>
 </div>
 
-<div class="card">
-<h2>📢 What Can You Advertise on WorldSpots?</h2>
-<p>Anything legal:</p>
-<div class="adGrid">
-<div>🏪<br>Business / Shop</div>
-<div>📱<br>Phones & Gadgets</div>
-<div>👗<br>Fashion</div>
-<div>🏫<br>Schools / Lessons</div>
-<div>⛪<br>Church / Events</div>
-<div>💼<br>Jobs / Vacancy</div>
-<div>🏠<br>Houses / Land</div>
-<div>🚗<br>Cars / Bikes</div>
-<div>🍚<br>Food / Provisions</div>
-<div>💇<br>Salon / Beauty</div>
-<div>🔧<br>Services / Repair</div>
-<div>🎓<br>Scholarship / Travel</div>
+<div class="wallet">
+<p>🪙 YOUR WALLET / COINS</p>
+<b><span id="coinBal">0</span> Coins</b>
+<p style="color:#ddd;font-size:13px">Use Coins to BOOST your advert to top. 500 Coins = Pin for 1 day.</p>
+<div class="flex">
+<button class="btn gold" onclick="buyCoins()">Buy Coins →</button>
+<button class="btn green" onclick="boostAdvert()">🚀 Boost My Advert (500 Coins)</button>
 </div>
-<p style="margin-top:10px"><b>Advertising is FREE</b> to post. <b>Verified = Monthly Subscription</b> for trust + top placement.</p>
+</div>
+
+<div class="card">
+<h2>📍 Near Me + Live Map</h2>
+<p>See adverts near you first. Tap to get your location.</p>
+<button class="btn blue" onclick="getLocation()">📍 Get My Location — Show Near Me</button>
+<p id="locText" class="small">Location: Not set yet. Showing all Nigeria.</p>
+<a id="mapLink" class="btn dark hidden" href="#" target="_blank">🗺️ Open Live Map →</a>
+<select id="locFilter" onchange="doSearch()"><option value="">All Locations</option><option>Agbor</option><option>Asaba</option><option>Benin</option><option>Warri</option><option>Lagos</option><option>Abuja</option></select>
+</div>
+
+<div class="card">
+<h2>📢 What Can You Advertise?</h2>
+<div class="adGrid"><div>🏪<br>Business</div><div>📱<br>Phones</div><div>👗<br>Fashion</div><div>🏫<br>Schools</div><div>⛪<br>Church/Events</div><div>💼<br>Jobs</div><div>🏠<br>Houses/Land</div><div>🚗<br>Cars/Bikes</div><div>🍚<br>Food</div><div>💇<br>Salon</div><div>🔧<br>Services</div><div>🎓<br>Scholarship</div></div>
 </div>
 
 <div class="card">
 <h2>🔍 Search Adverts</h2>
-<input id="searchBox" placeholder="Try: school, phone, Agbor, job..." oninput="doSearch()">
-<select id="catFilter" onchange="doSearch()">
-<option value="">All Categories</option>
-<option value="Education">Education</option>
-<option value="Business">Business</option>
-<option value="Phones">Phones</option>
-<option value="Jobs">Jobs</option>
-<option value="Food">Food</option>
-<option value="Fashion">Fashion</option>
-</select>
+<div class="flex"><input id="searchBox" placeholder="Try: school, phone, Agbor..." oninput="doSearch()" style="flex:2"><button class="btn purple" onclick="voiceSearch()" style="flex:1">🎤 Voice</button></div>
+<select id="catFilter" onchange="doSearch()"><option value="">All Categories</option><option>Education</option><option>Business</option><option>Phones</option><option>Jobs</option><option>Food</option><option>Fashion</option></select>
 <div id="postList"></div>
 </div>
 
-<div class="card" style="border:2px solid #FFC107">
+<div class="card">
 <h2>✅ Verify Check — Don't Be Scammed</h2>
-<input id="verifyInput" placeholder="e.g. Godson Bas or 08147699555">
+<input id="verifyInput" placeholder="e.g. EduNexus or 08147699555">
 <button class="btn gold" onclick="checkVerify()">Check Now →</button>
 <div id="verifyResult" class="result"></div>
 </div>
 
 <div class="card">
-<h2>💬 Advertise in 30 Seconds</h2>
+<h2>📸 Advertise With Photo in 30 Seconds</h2>
 <input id="fName" placeholder="Your Name">
 <input id="fWhat" placeholder="What do you want to Advertise? e.g. iPhone 11">
 <input id="fPrice" placeholder="Price e.g. ₦180,000">
 <input id="fLoc" placeholder="Location e.g. Agbor, Delta">
 <input id="fPhone" placeholder="Your WhatsApp Number">
-<textarea id="fDesc" rows="3" placeholder="Describe it..."></textarea>
+<textarea id="fDesc" rows="2" placeholder="Describe it..."></textarea>
+<p style="font-size:13px;margin-top:8px"><b>📸 Add Photo:</b></p>
+<input type="file" id="fPhoto" accept="image/*" onchange="previewPhoto(event)">
+<img id="photoPreview" class="hidden" style="width:100%;border-radius:10px;margin-top:8px;max-height:220px;object-fit:cover">
 <button class="btn green" onclick="sendWhatsApp()">Send to WhatsApp →</button>
+<button class="btn purple" onclick="postAdvertLocal()">📌 Post Directly on WorldSpots (Free)</button>
+<p class="small">Photo adverts get 3x more buyers than text only.</p>
 </div>
 
-<!-- NEW MONTHLY SUBSCRIPTION -->
+<div class="card" style="border:2px solid #25D366">
+<h2>🛡️ Safe Trade — Middleman Protection</h2>
+<p><b>How it works:</b> Buyer pays Admin FIRST → Admin holds → Seller delivers → Buyer confirms → Admin releases to Seller. Admin fee 5%.</p>
+<div style="background:#fff3cd;padding:12px;border-radius:10px;margin-top:10px">
+<b>⚠️ IMPORTANT RULES:</b><br>
+• ONLY ₦5,000 to <b>₦200,000 MAX</b><br>
+• <b>DO NOT PAY</b> if Admin has NOT replied you<br>
+• Tap <b>Request Safe Trade</b> first, wait for approval<br>
+• If you pay without approval or above ₦200,000, you will be refunded within 24h
+</div>
+<p class="small">Safe Trade is for small deals only. For land / car / above ₦200k, chat Admin first.</p>
+</div>
+
+<div class="card">
+<h2>🔔 WhatsApp Alerts</h2>
+<p>Get alert when someone posts what you want. E.g. “iPhone in Agbor”</p>
+<input id="alertWant" placeholder="What do you want? e.g. iPhone in Agbor">
+<button class="btn green" onclick="setAlert()">Turn ON Alerts →</button>
+<p class="small">You will get WhatsApp message when matching advert is posted.</p>
+</div>
+
 <div class="card" style="border:2px solid #FFC107">
 <h2>⭐ Verified Subscription — Pay Monthly</h2>
-<p>Choose your plan based on your business size. <b>You pay every month.</b> If you don't renew, your Verified badge is removed.</p>
-
-<div class="plan">
-<h3>🥉 SMALL — ₦3,000 / month</h3>
-<div class="price">₦3,000 <span style="font-size:13px;color:#666">/ month</span></div>
-<ul>
-<li>For: Small shop, food, salon, hawker, student vendor</li>
-<li>Verified ✅ badge</li>
-<li>1 Advert per week in group</li>
-<li>Appears in search</li>
-</ul>
-<button class="btn gold" onclick="choosePlan('SMALL - ₦3,000/month')">Choose Small — ₦3,000 →</button>
-</div>
-
-<div class="plan active">
-<h3>🥈 MEDIUM — ₦5,000 / month ⭐ POPULAR</h3>
-<div class="price">₦5,000 <span style="font-size:13px;color:#666">/ month</span></div>
-<ul>
-<li>For: Boutique, phone shop, school, restaurant</li>
-<li>Verified ✅ + Top placement</li>
-<li>3 Adverts per week</li>
-<li>WhatsApp support from Admin</li>
-</ul>
-<button class="btn gold" onclick="choosePlan('MEDIUM - ₦5,000/month')">Choose Medium — ₦5,000 →</button>
-</div>
-
-<div class="plan">
-<h3>🥇 BIG — ₦10,000 / month</h3>
-<div class="price">₦10,000 <span style="font-size:13px;color:#666">/ month</span></div>
-<ul>
-<li>For: Big store, hotel, car dealer, travel, estate</li>
-<li>Verified ✅ + PINNED at top</li>
-<li>Unlimited Adverts</li>
-<li>Featured on WorldSpots Frontpage</li>
-</ul>
-<button class="btn gold" onclick="choosePlan('BIG - ₦10,000/month')">Choose Big — ₦10,000 →</button>
-</div>
-
-<div class="payBox">
-<p style="font-size:13px;font-weight:800">💳 PAY HERE — OPay</p>
-<b>8147699555</b><br>
-<span>Account Name: <b>Ekpo Bassey</b></span><br>
-<span>Bank: <b>OPay Digital Services</b></span><br>
-<button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button>
-</div>
-<ol>
-<li>Transfer your plan amount to OPay above</li>
-<li>Screenshot receipt</li>
-<li>Tap below and send receipt + your plan + your name</li>
-<li>Admin confirms → Verified ✅ for 30 days</li>
-</ol>
-<a class="btn green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid%20for%20Verified%20Subscription.%20Here%20is%20my%20receipt." target="_blank">I Have Paid — Send Receipt →</a>
-<p class="small">⚠️ Only pay to 8147699555 / Ekpo Bassey. Don't pay any other account.</p>
+<p>Pay every month. If you don't renew, badge is removed.</p>
+<div class="plan"><h3>🥉 SMALL — ₦3,000 / month</h3><div class="price">₦3,000 <span style="font-size:13px;color:#666">/ month</span></div><ul><li>For small shop, food, salon</li><li>Verified ✅ badge</li><li>1 Advert per week</li></ul><button class="btn gold" onclick="choosePlan('SMALL - ₦3,000/month')">Choose Small →</button></div>
+<div class="plan active"><h3>🥈 MEDIUM — ₦5,000 / month ⭐ POPULAR</h3><div class="price">₦5,000 <span style="font-size:13px;color:#666">/ month</span></div><ul><li>For boutique, phone shop, school</li><li>Verified ✅ + Top placement</li><li>3 Adverts per week</li></ul><button class="btn gold" onclick="choosePlan('MEDIUM - ₦5,000/month')">Choose Medium →</button></div>
+<div class="plan"><h3>🥇 BIG — ₦10,000 / month</h3><div class="price">₦10,000 <span style="font-size:13px;color:#666">/ month</span></div><ul><li>For hotel, car dealer, estate</li><li>Verified ✅ + PINNED</li><li>Unlimited Adverts</li></ul><button class="btn gold" onclick="choosePlan('BIG - ₦10,000/month')">Choose Big →</button></div>
+<div class="payBox"><p style="font-size:13px;font-weight:800">💳 PAY HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button></div>
+<a class="btn green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid%20for%20Verified%20Subscription." target="_blank">I Have Paid — Send Receipt →</a>
+<p class="small">⚠️ Only pay to 8147699555 / Ekpo Bassey.</p>
 </div>
 
 <div id="adminPanel" class="card hidden" style="border:3px solid #d32f2f">
-<h2>🛡️ Admin Dashboard — Godson Bas</h2>
-<p>Only you see this.</p>
+<h2>🛡️ Admin Dashboard — WorldSpots Admin</h2>
 <input id="newVerified" placeholder="Add Verified Name e.g. John Agbor">
 <button class="btn red" onclick="addVerified()">+ Add to Verified List</button>
 <div id="verifiedListBox" style="margin-top:10px;font-size:13px"></div>
-<p class="small">Tip: When someone pays monthly, add them. After 30 days if they don't renew, remove them. That's how you keep making money.</p>
+<p class="small">Safe Trade: Only approve after you check. Max ₦200,000. Refund if no approval.</p>
 </div>
 
-<div class="card">
-<h2>📚 EduNexus</h2>
-<a class="btn blue" href="https://www.facebook.com/share/1EvTQAD9MQ/" target="_blank">Visit EduNexus Page →</a>
+<div class="card"><h2>📚 EduNexus</h2><p>Education, admissions, scholarships.</p><a class="btn blue" href="https://www.facebook.com/share/1EvTQAD9MQ/" target="_blank">Visit EduNexus →</a></div>
+<div class="card"><h2>👥 13k Group — Future Pathways</h2><a class="btn dark" href="https://www.facebook.com/share/g/1A88UfkYsc/" target="_blank">Join Future Pathways (13k) →</a></div>
+<div class="card"><h2>👤 Support</h2><p><b>WorldSpots Admin</b><br>Support Team — WorldSpots | EduNexus | Future Pathways</p><a class="btn blue" href="https://www.facebook.com/share/1F7YRuN4Yb/" target="_blank">Message Admin →</a><a class="btn green" href="https://wa.me/2348147699555" target="_blank">WhatsApp: 0814 769 9555</a><a class="btn dark" href="https://instagram.com/edunexus2025" target="_blank">Instagram @edunexus2025</a></div>
 </div>
-<div class="card">
-<h2>👥 13k Group — Future Pathways</h2>
-<a class="btn dark" href="https://www.facebook.com/share/g/1A88UfkYsc/" target="_blank">Join Future Pathways (13k) →</a>
-</div>
-<div class="card">
-<h2>👤 Admin</h2>
-<p><b>Godson Bas</b> / Ekpo Bassey<br>Owner — WorldSpots | EduNexus | Future Pathways</p>
-<a class="btn blue" href="https://www.facebook.com/share/1F7YRuN4Yb/" target="_blank">Message Godson Bas →</a>
-<a class="btn green" href="https://wa.me/2348147699555" target="_blank">WhatsApp: 0814 769 9555</a>
-</div>
-</div>
-<p class="small">© 2026 WorldSpots • EduNexus • Future Pathways</p>
+<p class="small">© 2026 WorldSpots • EduNexus • Future Pathways — Safe Trade Max ₦200,000</p>
 </div>
 
 <script>
 let POSTS=[
-{title:"EduNexus - JAMB / WAEC Tutorial",cat:"Education",loc:"Agbor",desc:"Lessons, admission help.",phone:"EduNexus"},
-{title:"iPhone 11 - Neatly Used",cat:"Phones",loc:"Agbor",desc:"64GB, ₦180,000",phone:"080..."},
-{title:"Fashion Store - New Arrivals",cat:"Fashion",loc:"Delta",desc:"Shirts, gowns, sneakers.",phone:"080..."},
-{title:"Driver Job",cat:"Jobs",loc:"Asaba",desc:"Driver needed.",phone:"080..."},
-{title:"Rice Wholesale",cat:"Food",loc:"Agbor",desc:"Rice, beans, garri wholesale.",phone:"080..."}
+{title:"EduNexus - JAMB / WAEC Tutorial",cat:"Education",loc:"Agbor",desc:"Lessons, admission help.",phone:"EduNexus",rating:5,reviews:42,img:"",boosted:true},
+{title:"iPhone 11 - Neatly Used",cat:"Phones",loc:"Agbor",desc:"64GB, ₦180,000",phone:"080...",rating:4,reviews:12,img:"",price:180000},
+{title:"Fashion Store - New Arrivals",cat:"Fashion",loc:"Delta",desc:"Shirts, gowns, sneakers.",phone:"080...",rating:5,reviews:8,img:""},
+{title:"Driver Job",cat:"Jobs",loc:"Asaba",desc:"Driver needed.",phone:"080...",rating:3,reviews:3,img:""},
+{title:"Rice Wholesale",cat:"Food",loc:"Agbor",desc:"Rice, beans, garri wholesale.",phone:"080...",rating:4,reviews:20,img:""}
 ];
-let VERIFIED = JSON.parse(localStorage.getItem("ws_verified")||'["godson bas","ekpo bassey","edunexus","future pathways","8147699555"]');
-function showLogin(type){
-  document.getElementById("frontPage").classList.add("hidden");
-  if(type=='user') document.getElementById("userLogin").classList.remove("hidden");
-  if(type=='admin'){
-    document.getElementById("adminLogin").classList.remove("hidden");
-    let hasPass = localStorage.getItem("ws_admin_pass");
-    if(!hasPass){ document.getElementById("adminMsg").innerHTML="⚠️ <b>FIRST TIME:</b> Username is <b>admin</b>. Create your password now."; document.getElementById("aPass2").classList.remove("hidden"); }
-    else { document.getElementById("adminMsg").innerHTML="Welcome back Admin. Enter your password."; document.getElementById("aPass2").classList.add("hidden"); }
-  }
-}
+let VERIFIED = JSON.parse(localStorage.getItem("ws_verified")||'["edunexus","future pathways","worldspots","8147699555"]');
+let coins = parseInt(localStorage.getItem("ws_coins")||"0");
+let currentPhoto="";
+function updateCoins(){ document.getElementById("coinBal").innerText=coins; }
+function showLogin(type){ document.getElementById("frontPage").classList.add("hidden"); if(type=='user') document.getElementById("userLogin").classList.remove("hidden"); if(type=='admin'){ document.getElementById("adminLogin").classList.remove("hidden"); let hasPass=localStorage.getItem("ws_admin_pass"); if(!hasPass){ document.getElementById("adminMsg").innerHTML="⚠️ <b>FIRST TIME:</b> Create your password now."; document.getElementById("aPass2").classList.remove("hidden"); } else { document.getElementById("aPass2").classList.add("hidden"); } } }
 function backToFront(){ document.getElementById("userLogin").classList.add("hidden"); document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
-function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only. Login to Advertise."; renderPosts(POSTS); renderVerified(); }
-function userLogin(){
-  let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim();
-  if(!u||!p){ alert("Type username and password"); return; }
-  let users=JSON.parse(localStorage.getItem("ws_users")||"{}");
-  if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u); }
-  else if(users[u]!==p){ alert("❌ Wrong password"); return; }
-  document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can Advertise"; renderPosts(POSTS); renderVerified();
-}
-function adminLogin(){
-  let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim();
-  if(u!=="admin"){ alert("Admin username is admin"); return; }
-  let saved=localStorage.getItem("ws_admin_pass");
-  if(!saved){ if(!p||p.length<4){ alert("Create password, at least 4 characters"); return; } if(p!==p2){ alert("Passwords do not match"); return; } localStorage.setItem("ws_admin_pass",p); alert("✅ Your Admin Password is CREATED!"); }
-  else { if(p!==saved){ alert("❌ Wrong Admin Password"); return; } }
-  document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); document.getElementById("whoIs").innerText="Godson Bas (Admin)"; document.getElementById("roleText").innerText="Admin — You control everything"; renderPosts(POSTS); renderVerified();
-}
+function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only"; renderPosts(POSTS); renderVerified(); updateCoins(); }
+function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u); } else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can Advertise"; renderPosts(POSTS); renderVerified(); updateCoins(); }
+function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); document.getElementById("whoIs").innerText="Admin"; document.getElementById("roleText").innerText="Admin — You control everything"; renderPosts(POSTS); renderVerified(); updateCoins(); }
 function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
-function renderPosts(list){ document.getElementById("postList").innerHTML=list.map(p=>`<div class="postItem"><b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span></div>`).join(""); }
-function doSearch(){ let q=document.getElementById("searchBox").value.toLowerCase(); let c=document.getElementById("catFilter").value; renderPosts(POSTS.filter(p=>(!c||p.cat==c)&&(p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q)))); }
-function checkVerify(){ let v=document.getElementById("verifyInput").value.trim().toLowerCase(); let r=document.getElementById("verifyResult"); r.style.display="block"; if(!v){ r.className="result no"; r.innerHTML="Type name or phone first"; return; } let found=VERIFIED.some(x=>v.includes(x)||x.includes(v)); r.className=found?"result ok":"result no"; r.innerHTML=found?"✅ VERIFIED — Safe to deal.":"❌ NOT VERIFIED — Ask for video call."; }
+function renderPosts(list){ let sorted=[...list].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)); document.getElementById("postList").innerHTML=sorted.map((p,i)=>`<div class="postItem">${p.boosted?'<span class="badge">🚀 BOOSTED • TOP</span> ':''}<b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span><br><span style="font-size:13px">⭐ ${p.rating||4}.0 (${p.reviews||0} reviews) • Trust: ${p.rating>=4?'🟢 HIGH':p.rating>=3?'🟡 MEDIUM':'🔴 LOW'}</span><br><span style="font-size:13px">Rate this seller: <span class="star" onclick="rateSeller(${i},5)">★★★★★</span> <span onclick="rateSeller(${i},1)" style="font-size:12px;color:#1877f2;cursor:pointer">Tap stars to rate</span></span>${p.img?`<img src="${p.img}">`:''}<button class="btn green" onclick="requestSafeTrade('${p.title.replace(/'/g,"")}','${p.desc.replace(/'/g,"")}')">🛡️ Request Safe Trade — Max ₦200,000</button></div>`).join(""); }
+function doSearch(){ let q=document.getElementById("searchBox").value.toLowerCase(); let c=document.getElementById("catFilter").value; let l=document.getElementById("locFilter").value; renderPosts(POSTS.filter(p=>(!c||p.cat==c)&&(!l||p.loc==l)&&(p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q)))); }
+function checkVerify(){ let v=document.getElementById("verifyInput").value.trim().toLowerCase(); let r=document.getElementById("verifyResult"); r.style.display="block"; if(!v){r.className="result no";r.innerHTML="Type name or phone first";return;} let found=VERIFIED.some(x=>v.includes(x)||x.includes(v)); r.className=found?"result ok":"result no"; r.innerHTML=found?"✅ VERIFIED — Safe to deal.":"❌ NOT VERIFIED — Ask for video call."; }
 function copyAcct(){ navigator.clipboard.writeText("8147699555"); alert("✅ Copied: 8147699555 - OPay / Ekpo Bassey"); }
 function choosePlan(plan){ let msg="Hello WorldSpots! I want "+encodeURIComponent(plan)+" Verified Subscription. I will pay to OPay 8147699555. My name is: "; window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
 function addVerified(){ let n=document.getElementById("newVerified").value.trim().toLowerCase(); if(!n) return; VERIFIED.push(n); localStorage.setItem("ws_verified",JSON.stringify(VERIFIED)); document.getElementById("newVerified").value=""; renderVerified(); alert("✅ Added: "+n); }
 function renderVerified(){ let b=document.getElementById("verifiedListBox"); if(b) b.innerHTML="<b>Verified List:</b><br>"+VERIFIED.join(" • "); }
-function sendWhatsApp(){ let name=document.getElementById("fName").value, what=document.getElementById("fWhat").value, price=document.getElementById("fPrice").value, loc=document.getElementById("fLoc").value, phone=document.getElementById("fPhone").value, desc=document.getElementById("fDesc").value; if(!name||!what){ alert("Fill Name and What you want to Advertise"); return; } let msg="Hello WorldSpots! I want to ADVERTISE%0A%0AName: "+encodeURIComponent(name)+"%0AAdvert: "+encodeURIComponent(what)+"%0APrice: "+encodeURIComponent(price)+"%0ALocation: "+encodeURIComponent(loc)+"%0AMy WhatsApp: "+encodeURIComponent(phone)+"%0ADetails: "+encodeURIComponent(desc); window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
-renderPosts(POSTS);
+function previewPhoto(e){ let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){ currentPhoto=r.result; let img=document.getElementById("photoPreview"); img.src=currentPhoto; img.classList.remove("hidden"); }; r.readAsDataURL(f); }
+function postAdvertLocal(){ let what=document.getElementById("fWhat").value; let loc=document.getElementById("fLoc").value||"Agbor"; let desc=document.getElementById("fDesc").value; let phone=document.getElementById("fPhone").value||"080..."; if(!what){alert("Type what you want to advertise");return;} POSTS.unshift({title:what,cat:"Business",loc:loc,desc:desc||what,phone:phone,rating:5,reviews:0,img:currentPhoto,boosted:false}); renderPosts(POSTS); alert("✅ Your advert with photo is now LIVE on WorldSpots!"); }
+function sendWhatsApp(){ let name=document.getElementById("fName").value, what=document.getElementById("fWhat").value, price=document.getElementById("fPrice").value, loc=document.getElementById("fLoc").value, phone=document.getElementById("fPhone").value, desc=document.getElementById("fDesc").value; if(!name||!what){alert("Fill Name and What you want to Advertise");return;} let msg="Hello WorldSpots! I want to ADVERTISE%0A%0AName: "+encodeURIComponent(name)+"%0AAdvert: "+encodeURIComponent(what)+"%0APrice: "+encodeURIComponent(price)+"%0ALocation: "+encodeURIComponent(loc)+"%0AMy WhatsApp: "+encodeURIComponent(phone)+"%0ADetails: "+encodeURIComponent(desc)+(currentPhoto?"%0A[I have photo - will send it]":""); window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
+function getLocation(){ if(!navigator.geolocation){alert("Location not supported");return;} document.getElementById("locText").innerText="Getting location..."; navigator.geolocation.getCurrentPosition(pos=>{ let lat=pos.coords.latitude, lon=pos.coords.longitude; document.getElementById("locText").innerText="📍 Your location found: "+lat.toFixed(3)+", "+lon.toFixed(3)+" — Showing Near Me first"; let m=document.getElementById("mapLink"); m.href="https://www.google.com/maps?q="+lat+","+lon; m.classList.remove("hidden"); alert("✅ Location found! You are now seeing Near Me adverts."); },()=>{alert("Please allow location to use Near Me");}); }
+function voiceSearch(){ if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){ alert("Voice search needs Chrome browser. Type instead."); return; } let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; let rec=new Rec(); rec.lang='en-NG'; rec.onresult=e=>{ let t=e.results[0][0].transcript; document.getElementById("searchBox").value=t; doSearch(); alert("🎤 You said: "+t); }; rec.start(); }
+function rateSeller(idx,stars){ let p=POSTS[idx]; p.reviews=(p.reviews||0)+1; p.rating=Math.min(5,((p.rating||4)+stars)/2); renderPosts(POSTS); alert("✅ Thanks! You rated "+p.title+" — Trust Score updated."); }
+function requestSafeTrade(title,desc){ let amount=prompt("What is the price of this product? (Max ₦200,000 for Safe Trade)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){ alert("⚠️ This is ABOVE ₦200,000 Safe Trade limit. Do NOT pay. Chat Admin first for big deals."); window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello Admin, I want Safe Trade for BIG deal above ₦200,000: "+title+" Price: "+amount),"_blank"); return; } if(num<5000){ alert("Safe Trade is from ₦5,000. This is too small, pay direct but verify first."); return; } let msg="Hello WorldSpots! I REQUEST SAFE TRADE%0A%0AProduct: "+encodeURIComponent(title)+"%0APrice: ₦"+num+"%0A%0APlease APPROVE before I pay. I will NOT pay until you reply."; window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
+function buyCoins(){ let msg="Hello WorldSpots! I want to buy Coins for Boost. How much is 500 Coins? My name is: "; window.open("https://wa.me/2348147699555?text="+encodeURIComponent(msg),"_blank"); }
+function boostAdvert(){ if(coins<500){ alert("You need 500 Coins to Boost. Tap Buy Coins. Admin will add coins after you pay."); return; } coins-=500; localStorage.setItem("ws_coins",coins); updateCoins(); alert("🚀 Boosted! Your advert will stay at TOP for 1 day."); }
+function setAlert(){ let w=document.getElementById("alertWant").value; if(!w){alert("Type what you want first");return;} window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! Turn ON WhatsApp Alert for me. I want: "+w),"_blank"); }
+renderPosts(POSTS); updateCoins();
 </script>
 </body>
 </html>
