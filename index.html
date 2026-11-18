@@ -89,35 +89,25 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 .ownerBox b{color:#fff}
 .ownerBox p{color:#CBD5E1}
 #sidebarOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);z-index:250;display:none}
+/* CLEAN FRONTPAGE */
 .frontWrap{max-width:480px;margin:0 auto;padding:0 14px 20px}
-.frontHero{background:linear-gradient(135deg,#0F2340 0%,#1E3A5F 60%,#C9A227 130%);border-radius:24px;padding:28px 20px;text-align:center;color:#fff;margin:14px 0 12px;box-shadow:0 10px 30px rgba(15,35,64,.25)}
-.frontHero .heroIcon{width:72px;height:72px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 10px}
-.frontHero h1{font-size:26px;line-height:1.2}
-.frontHero p{color:#CBD5E1;font-size:13px;line-height:1.5;margin-top:8px}
-.frontHero .heroPills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.frontHero .heroPills span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.frontFeatures{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.frontFeat{background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:12px;text-align:center}
-.frontFeat div{font-size:24px}
-.frontFeat b{font-size:13px;display:block;margin:4px 0 2px}
-.frontFeat span{font-size:11px;color:#64748B;line-height:1.4;display:block}
-.frontLogin{background:#fff;border-radius:18px;padding:16px;border:1px solid #E2E8F0;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.frontHero{background:linear-gradient(135deg,#0F2340 0%,#1E3A5F 60%,#C9A227 130%);border-radius:24px;padding:24px 18px;text-align:center;color:#fff;margin:14px 0 12px}
+.frontHero .heroIcon{width:64px;height:64px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 8px}
+.frontHero h1{font-size:25px;line-height:1.2}
+.frontHero p{color:#CBD5E1;font-size:13px;line-height:1.5;margin-top:6px}
+.frontLogin{background:#fff;border-radius:18px;padding:16px;border:1px solid #E2E8F0;box-shadow:0 4px 16px rgba(0,0,0,.06);margin-bottom:12px}
 .frontLogin h3{font-size:15px;text-align:center}
 .frontLogin p{font-size:12px;color:#64748B;text-align:center;margin:4px 0 10px}
-/* PRODUCTS LIST ON FRONTPAGE */
-.shopSection{background:#fff;border-radius:18px;padding:16px;border:1px solid #E2E8F0;margin-bottom:12px}
-.shopSection h2{font-size:17px}
-.shopSection p{font-size:12px;color:#64748B}
-.shopTabs{display:flex;gap:6px;overflow-x:auto;margin:10px 0;padding-bottom:4px}
-.shopTab{flex-shrink:0;padding:7px 12px;border-radius:20px;background:#F1F5F9;border:1px solid #E2E8F0;font-size:12px;font-weight:700}
-.shopTab.active{background:#0F2340;color:#fff}
-.shopGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.shopCard{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:10px}
-.shopCard .emoji{font-size:26px}
-.shopCard b{font-size:13px;display:block;margin:4px 0 2px;line-height:1.3}
-.shopCard span{font-size:11px;color:#64748B;line-height:1.4;display:block}
-.shopCard .price{font-size:12px;font-weight:800;color:#0F2340;margin-top:4px}
-.shopCard .from{font-size:11px;color:#059669;font-weight:700}
+/* 7 GROUPS - SIMPLE LIST */
+.groupsBox{background:#fff;border-radius:18px;padding:16px;border:1px solid #E2E8F0;margin-bottom:12px}
+.groupsBox h2{font-size:17px}
+.groupsBox p{font-size:12px;color:#64748B;margin-top:2px}
+.groupItem{display:flex;gap:12px;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:12px;margin-top:10px;cursor:pointer}
+.groupItem:active{background:#EEF2FF}
+.groupIcon{width:48px;height:48px;border-radius:12px;background:#fff;border:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.groupItem b{font-size:14px;display:block;line-height:1.3}
+.groupItem span{font-size:12px;color:#64748B;line-height:1.4;display:block;margin-top:2px}
+.groupArrow{font-size:18px;color:#94A3B8;flex-shrink:0}
 @media(max-width:820px){
 .searchTop{display:none}
 .layout{flex-direction:column;padding:10px}
@@ -151,39 +141,12 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 </div>
 </div>
 
-<!-- ============ FRONTPAGE - NO ACCOUNT DETAILS, BEAUTIFUL + PRODUCTS LIST ============ -->
+<!-- ============ CLEAN FRONTPAGE - HERO + LOGIN + 7 GROUPS ONLY ============ -->
 <div id="frontPage" class="frontWrap">
 <div class="frontHero">
 <div class="heroIcon">🌍</div>
 <h1>Welcome to<br>WorldSpots</h1>
 <p>Real people. Real towns. Real deals.<br>No fake adverts. Safe trading for everyone.</p>
-<div class="heroPills"><span>🛍️ Marketplace</span><span>💬 Chat Rooms</span><span>🛡️ Safe Trade</span><span>🗺️ Map</span></div>
-</div>
-
-<div class="frontFeatures">
-<div class="frontFeat"><div>🛍️</div><b>Buy & Sell</b><span>Post in seconds, reach real buyers near you</span></div>
-<div class="frontFeat"><div>🛡️</div><b>Safe Trade Escrow</b><span>Pay safely. Money released only when you confirm</span></div>
-<div class="frontFeat"><div>💬</div><b>Chat Rooms</b><span>Sports, Socials, Mingle, Education, Religion</span></div>
-<div class="frontFeat"><div>✨</div><b>Pay Small Small</b><span>Split payment. Buy now, pay in parts</span></div>
-</div>
-
-<!-- PRODUCTS & SERVICES ADVERTISED BY WORLDSPOTS -->
-<div class="shopSection">
-<h2>🛍️ What You Can Find on WorldSpots</h2>
-<p>Products & services advertised by real sellers on WorldSpots. Login to buy, chat seller, or post yours.</p>
-<div class="shopTabs" id="shopTabs">
-<button class="shopTab active" onclick="filterShop('All',this)">All</button>
-<button class="shopTab" onclick="filterShop('Food',this)">🍲 Food</button>
-<button class="shopTab" onclick="filterShop('Education',this)">🎓 Education</button>
-<button class="shopTab" onclick="filterShop('Phones',this)">📱 Phones</button>
-<button class="shopTab" onclick="filterShop('Hotels',this)">🏨 Hotels</button>
-<button class="shopTab" onclick="filterShop('Salon',this)">💇 Salon</button>
-<button class="shopTab" onclick="filterShop('Fashion',this)">👗 Fashion</button>
-<button class="shopTab" onclick="filterShop('Property',this)">🏠 Property</button>
-</div>
-<div class="shopGrid" id="shopGrid"></div>
-<p style="text-align:center;margin-top:10px"><b>Want to see prices & sellers?</b><br>Login to view full adverts, chat seller & buy safely.</p>
-<button class="btn btn-dark" onclick="showLogin('user')">Login to Buy / Sell →</button>
 </div>
 
 <div class="frontLogin">
@@ -192,9 +155,60 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <button class="btn btn-dark" onclick="showLogin('user')">Continue as User →</button>
 <button class="btn btn-white" onclick="showLogin('admin')">Login as Admin</button>
 <button class="btn btn-gold" onclick="enterAsGuest()">Continue as Guest</button>
-<p class="small">By continuing, you agree to trade safely and respect others.</p>
 </div>
-<p style="text-align:center;font-size:11px;color:#94A3B8;margin-top:10px">WorldSpots • Marketplace • Chat • Safe Trade • © 2026</p>
+
+<!-- 7 ADVERT GROUPS - SIMPLE LIST -->
+<div class="groupsBox">
+<h2>📂 Advert Groups on WorldSpots</h2>
+<p>Tap any group to login and see adverts in that group.</p>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">🍲</div>
+<div style="flex:1"><b>Foods and Eateries</b><span>Food, restaurants, snacks, drinks, catering</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">🎓</div>
+<div style="flex:1"><b>Education and Scholarships</b><span>Lessons, schools, scholarships, EduNexus</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">📱</div>
+<div style="flex:1"><b>Electronics and Phones</b><span>Phones, laptops, accessories, gadgets</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">🏨</div>
+<div style="flex:1"><b>Hotels and Relaxation Centres (Sit-Outs)</b><span>Hotels, shortlets, lounges, relaxation</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">💇</div>
+<div style="flex:1"><b>Saloon and Make Overs</b><span>Hair, makeup, nails, beauty services</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">👗</div>
+<div style="flex:1"><b>Fashion, Wears and Style</b><span>Clothes, shoes, bags, watches, jewelry</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<div class="groupItem" onclick="showLogin('user')">
+<div class="groupIcon">🏠</div>
+<div style="flex:1"><b>Properties (Lands, Houses and More)</b><span>Land, houses, flats, shops for sale & rent</span></div>
+<div class="groupArrow">›</div>
+</div>
+
+<p style="text-align:center;margin-top:12px">+ All 7 Groups — Post everywhere at once</p>
+<button class="btn btn-dark" onclick="showLogin('user')">Browse All Groups →</button>
+</div>
+
+<p style="text-align:center;font-size:11px;color:#94A3B8">WorldSpots • Marketplace • Chat • Safe Trade • © 2026</p>
 </div>
 
 <div id="userLogin" class="card hidden" style="max-width:480px;margin:20px auto">
@@ -395,36 +409,6 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 
 <script>
 const OWNER_NAME="Ekpo Bassey"; const OWNER_OPAY="8147699555"; const OWNER_OPAY_NAME="Ekpo Bassey"; const OWNER_WHATSAPP="2348147699555"; const OWNER_WHATSAPP_DISPLAY="0814 769 9555"; const OWNER_INSTA="edunexus2025";
-// PRODUCTS & SERVICES ADVERTISED BY WORLDSPOTS - SHOWN ON FRONTPAGE
-const SHOP_ITEMS=[
-{cat:"Food",emoji:"🍲",title:"Jollof Rice + Chicken",desc:"Fresh, hot, delivered near you",price:"From ₦3,500"},
-{cat:"Food",emoji:"🍔",title:"Shawarma & Grills",desc:"Chicken shawarma, suya, small chops",price:"From ₦2,500"},
-{cat:"Food",emoji:"🥘",title:"Soup & Swallow",desc:"Egusi, Ogbono, Afang + delivery",price:"From ₦4,000"},
-{cat:"Education",emoji:"🎓",title:"WAEC / JAMB Lessons",desc:"Online & physical tutorials",price:"From ₦5,000 / month"},
-{cat:"Education",emoji:"📚",title:"Scholarship Info",desc:"EduNexus - scholarships & admissions help",price:"Free Info"},
-{cat:"Education",emoji:"💻",title:"Computer Training",desc:"Excel, Graphics, Coding for beginners",price:"From ₦10,000"},
-{cat:"Phones",emoji:"📱",title:"iPhone 12 - 128GB",desc:"Clean UK used, battery healthy",price:"From ₦185,000"},
-{cat:"Phones",emoji:"📱",title:"Samsung A-Series",desc:"New & UK used phones, warranty",price:"From ₦95,000"},
-{cat:"Phones",emoji:"🎧",title:"AirPods & Accessories",desc:"Earpods, chargers, power banks",price:"From ₦8,000"},
-{cat:"Hotels",emoji:"🏨",title:"Hotel Rooms & Shortlet",desc:"Clean rooms, sit-out, relaxation centre",price:"From ₦15,000 / night"},
-{cat:"Hotels",emoji:"🏖️",title:"Sit-Out & Lounge",desc:"Relax, drinks, music, friends",price:"Walk-in"},
-{cat:"Salon",emoji:"💇",title:"Hair Styling & Braids",desc:"Braids, wig install, natural hair care",price:"From ₦5,000"},
-{cat:"Salon",emoji:"💄",title:"Makeup & Gele",desc:"Bridal makeup, party glam, photoshoot",price:"From ₦15,000"},
-{cat:"Fashion",emoji:"👗",title:"Sneakers & Wears",desc:"Nike, Adidas, thrift & new wears",price:"From ₦12,000"},
-{cat:"Fashion",emoji:"👜",title:"Bags, Watches & Jewelry",desc:"Quality fashion accessories",price:"From ₦7,500"},
-{cat:"Property",emoji:"🏠",title:"Land & Houses",desc:"Plots, self-contain, 2-bed flats",price:"From ₦150,000"},
-{cat:"Property",emoji:"🏢",title:"Shop Rent & Office",desc:"Shops, offices, warehouses for rent",price:"From ₦200,000 / year"},
-{cat:"Food",emoji:"🍕",title:"Pizza & Fast Food",desc:"Pizza, burgers, shawarma combos",price:"From ₦6,000"}
-];
-function renderShop(filter){
-  let list = filter=="All" ? SHOP_ITEMS : SHOP_ITEMS.filter(i=>i.cat==filter);
-  document.getElementById("shopGrid").innerHTML = list.map(i=>`<div class="shopCard"><div class="emoji">${i.emoji}</div><b>${i.title}</b><span>${i.desc}</span><div class="price">${i.price}</div><div class="from">✓ On WorldSpots • Login to Buy</div></div>`).join("");
-}
-function filterShop(cat,btn){
-  document.querySelectorAll(".shopTab").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
-  renderShop(cat);
-}
 let STAGES=[{logo:"🌱",name:"Newcomer"},{logo:"👀",name:"Visitor"},{logo:"💬",name:"Talker"},{logo:"☕",name:"Regular"},{logo:"😊",name:"Friendly Face"},{logo:"🏠",name:"Community Member"},{logo:"⚡",name:"Active Member"},{logo:"🤝",name:"Helper"},{logo:"⭐",name:"Star Talker"},{logo:"🌟",name:"Rising Star"},{logo:"📣",name:"Influencer"},{logo:"🦁",name:"Community Leader"},{logo:"🎤",name:"Voice of the Room"},{logo:"🏆",name:"Champion"},{logo:"🔥",name:"Legend"},{logo:"💎",name:"Super Legend"},{logo:"🧠",name:"Master"},{logo:"👑",name:"Grand Master"},{logo:"👸",name:"Royal"},{logo:"👑💎👑",name:"WORLDSPOTS KING"}];
 function coinsNeededForLevel(l){return 20*l;}
 let lastAdvert=""; let POSTS=[]; let BUY_POSTS=[];
@@ -494,7 +478,7 @@ function confirmDelivery(){ alert('Thank you! Admin '+OWNER_NAME+' will now rele
 function requestSafeTrade(title,desc){ let amount=prompt("What is the price? (Max ₦200,000)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){alert("ABOVE ₦200,000 limit. Chat Admin first.");return;} if(num<5000){alert("Safe Trade is from ₦5,000.");return;} window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I REQUEST SAFE TRADE - Product: "+title+" Price: ₦"+num+" Pay to "+OWNER_OPAY),"_blank"); }
 function buyCoins(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy Coins for Boost. I will pay to "+OWNER_OPAY),"_blank"); }
 function boostAdvert(){ if(coins<500){alert("You need 500 Coins to Boost. Tap Buy Coins.");return;} coins-=500; localStorage.setItem("ws_coins",coins); updateCoins(); alert("Boosted! Your advert will stay at TOP for 1 day."); }
-renderShop("All"); renderPosts(POSTS); renderBuy(); updateCoins(); updateStageUI(); renderChat(); loadAdminSettings();
+renderPosts(POSTS); renderBuy(); updateCoins(); updateStageUI(); renderChat(); loadAdminSettings();
 </script>
 </body>
 </html>
