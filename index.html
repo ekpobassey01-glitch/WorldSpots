@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorldSpots - I Want To Buy | Video Proof | Pay Small Small</title>
+<title>WorldSpots - Beautiful Chat Rooms + 20 Levels</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f0f2f5;color:#111}
@@ -25,7 +25,6 @@ p{font-size:14px;line-height:1.5;color:#444}
 .purple{background:#7c3aed;color:#fff}
 .orange{background:#ff6b00;color:#fff}
 .badge{display:inline-block;background:#ffe600;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:800}
-.price{font-size:26px;font-weight:900;color:#1877f2}
 .small{font-size:12px;color:#888;text-align:center;margin-top:8px}
 input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px;font-size:14px}
 .postItem{background:#f8f9fa;border:1px solid #eee;border-radius:10px;padding:12px;margin-top:10px}
@@ -43,37 +42,74 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 .plan{border:2px solid #eee;border-radius:12px;padding:14px;margin-top:10px}
 .plan.active{border-color:#FFC107;background:#FFFEF5}
 .plan ul{margin:8px 0 0 18px;font-size:13px;color:#444;line-height:1.6}
-.star{font-size:20px;cursor:pointer;color:#FFC107}
 .wallet{background:linear-gradient(135deg,#7c3aed,#0B2A6B);color:#fff;border-radius:14px;padding:16px;text-align:center}
 .wallet b{font-size:28px}
 .flex{display:flex;gap:8px}
 .flex button{flex:1}
 .autoBox{background:#d4edda;border:2px solid #25D366;border-radius:12px;padding:12px;margin-top:10px;text-align:center;font-weight:800}
-/* POPUP MODAL - GROUPS ONLY HERE */
 .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:999;display:none;align-items:center;justify-content:center;padding:12px}
 .modalBox{background:#fff;width:100%;max-width:480px;border-radius:16px;padding:18px;max-height:90vh;overflow:auto}
 .checkRow{display:flex;gap:10px;align-items:center;background:#f8f9fa;border:1px solid #eee;border-radius:10px;padding:10px;margin-top:8px;font-size:14px;font-weight:700}
 .checkRow input{width:22px;height:22px}
-.trustBar{background:#e7f3ff;border-radius:10px;padding:10px;margin-top:8px;font-size:13px}
+.mapFrame{width:100%;height:280px;border:0;border-radius:12px;margin-top:10px}
+
+/* ===== BEAUTIFUL CHAT DASHBOARD ===== */
+.chatDashboard{border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.12);margin-bottom:12px;background:#fff}
+.chatHeader{padding:18px;text-align:center;color:#fff;position:relative}
+.chatHeader h2{font-size:20px;color:#fff}
+.chatHeader p{color:rgba(255,255,255,.9);font-size:13px}
+.room-sports .chatHeader{background:linear-gradient(135deg,#0a7a2e,#22c55e)}
+.room-socials .chatHeader{background:linear-gradient(135deg,#db2777,#a855f7)}
+.room-mingle .chatHeader{background:linear-gradient(135deg,#e11d48,#fb7185)}
+.room-education .chatHeader{background:linear-gradient(135deg,#1e40af,#3b82f6)}
+.room-religion .chatHeader{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.roomGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.roomCard{border-radius:14px;padding:14px;color:#fff;cursor:pointer;text-align:center;position:relative;overflow:hidden}
+.roomCard b{font-size:14px;display:block;margin-top:6px}
+.roomCard span{font-size:11px;opacity:.9}
+.roomCard .roomIcon{font-size:32px}
+.roomCard.active{outline:3px solid #111;transform:scale(1.02)}
+.room-sports-card{background:linear-gradient(135deg,#0a7a2e,#22c55e)}
+.room-socials-card{background:linear-gradient(135deg,#db2777,#a855f7)}
+.room-mingle-card{background:linear-gradient(135deg,#e11d48,#fb7185)}
+.room-education-card{background:linear-gradient(135deg,#1e40af,#3b82f6)}
+.room-religion-card{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.myProfile{margin:12px;padding:14px;border-radius:14px;background:linear-gradient(135deg,#0B2A6B,#7c3aed);color:#fff;display:flex;gap:12px;align-items:center}
+.myAvatar{width:56px;height:56px;border-radius:50%;background:#FFC107;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;border:3px solid #fff}
+.myProfile b{color:#fff;font-size:15px}
+.myProfile span{color:#ddd;font-size:12px}
+.progressBar{background:rgba(255,255,255,.25);height:8px;border-radius:20px;margin-top:6px;overflow:hidden}
+.progressFill{background:#FFC107;height:8px;border-radius:20px}
+.chatArea{padding:0 12px 12px}
+.chatBox{height:300px;overflow-y:auto;background:#f8f9fa;border:1px solid #eee;border-radius:14px;padding:10px}
+.chatMsg{background:#fff;border:1px solid #eee;border-radius:14px;padding:10px;margin-bottom:8px;font-size:13px;line-height:1.45;display:flex;gap:8px}
+.chatAvatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:#eef2ff}
+.levelPill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:800;margin-top:2px}
+.level-1{background:#dcfce7;color:#166534}
+.level-20{background:linear-gradient(135deg,#FFC107,#ff6b00);color:#000}
+.stageGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.stageItem{background:#f8f9fa;border:1px solid #eee;border-radius:12px;padding:10px;text-align:center;font-size:12px}
+.stageItem.active{background:#FFFEF5;border-color:#FFC107}
+.stageItem .stageLogo{font-size:26px}
+.stageItem b{font-size:12px}
 </style>
 </head>
 <body>
 <div class="top">
 <div class="logo">🌍📍</div>
 <h1>World<span>Spots</span></h1>
-<p>ADVERTISE • I WANT TO BUY • PAY SMALL SMALL • VIDEO PROOF</p>
+<p>ADVERTISE • MAP • CHAT ROOMS • 20 STAGES</p>
 <p>Powered by EduNexus | Future Pathways (13k)</p>
-<p style="background:#25D366;padding:6px;border-radius:8px;margin-top:8px;font-weight:800">⚡ 50 PEOPLE POST AT ONCE • NO ADMIN NEEDED FOR FREE POSTS</p>
+<p style="background:#25D366;padding:6px;border-radius:8px;margin-top:8px;font-weight:800">⚡ 50 PEOPLE POST AT ONCE • NO ADMIN NEEDED</p>
 </div>
-
 <div class="wrap">
 
 <div id="frontPage" class="card" style="text-align:center;border:2px solid #0B2A6B">
 <h2>Welcome to WorldSpots 👋</h2>
-<p>Buyers post what they want. Sellers rush. Pay small small. Video proof. No scam.</p>
+<p>Buy, Sell, Chat, Grow Stages. Free chat rooms. No marketing in chat.</p>
 <button class="btn blue" onclick="showLogin('user')">👤 Login as User</button>
-<button class="btn dark" onclick="showLogin('admin')">🔐 Login as Admin</button>
-<button class="btn gold" onclick="enterAsGuest()">👀 Continue as Guest — View Adverts</button>
+<button class="btn dark" onclick="showLogin('admin')">🔐 Login as Admin - 👑 Stage 20</button>
+<button class="btn gold" onclick="enterAsGuest()">👀 Continue as Guest</button>
 </div>
 
 <div id="userLogin" class="card hidden">
@@ -85,7 +121,7 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 </div>
 
 <div id="adminLogin" class="card hidden" style="border:2px solid #d32f2f">
-<h2>🔐 Admin Login</h2>
+<h2>🔐 Admin Login - 👑 WORLDSPOTS KING</h2>
 <p id="adminMsg">Username is <b>admin</b>.</p>
 <input id="aName" value="admin" readonly style="background:#f0f0f0">
 <input id="aPass" type="password" placeholder="Enter Password / Create First Time">
@@ -96,40 +132,79 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 
 <div id="mainSite" class="hidden">
 
-<div class="card" style="background:#0B2A6B;color:#fff">
-<h2 style="color:#fff">👋 Hello, <span id="whoIs">Guest</span></h2>
-<p style="color:#ddd" id="roleText">Guest</p>
-<div class="trustBar" style="color:#111"><b>⭐ YOUR TRUST SCORE: <span id="myTrust">85% - 🟢 HIGH</span></b><br><span id="myDeals">Deals: 12 • Success: 98% • Verified Since: 2026</span></div>
-<button class="btn gold" onclick="logout()">Logout</button>
+<!-- MY PROFILE + STAGE -->
+<div class="card" style="padding:0;overflow:hidden">
+<div class="myProfile">
+<div class="myAvatar" id="myAvatar">🌱</div>
+<div style="flex:1">
+<b><span id="whoIs">Guest</span> • <span id="myStageBadge">Stage 1 - Newcomer</span></b><br>
+<span>🪙 <span id="chatCoins">0.00</span> Coins • 💬 <span id="msgCount">0</span> Messages • ⭐ <span id="myTrust">85% - 🟢 HIGH</span></span><br>
+<span>Next Stage Needs: <b><span id="nextNeed">20</span> Coins</b> • 10 messages = 0.01 Coins</span>
+<div class="progressBar"><div id="stageProgress" class="progressFill" style="width:0%"></div></div>
+</div>
+</div>
+<div style="padding:12px"><button class="btn gold" onclick="logout()">Logout</button></div>
 </div>
 
 <div class="wallet">
 <p>🪙 YOUR WALLET / COINS</p>
 <b><span id="coinBal">0</span> Coins</b>
-<p style="color:#ddd;font-size:13px">500 Coins = Pin for 1 day.</p>
-<div class="flex">
-<button class="btn gold" onclick="buyCoins()">Buy Coins →</button>
-<button class="btn green" onclick="boostAdvert()">🚀 Boost (500 Coins)</button>
-</div>
+<p style="color:#ddd;font-size:13px">Buy Coins: ₦2,000 = 20 Coins • 500 Coins = Pin for 1 day</p>
+<div class="flex"><button class="btn gold" onclick="buyCoins()">Buy Coins ₦2,000 = 20 →</button><button class="btn green" onclick="boostAdvert()">🚀 Boost (500 Coins)</button></div>
 </div>
 
-<!-- FEATURE 4: DAILY DEALS 7AM -->
-<div class="card" style="border:2px solid #ff6b00">
-<h2>🔥 7am Daily Deals - Agbor / Asaba</h2>
-<p>Get ONE WhatsApp at 7am with today's best deals. No spam.</p>
-<button class="btn orange" onclick="joinDaily()">🔔 Join 7am Daily Deals →</button>
-<p class="small">Example: iPhone 11 ₦150k, Rice 50kg ₦65k, Shop for rent...</p>
-</div>
-
-<!-- FEATURE 6: MARKET DAY + NEAR ME 5 MINS -->
-<div class="card">
-<h2>🗺️ Near Me in 5 Mins + Market Day</h2>
+<!-- GOOGLE MAP -->
+<div class="card" style="border:2px solid #0B2A6B">
+<h2>🗺️ Google Map - WorldSpots Live Map</h2>
+<iframe class="mapFrame" src="https://www.google.com/maps?q=Agbor,Delta,Nigeria&output=embed" allowfullscreen loading="lazy"></iframe>
 <button class="btn blue" onclick="getLocation()">📍 Get My Location — Show Near Me</button>
-<p id="locText" class="small">Location: Not set yet. Showing all Nigeria.</p>
-<a id="mapLink" class="btn dark hidden" href="#" target="_blank">🗺️ Open Live Map →</a>
+<p id="locText" class="small">Location: Agbor, Delta. Showing all Nigeria.</p>
+<a id="mapLink" class="btn dark hidden" href="#" target="_blank">🗺️ Open Full Google Map →</a>
 <select id="locFilter" onchange="doSearch()"><option value="">All Locations</option><option>Agbor</option><option>Asaba</option><option>Benin</option><option>Warri</option><option>Lagos</option><option>Abuja</option></select>
-<select id="marketDay" onchange="marketBoost()"><option value="">All Days</option><option>Agbor Market Day - Boosted Today</option><option>Asaba Market Day - Boosted Today</option><option>Show Only Within 5 Mins Walk / Bike</option></select>
 </div>
+
+<!-- BEAUTIFUL CHAT DASHBOARD -->
+<div id="chatDashboard" class="chatDashboard room-sports">
+<div class="chatHeader">
+<div style="font-size:40px" id="roomBigIcon">⚽</div>
+<h2 id="roomTitle">Sports Room</h2>
+<p id="roomDesc">Talk football, matches, players. No marketing, just vibes.</p>
+<p><span id="roomCount">124 online</span> • 🚫 NO MARKETING / NO ADVERTS / NO PRODUCT UPLOAD</p>
+</div>
+
+<div class="roomGrid">
+<div class="roomCard room-sports-card active" id="card-sports" onclick="joinRoom('sports')"><div class="roomIcon">⚽</div><b>Sports</b><span>Football • Matches</span></div>
+<div class="roomCard room-socials-card" id="card-socials" onclick="joinRoom('socials')"><div class="roomIcon">🎉</div><b>Socials / Entertainment</b><span>Music • Gist • Fun</span></div>
+<div class="roomCard room-mingle-card" id="card-mingle" onclick="joinRoom('mingle')"><div class="roomIcon">💕</div><b>Mingle</b><span>Friends • Chat</span></div>
+<div class="roomCard room-education-card" id="card-education" onclick="joinRoom('education')"><div class="roomIcon">🎓</div><b>Education</b><span>JAMB • WAEC</span></div>
+<div class="roomCard room-religion-card" id="card-religion" onclick="joinRoom('religion')" style="grid-column:span 2"><div class="roomIcon">🙏</div><b>Religion / Inspirational</b><span>Prayers • Encouragement</span></div>
+</div>
+
+<div class="chatArea">
+<div style="background:#fff8e1;border:1px dashed #FFC107;border-radius:12px;padding:10px;text-align:center;font-size:13px"><b>🚫 Chat Only.</b> No selling, no price, no “DM to buy”. Adverts go to Advertise section. Violators lose coins.</div>
+<div id="chatMessages" class="chatBox" style="margin-top:10px"></div>
+<div class="flex" style="margin-top:10px"><input id="chatInput" placeholder="Type a message... No adverts" style="flex:3"><button class="btn purple" onclick="sendChat()" style="flex:1">Send →</button></div>
+<p class="small">Every 10 messages = +0.01 Coins. Need 20 Coins to move. Higher Stages need MORE.</p>
+
+<!-- 20 STAGES WITH LOGOS -->
+<div style="margin-top:12px">
+<h3 style="text-align:center">🏆 20 Stages - Your Journey</h3>
+<p class="small">Admin is ONLY Stage 20. Users max Stage 19.</p>
+<div class="stageGrid" id="stagesList"></div>
+</div>
+</div>
+</div>
+
+<!-- ADMIN GIFT -->
+<div id="giftBox" class="card hidden" style="border:2px solid #FFC107">
+<h2>👑 Admin - Gift Coins (Admin Only)</h2>
+<p>Admin has 999,999 coins. Gift any amount.</p>
+<input id="giftUser" placeholder="Username to gift e.g. JohnAgbor">
+<input id="giftAmt" placeholder="Amount e.g. 50">
+<button class="btn gold" onclick="giftCoins()">🎁 Gift Coins →</button>
+</div>
+
+<div class="card"><h2>🔥 7am Daily Deals</h2><button class="btn orange" onclick="joinDaily()">🔔 Join 7am Daily Deals →</button></div>
 
 <div class="card">
 <h2>🔍 Search Adverts + I Want To Buy</h2>
@@ -138,208 +213,159 @@ input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radiu
 <div id="postList"></div>
 </div>
 
-<div class="card">
-<h2>✅ Verify Check — Don't Be Scammed</h2>
-<input id="verifyInput" placeholder="e.g. EduNexus or 08147699555">
-<button class="btn gold" onclick="checkVerify()">Check Now →</button>
-<div id="verifyResult" class="result"></div>
-</div>
+<div class="card"><h2>✅ Verify Check</h2><input id="verifyInput" placeholder="e.g. EduNexus or 08147699555"><button class="btn gold" onclick="checkVerify()">Check Now →</button><div id="verifyResult" class="result"></div></div>
 
-<!-- FEATURE 1: I WANT TO BUY -->
-<div class="card" style="border:2px solid #7c3aed">
-<h2>🔥 I WANT TO BUY — Sellers Come To You</h2>
-<p>Have cash? Post what you want. Sellers will rush to you. This is reverse market.</p>
-<input id="wWant" placeholder="What do you want? e.g. iPhone 11">
-<input id="wBudget" placeholder="Your Budget e.g. ₦150,000 - I have cash today">
-<input id="wLoc" placeholder="Location e.g. Agbor">
-<input id="wPhone" placeholder="Your OWN WhatsApp Number">
-<button class="btn purple" onclick="postWantToBuy()">🔥 POST I WANT TO BUY →</button>
-<p class="small">Sellers see buyers with cash first. This brings daily traffic.</p>
-</div>
+<div class="card" style="border:2px solid #7c3aed"><h2>🔥 I WANT TO BUY</h2><input id="wWant" placeholder="What do you want? e.g. iPhone 11"><input id="wBudget" placeholder="Your Budget e.g. ₦150,000"><input id="wLoc" placeholder="Location e.g. Agbor"><input id="wPhone" placeholder="Your OWN WhatsApp Number"><button class="btn purple" onclick="postWantToBuy()">🔥 POST I WANT TO BUY →</button></div>
 
-<!-- MAIN ADVERTISE - WITH VIDEO PROOF + PAY SMALL SMALL + CALL -->
 <div class="card" style="border:2px solid #25D366">
 <h2>📸 Advertise - 1 Push, LIVE Instantly</h2>
 <div class="autoBox">⚡ AUTOMATIC: No Admin Approval. 50 People Can Post At Once.</div>
-<input id="fName" placeholder="Your Name">
-<input id="fWhat" placeholder="What do you want to Advertise? e.g. iPhone 11">
-<input id="fPrice" placeholder="Price e.g. ₦180,000">
-<input id="fLoc" placeholder="Location e.g. Agbor, Delta">
-<input id="fPhone" placeholder="Your OWN WhatsApp Number (Not WorldSpots Number)">
-<textarea id="fDesc" rows="2" placeholder="Describe it..."></textarea>
+<input id="fName" placeholder="Your Name"><input id="fWhat" placeholder="What do you want to Advertise?"><input id="fPrice" placeholder="Price e.g. ₦180,000"><input id="fLoc" placeholder="Location e.g. Agbor, Delta"><input id="fPhone" placeholder="Your OWN WhatsApp Number"><textarea id="fDesc" rows="2" placeholder="Describe it..."></textarea>
 <select id="fSize"><option>SMALL BUSINESS</option><option>MEDIUM BUSINESS</option><option>BIG / LARGE BUSINESS</option></select>
 <select id="fCat"><option>FOODS AND EATERIES</option><option>EDUCATION AND SCHOLARSHIPS</option><option>ELECTRONICS AND PHONES</option><option>HOTELS AND RELAXATION CENTRES (SIT-OUTS)</option><option>SALOON AND MAKE OVERS</option><option>FASHION, WEARS AND STYLE</option><option>PROPERTIES (LANDS, HOUSES AND MORE)</option><option>ALL 7 GROUPS - POST EVERYWHERE</option></select>
-
-<!-- FEATURE 3: VIDEO PROOF -->
-<p style="font-size:13px;margin-top:10px"><b>🎥 FEATURE 3: 15-sec Video Proof (Required for Safe Trade)</b><br>Hold product + say “WorldSpots, today is [date]”. No video = No Safe Trade.</p>
-<input type="file" id="fVideo" accept="video/*" onchange="previewVideo(event)">
-<video id="videoPreview" class="hidden" controls style="width:100%;border-radius:10px;margin-top:8px;max-height:220px"></video>
-<label style="font-size:13px"><input type="checkbox" id="videoCheck" style="width:18px"> ✅ I uploaded Video Proof</label>
-
-<!-- FEATURE 2: CALL / FLASH -->
-<p style="font-size:13px;margin-top:10px"><b>📞 FEATURE 2: Call / Flash Me - Even With No Data</b></p>
-<div class="flex"><button class="btn blue" onclick="callSeller()">📞 Tap To Call Seller</button><button class="btn dark" onclick="flashSeller()">📲 Flash Me - Seller Will Call Back</button></div>
-
-<p style="font-size:13px;margin-top:8px"><b>📸 Add Photo:</b></p>
-<input type="file" id="fPhoto" accept="image/*" onchange="previewPhoto(event)">
-<img id="photoPreview" class="hidden" style="width:100%;border-radius:10px;margin-top:8px;max-height:220px;object-fit:cover">
-
-<!-- FEATURE 5: PAY SMALL SMALL -->
-<p style="font-size:13px;margin-top:10px"><b>💰 FEATURE 5: Pay Small Small (Layaway)</b></p>
-<label style="font-size:13px"><input type="checkbox" id="paySmall" style="width:18px"> Allow Pay Small Small for this product</label>
-<input id="paySmallAmt" placeholder="e.g. Pay ₦20k today, ₦20k next week - Total ₦180k">
-
-<button class="btn green" onclick="post50People()">🚀 POST IN 1 PUSH - LIVE INSTANTLY →</button>
-<p class="small" id="pushStatus">Groups will pop up only after you tap POST. Free post = Automatic.</p>
+<p style="font-size:13px;margin-top:10px"><b>🎥 15-sec Video Proof</b></p><input type="file" id="fVideo" accept="video/*" onchange="previewVideo(event)"><video id="videoPreview" class="hidden" controls style="width:100%;border-radius:10px;margin-top:8px;max-height:220px"></video><label style="font-size:13px"><input type="checkbox" id="videoCheck" style="width:18px"> ✅ I uploaded Video Proof</label>
+<p style="font-size:13px;margin-top:10px"><b>📞 Call / Flash Me</b></p><div class="flex"><button class="btn blue" onclick="callSeller()">📞 Tap To Call Seller</button><button class="btn dark" onclick="flashSeller()">📲 Flash Me</button></div>
+<p style="font-size:13px;margin-top:8px"><b>📸 Add Photo:</b></p><input type="file" id="fPhoto" accept="image/*" onchange="previewPhoto(event)"><img id="photoPreview" class="hidden" style="width:100%;border-radius:10px;margin-top:8px;max-height:220px;object-fit:cover">
+<p style="font-size:13px;margin-top:10px"><b>💰 Pay Small Small</b></p><label style="font-size:13px"><input type="checkbox" id="paySmall" style="width:18px"> Allow Pay Small Small</label><input id="paySmallAmt" placeholder="e.g. Pay ₦20k today, ₦20k next week">
+<button class="btn green" onclick="post50People()">🚀 POST IN 1 PUSH - LIVE INSTANTLY →</button><p class="small" id="pushStatus">Groups will pop up only after you tap POST.</p>
 </div>
 
-<!-- SAFE TRADE + ESCROW + PAY SMALL SMALL -->
-<div class="card" style="border:2px solid #25D366">
-<h2>🛡️ Safe Trade + Escrow 5% + Pay Small Small</h2>
-<p><b>Full:</b> Buyer pays Admin → Hold → Deliver → Confirm → Release minus 5%.<br><b>Small Small:</b> Buyer pays in parts, Admin holds, Seller delivers when complete.</p>
-<div style="background:#fff3cd;padding:12px;border-radius:10px;margin-top:10px">
-<b>⚠️ ONLY ₦5,000 to ₦200,000 MAX • DO NOT PAY if Admin has NOT replied • Video Proof Required</b>
-</div>
-<div class="payBox"><p style="font-size:13px;font-weight:800">💳 PAY ESCROW HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button></div>
-<input id="escrowAmount" placeholder="Enter amount e.g. 20000 to calculate 5%">
-<button class="btn dark" onclick="calcEscrow()">Calculate My 5% Escrow →</button>
-<p id="escrowResult" style="font-weight:800;text-align:center;margin-top:8px"></p>
-<input id="smallSmallTotal" placeholder="Total price for Pay Small Small e.g. 180000">
-<button class="btn orange" onclick="calcSmallSmall()">Calculate Pay Small Small Plan →</button>
-<p id="smallSmallResult" style="font-weight:800;text-align:center;margin-top:8px"></p>
-<button class="btn green" onclick="confirmDelivery()">✅ I Received My Product - Release Money to Seller</button>
-</div>
+<div class="card" style="border:2px solid #25D366"><h2>🛡️ Safe Trade + Escrow 5% + Pay Small Small</h2><div style="background:#fff3cd;padding:12px;border-radius:10px;margin-top:10px"><b>⚠️ ONLY ₦5,000 to ₦200,000 MAX • DO NOT PAY if Admin has NOT replied • Video Proof Required</b></div><div class="payBox"><p style="font-size:13px;font-weight:800">💳 PAY ESCROW HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button></div><input id="escrowAmount" placeholder="Enter amount e.g. 20000"><button class="btn dark" onclick="calcEscrow()">Calculate My 5% Escrow →</button><p id="escrowResult" style="font-weight:800;text-align:center;margin-top:8px"></p><input id="smallSmallTotal" placeholder="Total price for Pay Small Small e.g. 180000"><button class="btn orange" onclick="calcSmallSmall()">Calculate Pay Small Small Plan →</button><p id="smallSmallResult" style="font-weight:800;text-align:center;margin-top:8px"></p><button class="btn green" onclick="confirmDelivery()">✅ I Received My Product - Release Money to Seller</button></div>
 
-<div class="card">
-<h2>🔔 WhatsApp Alerts</h2>
-<input id="alertWant" placeholder="What do you want? e.g. iPhone in Agbor">
-<button class="btn green" onclick="setAlert()">Turn ON Alerts →</button>
-</div>
+<div class="card" style="border:2px solid #FFC107"><h2>⭐ Verified Subscription</h2><div class="plan"><h3>🥉 SMALL — ₦3,000 / month</h3><div class="price">₦3,000</div><button class="btn gold" onclick="choosePlan('SMALL - ₦3,000/month')">Choose Small →</button></div><div class="plan active"><h3>🥈 MEDIUM — ₦5,000 / month ⭐ POPULAR</h3><div class="price">₦5,000</div><button class="btn gold" onclick="choosePlan('MEDIUM - ₦5,000/month')">Choose Medium →</button></div><div class="plan"><h3>🥇 BIG — ₦10,000 / month</h3><div class="price">₦10,000</div><button class="btn gold" onclick="choosePlan('BIG - ₦10,000/month')">Choose Big →</button></div><div class="payBox"><p style="font-size:13px;font-weight:800">💳 PAY HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button></div><a class="btn green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid%20for%20Verified%20Subscription." target="_blank">I Have Paid — Send Receipt →</a></div>
 
-<div class="card" style="border:2px solid #FFC107">
-<h2>⭐ Verified Subscription — Pay Monthly</h2>
-<p>Small / Medium / Big have DIFFERENT Top Chart. Trust Score follows you.</p>
-<div class="plan"><h3>🥉 SMALL — ₦3,000 / month</h3><div class="price">₦3,000 <span style="font-size:13px;color:#666">/ month</span></div><ul><li>Verified ✅ badge + Trust Score</li><li>Top Chart for SMALL</li><li>1 Advert per week</li></ul><button class="btn gold" onclick="choosePlan('SMALL - ₦3,000/month')">Choose Small →</button></div>
-<div class="plan active"><h3>🥈 MEDIUM — ₦5,000 / month ⭐ POPULAR</h3><div class="price">₦5,000 <span style="font-size:13px;color:#666">/ month</span></div><ul><li>Verified ✅ + Top placement + Trust Score</li><li>Top Chart for MEDIUM - Above Small</li><li>3 Adverts per week</li></ul><button class="btn gold" onclick="choosePlan('MEDIUM - ₦5,000/month')">Choose Medium →</button></div>
-<div class="plan"><h3>🥇 BIG — ₦10,000 / month</h3><div class="price">₦10,000 <span style="font-size:13px;color:#666">/ month</span></div><ul><li>Verified ✅ + PINNED + Trust Score</li><li>TOP of ALL</li><li>Unlimited Adverts</li></ul><button class="btn gold" onclick="choosePlan('BIG - ₦10,000/month')">Choose Big →</button></div>
-<div class="payBox"><p style="font-size:13px;font-weight:800">💳 PAY HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button></div>
-<a class="btn green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid%20for%20Verified%20Subscription." target="_blank">I Have Paid — Send Receipt →</a>
-</div>
+<div class="card" style="border:2px solid #7c3aed"><h2>🪙 Buy Chat Coins To Climb Faster</h2><p>Rate: <b>₦2,000 = 20 Coins</b> • Free chatting is slow: 10 messages = 0.01 Coins.</p><button class="btn purple" onclick="buyChatCoins()">🪙 Buy 20 Coins for ₦2,000 →</button><button class="btn gold" onclick="buyChatCoins100()">🪙 Buy 100 Coins for ₦10,000 →</button></div>
 
-<div id="adminPanel" class="card hidden" style="border:3px solid #d32f2f">
-<h2>🛡️ Admin Dashboard</h2>
-<p style="font-size:13px">Your work is ONLY money: Verified + Escrow + Coins. Free posts automatic.</p>
-<p style="font-size:13px">Escrow Held: <b id="tEscrow">₦0</b> | Your 5% Earned: <b id="tFee">₦0</b> | Total Adverts: <b id="tTotal">0</b></p>
-<input id="newVerified" placeholder="Add Verified Name e.g. John Agbor">
-<button class="btn red" onclick="addVerified()">+ Add to Verified List</button>
-<div id="verifiedListBox" style="margin-top:10px;font-size:13px"></div>
-</div>
+<div id="adminPanel" class="card hidden" style="border:3px solid #d32f2f"><h2>🛡️ Admin Dashboard — 👑 Stage 20</h2><p style="font-size:13px">Admin: 999,999 Coins • Stage 20 • Only Admin can be Stage 20.</p><p style="font-size:13px">Escrow Held: <b id="tEscrow">₦0</b> | Your 5% Earned: <b id="tFee">₦0</b> | Total Adverts: <b id="tTotal">0</b></p><input id="newVerified" placeholder="Add Verified Name e.g. John Agbor"><button class="btn red" onclick="addVerified()">+ Add to Verified List</button><div id="verifiedListBox" style="margin-top:10px;font-size:13px"></div></div>
 
 <div class="card"><h2>📚 EduNexus</h2><a class="btn blue" href="https://www.facebook.com/share/1EvTQAD9MQ/" target="_blank">Visit EduNexus →</a></div>
 <div class="card"><h2>👥 13k Group — Future Pathways</h2><a class="btn dark" href="https://www.facebook.com/share/g/1A88UfkYsc/" target="_blank">Join Future Pathways (13k) →</a></div>
-<div class="card"><h2>👤 Support</h2><p><b>WorldSpots Admin</b><br>Support Team — WorldSpots | EduNexus | Future Pathways</p><a class="btn blue" href="https://www.facebook.com/share/1F7YRuN4Yb/" target="_blank">Message Admin →</a><a class="btn green" href="https://wa.me/2348147699555" target="_blank">WhatsApp: 0814 769 9555</a><a class="btn dark" href="https://instagram.com/edunexus2025" target="_blank">Instagram @edunexus2025</a></div>
+<div class="card"><h2>👤 Support</h2><p><b>WorldSpots Admin — 👑 Stage 20</b></p><a class="btn blue" href="https://www.facebook.com/share/1F7YRuN4Yb/" target="_blank">Message Admin →</a><a class="btn green" href="https://wa.me/2348147699555" target="_blank">WhatsApp: 0814 769 9555</a><a class="btn dark" href="https://instagram.com/edunexus2025" target="_blank">Instagram @edunexus2025</a></div>
 </div>
 <p class="small">© 2026 WorldSpots • EduNexus • Future Pathways — Safe Trade Max ₦200,000 • Escrow 5%</p>
 </div>
 
-<!-- GROUPS POPUP - ONLY SHOWS WHEN USER WANTS TO PUSH -->
-<div id="groupModal" class="modal">
-<div class="modalBox">
-<h2>📤 Where Do You Want To Push This Advert?</h2>
-<p>Tick the groups you want. Then tap SEND. No Admin needed.</p>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="FOODS AND EATERIES" checked> 🍲 FOODS AND EATERIES</label>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="EDUCATION AND SCHOLARSHIPS" checked> 🎓 EDUCATION AND SCHOLARSHIPS</label>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="ELECTRONICS AND PHONES" checked> 📱 ELECTRONICS AND PHONES</label>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="HOTELS AND RELAXATION" checked> 🏨 HOTELS AND RELAXATION CENTRES</label>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="SALOON AND MAKE OVERS" checked> 💇 SALOON AND MAKE OVERS</label>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="FASHION" checked> 👗 FASHION, WEARS AND STYLE</label>
-<label class="checkRow"><input type="checkbox" class="gCheck" value="PROPERTIES" checked> 🏠 PROPERTIES (LANDS, HOUSES AND MORE)</label>
-<button class="btn" style="background:#eee" onclick="toggleAllGroups()">Select All / Deselect All</button>
-<button class="btn green" onclick="sendToSelectedGroups()">🚀 SEND TO SELECTED GROUPS →</button>
-<button class="btn dark" onclick="closeGroupModal()">Skip - Keep Only On WorldSpots</button>
-<p class="small">Facebook will open. Tap POST once. Your advert goes to all ticked groups. Admin does nothing.<br>Note: Facebook does not allow fully automatic posting from a website - this is the 1-tap Facebook-approved way.</p>
-</div>
-</div>
+<div id="groupModal" class="modal"><div class="modalBox"><h2>📤 Where Do You Want To Push This Advert?</h2><p>Tick groups. Then tap SEND. No Admin needed.</p><label class="checkRow"><input type="checkbox" class="gCheck" value="FOODS AND EATERIES" checked> 🍲 FOODS AND EATERIES</label><label class="checkRow"><input type="checkbox" class="gCheck" value="EDUCATION AND SCHOLARSHIPS" checked> 🎓 EDUCATION AND SCHOLARSHIPS</label><label class="checkRow"><input type="checkbox" class="gCheck" value="ELECTRONICS AND PHONES" checked> 📱 ELECTRONICS AND PHONES</label><label class="checkRow"><input type="checkbox" class="gCheck" value="HOTELS AND RELAXATION" checked> 🏨 HOTELS AND RELAXATION CENTRES</label><label class="checkRow"><input type="checkbox" class="gCheck" value="SALOON AND MAKE OVERS" checked> 💇 SALOON AND MAKE OVERS</label><label class="checkRow"><input type="checkbox" class="gCheck" value="FASHION" checked> 👗 FASHION, WEARS AND STYLE</label><label class="checkRow"><input type="checkbox" class="gCheck" value="PROPERTIES" checked> 🏠 PROPERTIES (LANDS, HOUSES AND MORE)</label><button class="btn" style="background:#eee" onclick="toggleAllGroups()">Select All / Deselect All</button><button class="btn green" onclick="sendToSelectedGroups()">🚀 SEND TO SELECTED GROUPS →</button><button class="btn dark" onclick="closeGroupModal()">Skip - Keep Only On WorldSpots</button></div></div>
 
 <script>
+let STAGES=[
+{logo:"🌱",name:"Newcomer"},{logo:"👀",name:"Visitor"},{logo:"💬",name:"Talker"},{logo:"☕",name:"Regular"},{logo:"😊",name:"Friendly Face"},{logo:"🏠",name:"Community Member"},{logo:"⚡",name:"Active Member"},{logo:"🤝",name:"Helper"},{logo:"⭐",name:"Star Talker"},{logo:"🌟",name:"Rising Star"},{logo:"📣",name:"Influencer"},{logo:"🦁",name:"Community Leader"},{logo:"🎤",name:"Voice of the Room"},{logo:"🏆",name:"Champion"},{logo:"🔥",name:"Legend"},{logo:"💎",name:"Super Legend"},{logo:"🧠",name:"Master"},{logo:"👑",name:"Grand Master"},{logo:"👸",name:"Royal"},{logo:"👑💎👑",name:"WORLDSPOTS KING"}
+];
+function coinsNeededForLevel(level){ return 20*level; }
 let lastAdvert="";
 let POSTS=[
-{title:"🔥 I WANT TO BUY: iPhone 11 - Budget ₦150k - Cash Today - Agbor",cat:"Business",loc:"Agbor",desc:"Buyer has cash today. Sellers rush! Phone: 080...",phone:"080...",rating:5,reviews:0,img:"",boosted:true, wantToBuy:true},
-{title:"EduNexus - JAMB / WAEC Tutorial - 🎥 Video Proof ✅",cat:"Education",loc:"Agbor",desc:"Lessons, admission help. Trust 98% - 42 deals",phone:"EduNexus",rating:5,reviews:42,img:"",boosted:true},
-{title:"iPhone 11 - Neatly Used - 🎥 Video Proof ✅ - Pay Small Small Available",cat:"Phones",loc:"Agbor",desc:"64GB, ₦180,000 - Pay ₦60k x 3",phone:"080...",rating:4,reviews:12,img:"",price:180000},
-{title:"Fashion Store - New Arrivals",cat:"Fashion",loc:"Delta",desc:"Shirts, gowns, sneakers.",phone:"080...",rating:5,reviews:8,img:""},
-{title:"Rice Wholesale - Market Day Boost",cat:"Food",loc:"Agbor",desc:"Rice, beans, garri wholesale.",phone:"080...",rating:4,reviews:20,img:""}
+{title:"🔥 I WANT TO BUY: iPhone 11 - Budget ₦150k - Cash Today - Agbor",cat:"Business",loc:"Agbor",desc:"Buyer has cash today.",phone:"080...",rating:5,reviews:0,img:"",boosted:true,wantToBuy:true},
+{title:"EduNexus - JAMB / WAEC Tutorial - 🎥 Video Proof ✅",cat:"Education",loc:"Agbor",desc:"Lessons, admission help.",phone:"EduNexus",rating:5,reviews:42,img:"",boosted:true},
+{title:"iPhone 11 - Neatly Used - 🎥 Video Proof ✅ - Pay Small Small",cat:"Phones",loc:"Agbor",desc:"64GB, ₦180,000 - Pay ₦60k x 3",phone:"080...",rating:4,reviews:12,img:"",price:180000}
 ];
 let VERIFIED = JSON.parse(localStorage.getItem("ws_verified")||'["edunexus","future pathways","worldspots","8147699555"]');
 let coins = parseInt(localStorage.getItem("ws_coins")||"0");
+let chatCoins = parseFloat(localStorage.getItem("ws_chat_coins")||"0");
+let msgCount = parseInt(localStorage.getItem("ws_msg_count")||"0");
+let myLevel = parseInt(localStorage.getItem("ws_level")||"1");
+let isAdminUser = false;
+let currentRoom = "sports";
 let currentPhoto=""; let currentVideo=""; let escrowHeld=0, feeEarned=0;
+let chatData = {
+  sports:[{user:"Admin 👑",stage:20,text:"Welcome to Sports Room! ⚽ Who will win today? No adverts here, just chat."},{user:"John",stage:4,text:"Agbor vs Asaba match go hot!"}],
+  socials:[{user:"Admin 👑",stage:20,text:"Welcome to Socials! 🎉 Talk music, gist, fun. No marketing."},{user:"Ada",stage:3,text:"Who don watch new Nollywood film?"}],
+  mingle:[{user:"Admin 👑",stage:20,text:"Welcome to Mingle! 💕 Be respectful. Chat and make friends."}],
+  education:[{user:"Admin 👑",stage:20,text:"Welcome to Education! 🎓 Ask JAMB, WAEC, scholarship questions."}],
+  religion:[{user:"Admin 👑",stage:20,text:"Welcome to Religion! 🙏 Share inspiration, prayers, encouragement."}]
+};
+let roomMeta = {
+  sports:{title:"Sports Room",desc:"Talk football, matches, players. No marketing, just vibes.",icon:"⚽",cls:"room-sports",count:"124 online"},
+  socials:{title:"Socials / Entertainment Room",desc:"Music, gist, movies, fun. Party vibes only.",icon:"🎉",cls:"room-socials",count:"98 online"},
+  mingle:{title:"Mingle Room",desc:"Make friends, chat, connect. Be respectful.",icon:"💕",cls:"room-mingle",count:"76 online"},
+  education:{title:"Education Room",desc:"JAMB, WAEC, scholarships, lessons. Learn together.",icon:"🎓",cls:"room-education",count:"142 online"},
+  religion:{title:"Religion / Inspirational Room",desc:"Prayers, inspiration, encouragement. Peaceful space.",icon:"🙏",cls:"room-religion",count:"89 online"}
+};
+function updateStageUI(){
+  if(isAdminUser){ myLevel=20; chatCoins=999999; }
+  let st=STAGES[myLevel-1];
+  document.getElementById("myAvatar").innerText=st.logo;
+  document.getElementById("myStageBadge").innerText="Stage "+myLevel+" - "+st.logo+" "+st.name;
+  document.getElementById("chatCoins").innerText=chatCoins.toFixed(2);
+  document.getElementById("msgCount").innerText=msgCount;
+  let need=myLevel>=20?0:coinsNeededForLevel(myLevel);
+  document.getElementById("nextNeed").innerText=myLevel>=20?"MAX - YOU ARE KING":need;
+  let progress=myLevel>=20?100:Math.min(100,(chatCoins/need)*100);
+  document.getElementById("stageProgress").style.width=progress+"%";
+  // Render 20 stages grid with logos
+  document.getElementById("stagesList").innerHTML=STAGES.map((s,i)=>{
+    let lvl=i+1; let isMe=lvl==myLevel; let isAdminLvl=lvl==20;
+    return `<div class="stageItem ${isMe?'active':''}" style="${isAdminLvl?'background:linear-gradient(135deg,#FFC107,#ff6b00);color:#000':''}"><div class="stageLogo">${s.logo}</div><b>Stage ${lvl}</b><br>${s.name}<br><span style="font-size:11px">${isAdminLvl?'ADMIN ONLY':lvl==1?'Start': 'Needs '+(20*lvl)+' coins'}</span>${isMe?'<br><b>← YOU HERE</b>':''}</div>`;
+  }).join("");
+}
 function updateCoins(){ document.getElementById("coinBal").innerText=coins; }
 function showLogin(type){ document.getElementById("frontPage").classList.add("hidden"); if(type=='user') document.getElementById("userLogin").classList.remove("hidden"); if(type=='admin'){ document.getElementById("adminLogin").classList.remove("hidden"); let hasPass=localStorage.getItem("ws_admin_pass"); if(!hasPass){ document.getElementById("adminMsg").innerHTML="⚠️ <b>FIRST TIME:</b> Create your password now."; document.getElementById("aPass2").classList.remove("hidden"); } else { document.getElementById("aPass2").classList.add("hidden"); } } }
 function backToFront(){ document.getElementById("userLogin").classList.add("hidden"); document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
-function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only"; renderPosts(POSTS); renderVerified(); updateCoins(); }
-function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u); } else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can Advertise"; renderPosts(POSTS); renderVerified(); updateCoins(); }
-function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); document.getElementById("whoIs").innerText="Admin"; document.getElementById("roleText").innerText="Admin — You control everything"; renderPosts(POSTS); renderVerified(); updateCoins(); }
-function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
-function renderPosts(list){ let sorted=[...list].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)); document.getElementById("postList").innerHTML=sorted.map((p,i)=>`<div class="postItem">${p.wantToBuy?'<span class="badge" style="background:#7c3aed;color:#fff">🔥 I WANT TO BUY - CASH READY</span> ':''}${p.boosted?'<span class="badge">🚀 BOOSTED • TOP</span> ':''}<b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span><br><span style="font-size:13px">⭐ ${p.rating||4}.0 (${p.reviews||0} reviews) • Trust: ${p.rating>=4?'🟢 HIGH':p.rating>=3?'🟡 MEDIUM':'🔴 LOW'}</span><br><div class="flex"><a class="btn blue" href="tel:${p.phone}" style="flex:1">📞 Call</a><button class="btn dark" onclick="flashSeller()" style="flex:1">📲 Flash Me</button></div>${p.img?`<img src="${p.img}">`:''}<button class="btn green" onclick="requestSafeTrade('${p.title.replace(/'/g,"")}','${p.desc.replace(/'/g,"")}')">🛡️ Request Safe Trade — Max ₦200,000</button><button class="btn orange" onclick="startSmallSmall('${p.title.replace(/'/g,"")}')">💰 Pay Small Small For This</button></div>`).join(""); let t=document.getElementById("tTotal"); if(t) t.innerText=POSTS.length; }
+function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText="Guest"; isAdminUser=false; renderPosts(POSTS); renderVerified(); updateCoins(); updateStageUI(); renderChat(); }
+function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u+" - You start at Stage 1 🌱 Newcomer"); } else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText=u; isAdminUser=false; renderPosts(POSTS); renderVerified(); updateCoins(); updateStageUI(); renderChat(); }
+function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); document.getElementById("giftBox").classList.remove("hidden"); document.getElementById("whoIs").innerText="Admin 👑"; isAdminUser=true; myLevel=20; chatCoins=999999; renderPosts(POSTS); renderVerified(); updateCoins(); updateStageUI(); renderChat(); }
+function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("giftBox").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
+function renderPosts(list){ let sorted=[...list].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)); document.getElementById("postList").innerHTML=sorted.map((p,i)=>`<div class="postItem">${p.wantToBuy?'<span class="badge" style="background:#7c3aed;color:#fff">🔥 I WANT TO BUY</span> ':''}${p.boosted?'<span class="badge">🚀 BOOSTED</span> ':''}<b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span><br><span style="font-size:13px">⭐ ${p.rating||4}.0 (${p.reviews||0} reviews)</span><br><div class="flex"><a class="btn blue" href="tel:${p.phone}" style="flex:1">📞 Call</a><button class="btn dark" onclick="flashSeller()" style="flex:1">📲 Flash Me</button></div>${p.img?`<img src="${p.img}">`:''}<button class="btn green" onclick="requestSafeTrade('${p.title.replace(/'/g,"")}','${p.desc.replace(/'/g,"")}')">🛡️ Request Safe Trade — Max ₦200,000</button><button class="btn orange" onclick="startSmallSmall('${p.title.replace(/'/g,"")}')">💰 Pay Small Small For This</button></div>`).join(""); let t=document.getElementById("tTotal"); if(t) t.innerText=POSTS.length; }
 function doSearch(){ let q=document.getElementById("searchBox").value.toLowerCase(); let c=document.getElementById("catFilter").value; let l=document.getElementById("locFilter").value; renderPosts(POSTS.filter(p=>(!c||p.cat==c)&&(!l||p.loc==l)&&(p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q)))); }
 function checkVerify(){ let v=document.getElementById("verifyInput").value.trim().toLowerCase(); let r=document.getElementById("verifyResult"); r.style.display="block"; if(!v){r.className="result no";r.innerHTML="Type name or phone first";return;} let found=VERIFIED.some(x=>v.includes(x)||x.includes(v)); r.className=found?"result ok":"result no"; r.innerHTML=found?"✅ VERIFIED — Safe to deal.":"❌ NOT VERIFIED — Ask for video call."; }
 function copyAcct(){ navigator.clipboard.writeText("8147699555"); alert("✅ Copied: 8147699555 - OPay / Ekpo Bassey"); }
-function choosePlan(plan){ let msg="Hello WorldSpots! I want "+encodeURIComponent(plan)+" Verified Subscription. I will pay to OPay 8147699555. My name is: "; window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
+function choosePlan(plan){ window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I want "+plan+" Verified Subscription."),"_blank"); }
 function addVerified(){ let n=document.getElementById("newVerified").value.trim().toLowerCase(); if(!n) return; VERIFIED.push(n); localStorage.setItem("ws_verified",JSON.stringify(VERIFIED)); document.getElementById("newVerified").value=""; renderVerified(); alert("✅ Added: "+n); }
 function renderVerified(){ let b=document.getElementById("verifiedListBox"); if(b) b.innerHTML="<b>Verified List:</b><br>"+VERIFIED.join(" • "); }
 function previewPhoto(e){ let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){ currentPhoto=r.result; let img=document.getElementById("photoPreview"); img.src=currentPhoto; img.classList.remove("hidden"); }; r.readAsDataURL(f); }
 function previewVideo(e){ let f=e.target.files[0]; if(!f) return; let url=URL.createObjectURL(f); currentVideo=url; let v=document.getElementById("videoPreview"); v.src=url; v.classList.remove("hidden"); document.getElementById("videoCheck").checked=true; }
-function callSeller(){ let phone=document.getElementById("fPhone").value||"080..."; alert("📞 Calling seller: "+phone+" - Works even with no data."); if(phone) window.location.href="tel:"+phone; }
-function flashSeller(){ let phone=document.getElementById("fPhone").value||"080..."; alert("📲 Flash sent to "+phone+". Seller will call you back. No data needed."); }
-function joinDaily(){ window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! Add me to 7am Daily Deals Broadcast. My location is: ")," _blank"); }
-function marketBoost(){ alert("✅ Market Day Boost ON: Adverts near you + Market Day sellers will show first today."); }
-function postWantToBuy(){
-  let want=document.getElementById("wWant").value; let budget=document.getElementById("wBudget").value; let loc=document.getElementById("wLoc").value||"Agbor"; let phone=document.getElementById("wPhone").value||"080...";
-  if(!want){alert("What do you want to buy?");return;}
-  POSTS.unshift({title:"🔥 I WANT TO BUY: "+want+" - Budget "+budget+" - Cash Today - "+loc,cat:"Business",loc:loc,desc:"Buyer has cash. Budget: "+budget,phone:phone,rating:5,reviews:0,img:"",boosted:true,wantToBuy:true});
-  renderPosts(POSTS);
-  alert("✅ I WANT TO BUY posted! Sellers will now rush to you. LIVE instantly, no Admin needed.");
-  document.getElementById("groupModal").style.display="flex";
-  lastAdvert=`🔥 I WANT TO BUY\n\n${want}\nBudget: ${budget}\nLocation: ${loc}\nMy WhatsApp: ${phone}\n\nI have cash today! Sellers, contact me on WorldSpots.`;
-  navigator.clipboard.writeText(lastAdvert);
+function callSeller(){ let phone=document.getElementById("fPhone").value||"080..."; alert("📞 Calling seller: "+phone); if(phone) window.location.href="tel:"+phone; }
+function flashSeller(){ alert("📲 Flash sent. Seller will call you back."); }
+function joinDaily(){ window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! Add me to 7am Daily Deals Broadcast."),"_blank"); }
+function joinRoom(room){
+  currentRoom=room; let meta=roomMeta[room];
+  document.getElementById("chatDashboard").className="chatDashboard "+meta.cls;
+  document.getElementById("roomBigIcon").innerText=meta.icon;
+  document.getElementById("roomTitle").innerText=meta.title;
+  document.getElementById("roomDesc").innerText=meta.desc;
+  document.getElementById("roomCount").innerText=meta.count;
+  document.querySelectorAll(".roomCard").forEach(c=>c.classList.remove("active"));
+  document.getElementById("card-"+room).classList.add("active");
+  renderChat();
 }
-function post50People(){
-  let name=document.getElementById("fName").value; let what=document.getElementById("fWhat").value; let price=document.getElementById("fPrice").value; let loc=document.getElementById("fLoc").value; let phone=document.getElementById("fPhone").value; let desc=document.getElementById("fDesc").value; let cat=document.getElementById("fCat").value; let size=document.getElementById("fSize").value; let video=document.getElementById("videoCheck").checked; let small=document.getElementById("paySmall").checked;
-  if(!what||!name){alert("Fill Name and What you want to Advertise");return;}
-  if(!video){ if(!confirm("⚠️ You did NOT upload Video Proof. Safe Trade will NOT work without it. Continue anyway?")) return; }
-  let tag=(video?" 🎥 Video Proof ✅":"")+(small?" - Pay Small Small Available":"");
-  POSTS.unshift({title:what+tag,cat:"Business",loc:loc||"Agbor",desc:desc||what,phone:phone||"080...",rating:5,reviews:0,img:currentPhoto,boosted:false});
-  renderPosts(POSTS);
-  lastAdvert=`🌍 WORLDSPOTS ADVERT\n\n${what}\nPrice: ${price}\nCategory: ${cat}\nSize: ${size}\nLocation: ${loc}\nMy WhatsApp: ${phone}\nVideo Proof: ${video?"YES ✅":"NO"}\nPay Small Small: ${small?"YES - Pay in parts":"NO"}\n\n${desc}\n\nPosted on WorldSpots - Safe Trade Protected (5% Escrow)\nPay to OPay 8147699555 - Ekpo Bassey`;
-  navigator.clipboard.writeText(lastAdvert);
-  document.getElementById("pushStatus").innerText="✅ LIVE NOW on WorldSpots! Now choose groups in the pop-up.";
-  // SHOW GROUPS POPUP ONLY NOW
-  document.getElementById("groupModal").style.display="flex";
+function renderChat(){
+  let box=document.getElementById("chatMessages");
+  let msgs=chatData[currentRoom]||[];
+  box.innerHTML=msgs.map(m=>{
+    let st=STAGES[m.stage-1];
+    return `<div class="chatMsg"><div class="chatAvatar">${st.logo}</div><div><b>${m.user}</b> <span class="levelPill ${m.stage==20?'level-20':'level-1'}">${st.logo} Stage ${m.stage} - ${st.name}</span><br>${m.text}</div></div>`;
+  }).join("");
+  box.scrollTop=box.scrollHeight;
 }
-function toggleAllGroups(){ let boxes=document.querySelectorAll(".gCheck"); let allChecked=[...boxes].every(b=>b.checked); boxes.forEach(b=>b.checked=!allChecked); }
+function isMarketing(text){ let t=text.toLowerCase(); let bad=["buy now","for sale","price","₦","naira","whatsapp me to buy","dm to buy","my shop","my product","order now","discount","promo","advert","i sell","selling","call me to buy"]; return bad.some(w=>t.includes(w)); }
+function sendChat(){
+  let inp=document.getElementById("chatInput"); let text=inp.value.trim(); if(!text) return;
+  if(isMarketing(text)){ alert("🚫 NO MARKETING IN CHAT ROOM!\n\nYou cannot sell, post price, or advertise here.\n\nGo to Advertise section."); return; }
+  let who=document.getElementById("whoIs").innerText||"Guest";
+  chatData[currentRoom].push({user:who,stage:myLevel,text:text}); inp.value="";
+  msgCount++; chatCoins+=0.001;
+  let need=coinsNeededForLevel(myLevel);
+  if(myLevel<20 && chatCoins>=need && !isAdminUser){ chatCoins-=need; myLevel++; alert("🎉 CONGRATS! You moved to Stage "+myLevel+" - "+STAGES[myLevel-1].logo+" "+STAGES[myLevel-1].name+"!\n\nNext needs "+coinsNeededForLevel(myLevel)+" coins."); if(myLevel>=20){ myLevel=19; chatCoins=0; alert("⚠️ Stage 20 is ADMIN ONLY. Max for users is Stage 19 - Royal."); } }
+  localStorage.setItem("ws_chat_coins",chatCoins); localStorage.setItem("ws_msg_count",msgCount); localStorage.setItem("ws_level",myLevel);
+  updateStageUI(); renderChat();
+}
+function giftCoins(){ if(!isAdminUser){alert("Only Admin can gift");return;} let user=document.getElementById("giftUser").value; let amt=parseFloat(document.getElementById("giftAmt").value); if(!user||!amt){alert("Type user + amount");return;} chatCoins+=amt; localStorage.setItem("ws_chat_coins",chatCoins); alert("🎁 Admin gifted "+amt+" Coins to "+user+"."); updateStageUI(); }
+function buyChatCoins(){ window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I want to buy 20 Chat Coins for ₦2,000."),"_blank"); }
+function buyChatCoins100(){ window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I want to buy 100 Chat Coins for ₦10,000."),"_blank"); }
+function postWantToBuy(){ let want=document.getElementById("wWant").value; let budget=document.getElementById("wBudget").value; let loc=document.getElementById("wLoc").value||"Agbor"; let phone=document.getElementById("wPhone").value||"080..."; if(!want){alert("What do you want to buy?");return;} POSTS.unshift({title:"🔥 I WANT TO BUY: "+want+" - Budget "+budget,cat:"Business",loc:loc,desc:"Buyer has cash. Budget: "+budget,phone:phone,rating:5,reviews:0,img:"",boosted:true,wantToBuy:true}); renderPosts(POSTS); alert("✅ I WANT TO BUY posted!"); document.getElementById("groupModal").style.display="flex"; lastAdvert=`🔥 I WANT TO BUY\n\n${want}\nBudget: ${budget}\nLocation: ${loc}\nMy WhatsApp: ${phone}`; navigator.clipboard.writeText(lastAdvert); }
+function post50People(){ let name=document.getElementById("fName").value; let what=document.getElementById("fWhat").value; let price=document.getElementById("fPrice").value; let loc=document.getElementById("fLoc").value; let phone=document.getElementById("fPhone").value; let desc=document.getElementById("fDesc").value; let cat=document.getElementById("fCat").value; let size=document.getElementById("fSize").value; let video=document.getElementById("videoCheck").checked; let small=document.getElementById("paySmall").checked; if(!what||!name){alert("Fill Name and What you want to Advertise");return;} if(!video){ if(!confirm("⚠️ No Video Proof. Safe Trade will NOT work. Continue?")) return; } let tag=(video?" 🎥 Video Proof ✅":"")+(small?" - Pay Small Small":""); POSTS.unshift({title:what+tag,cat:"Business",loc:loc||"Agbor",desc:desc||what,phone:phone||"080...",rating:5,reviews:0,img:currentPhoto,boosted:false}); renderPosts(POSTS); lastAdvert=`🌍 WORLDSPOTS ADVERT\n\n${what}\nPrice: ${price}\nCategory: ${cat}\nSize: ${size}\nLocation: ${loc}\nMy WhatsApp: ${phone}\nVideo Proof: ${video?"YES ✅":"NO"}\nPay Small Small: ${small?"YES":"NO"}\n\n${desc}`; navigator.clipboard.writeText(lastAdvert); document.getElementById("pushStatus").innerText="✅ LIVE NOW! Now choose groups in pop-up."; document.getElementById("groupModal").style.display="flex"; }
+function toggleAllGroups(){ let boxes=document.querySelectorAll(".gCheck"); let all=[...boxes].every(b=>b.checked); boxes.forEach(b=>b.checked=!all); }
 function closeGroupModal(){ document.getElementById("groupModal").style.display="none"; }
-function sendToSelectedGroups(){
-  let selected=[...document.querySelectorAll(".gCheck:checked")].map(b=>b.value);
-  if(selected.length==0){alert("Tick at least 1 group");return;}
-  closeGroupModal();
-  let advertWithGroups = lastAdvert + "\n\nGroups: " + selected.join(", ");
-  navigator.clipboard.writeText(advertWithGroups);
-  alert("✅ You ticked "+selected.length+" groups.\n\nFacebook will now open. Tap POST once.\nYour advert is copied - just paste if needed.\nAdmin did NOTHING.");
-  let url="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("https://assey01-glitch.github.io")+ "&quote="+encodeURIComponent(advertWithGroups);
-  window.open(url,"_blank");
-}
-function getLocation(){ if(!navigator.geolocation){alert("Location not supported");return;} document.getElementById("locText").innerText="Getting location..."; navigator.geolocation.getCurrentPosition(pos=>{ let lat=pos.coords.latitude, lon=pos.coords.longitude; document.getElementById("locText").innerText="📍 Your location found: "+lat.toFixed(3)+", "+lon.toFixed(3)+" — Showing Near Me (5 mins) first"; let m=document.getElementById("mapLink"); m.href="https://www.google.com/maps?q="+lat+","+lon; m.classList.remove("hidden"); alert("✅ Location found! Showing Near Me in 5 mins first."); },()=>{alert("Please allow location");}); }
-function voiceSearch(){ if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){ alert("Voice search needs Chrome browser. Type instead."); return; } let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; let rec=new Rec(); rec.lang='en-NG'; rec.onresult=e=>{ let t=e.results[0][0].transcript; document.getElementById("searchBox").value=t; doSearch(); alert("🎤 You said: "+t); }; rec.start(); }
-function rateSeller(idx,stars){ let p=POSTS[idx]; p.reviews=(p.reviews||0)+1; p.rating=Math.min(5,((p.rating||4)+stars)/2); renderPosts(POSTS); alert("✅ Thanks! You rated "+p.title+" — Trust Score updated."); }
+function sendToSelectedGroups(){ let selected=[...document.querySelectorAll(".gCheck:checked")].map(b=>b.value); if(selected.length==0){alert("Tick at least 1 group");return;} closeGroupModal(); let advertWithGroups=lastAdvert+"\n\nGroups: "+selected.join(", "); navigator.clipboard.writeText(advertWithGroups); alert("✅ You ticked "+selected.length+" groups. Facebook will open. Tap POST once. Admin did NOTHING."); let url="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("https://assey01-glitch.github.io")+ "&quote="+encodeURIComponent(advertWithGroups); window.open(url,"_blank"); }
+function getLocation(){ if(!navigator.geolocation){alert("Location not supported");return;} document.getElementById("locText").innerText="Getting location..."; navigator.geolocation.getCurrentPosition(pos=>{ let lat=pos.coords.latitude, lon=pos.coords.longitude; document.getElementById("locText").innerText="📍 Your location: "+lat.toFixed(3)+", "+lon.toFixed(3); let m=document.getElementById("mapLink"); m.href="https://www.google.com/maps?q="+lat+","+lon; m.classList.remove("hidden"); document.querySelector(".mapFrame").src="https://www.google.com/maps?q="+lat+","+lon+"&output=embed"; alert("✅ Location found! Map updated."); },()=>{alert("Please allow location");}); }
+function voiceSearch(){ if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){ alert("Voice needs Chrome. Type instead."); return; } let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; let rec=new Rec(); rec.lang='en-NG'; rec.onresult=e=>{ let t=e.results[0][0].transcript; document.getElementById("searchBox").value=t; doSearch(); alert("🎤 You said: "+t); }; rec.start(); }
 function calcEscrow(){ let amt=parseFloat(document.getElementById("escrowAmount").value)||0; let fee=amt*0.05; let seller=amt-fee; document.getElementById("escrowResult").innerText=`Total: ₦${amt} | WorldSpots 5%: ₦${fee} | Seller Gets: ₦${seller}`; escrowHeld+=amt; feeEarned+=fee; let e=document.getElementById("tEscrow"); if(e) e.innerText='₦'+escrowHeld; let f=document.getElementById("tFee"); if(f) f.innerText='₦'+feeEarned; }
-function calcSmallSmall(){ let total=parseFloat(document.getElementById("smallSmallTotal").value)||0; if(!total){alert("Enter total price");return;} let part=Math.ceil(total/3); let fee=total*0.05; document.getElementById("smallSmallResult").innerText=`Pay Small Small: ₦${part} x 3 = ₦${total} | WorldSpots 5%: ₦${fee} | Seller Gets: ₦${total-fee} after full payment`; }
-function startSmallSmall(title){ alert("💰 Pay Small Small started for: "+title+"\n\nYou pay in 3 parts. WorldSpots holds. Seller delivers when complete."); window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I want Pay Small Small for: "+title),"_blank"); }
-function confirmDelivery(){ alert('Thank you! Admin will now release money to seller minus 5%. Order marked as DELIVERED.'); }
-function requestSafeTrade(title,desc){ let amount=prompt("What is the price? (Max ₦200,000)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){ alert("⚠️ ABOVE ₦200,000 limit. Chat Admin first."); window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello Admin, I want Safe Trade for BIG deal above ₦200,000: "+title),"_blank"); return; } if(num<5000){ alert("Safe Trade is from ₦5,000."); return; } let msg="Hello WorldSpots! I REQUEST SAFE TRADE%0A%0AProduct: "+encodeURIComponent(title)+"%0APrice: ₦"+num+"%0A%0APlease APPROVE before I pay. Video Proof required."; window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
-function buyCoins(){ let msg="Hello WorldSpots! I want to buy Coins for Boost. My name is: "; window.open("https://wa.me/2348147699555?text="+encodeURIComponent(msg),"_blank"); }
+function calcSmallSmall(){ let total=parseFloat(document.getElementById("smallSmallTotal").value)||0; if(!total){alert("Enter total price");return;} let part=Math.ceil(total/3); let fee=total*0.05; document.getElementById("smallSmallResult").innerText=`Pay Small Small: ₦${part} x 3 = ₦${total} | WorldSpots 5%: ₦${fee} | Seller Gets: ₦${total-fee}`; }
+function startSmallSmall(title){ alert("💰 Pay Small Small started for: "+title); window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I want Pay Small Small for: "+title),"_blank"); }
+function confirmDelivery(){ alert('Thank you! Admin will now release money to seller minus 5%.'); }
+function requestSafeTrade(title,desc){ let amount=prompt("What is the price? (Max ₦200,000)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){ alert("⚠️ ABOVE ₦200,000 limit. Chat Admin first."); window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello Admin, I want Safe Trade for BIG deal above ₦200,000: "+title),"_blank"); return; } if(num<5000){ alert("Safe Trade is from ₦5,000."); return; } window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I REQUEST SAFE TRADE - Product: "+title+" Price: ₦"+num),"_blank"); }
+function buyCoins(){ window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! I want to buy Coins for Boost."),"_blank"); }
 function boostAdvert(){ if(coins<500){ alert("You need 500 Coins to Boost. Tap Buy Coins."); return; } coins-=500; localStorage.setItem("ws_coins",coins); updateCoins(); alert("🚀 Boosted! Your advert will stay at TOP for 1 day."); }
-function setAlert(){ let w=document.getElementById("alertWant").value; if(!w){alert("Type what you want first");return;} window.open("https://wa.me/2348147699555?text="+encodeURIComponent("Hello WorldSpots! Turn ON WhatsApp Alert for me. I want: "+w),"_blank"); }
-renderPosts(POSTS); updateCoins();
+renderPosts(POSTS); updateCoins(); updateStageUI(); renderChat();
 </script>
 </body>
 </html>
