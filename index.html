@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorldSpots - Advertise | Verified ₦3,000</title>
+<title>WorldSpots - Advertise | Verified Monthly</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f0f2f5;color:#111}
@@ -23,7 +23,7 @@ p{font-size:14px;line-height:1.5;color:#444}
 .dark{background:#111;color:#fff}
 .red{background:#d32f2f;color:#fff}
 .badge{display:inline-block;background:#ffe600;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:800}
-.price{font-size:28px;font-weight:900;color:#1877f2}
+.price{font-size:26px;font-weight:900;color:#1877f2}
 .small{font-size:12px;color:#888;text-align:center;margin-top:8px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 .grid div{background:#f0f2f5;padding:12px;border-radius:10px;text-align:center;font-size:13px;font-weight:700}
@@ -40,10 +40,13 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 .hidden{display:none}
 .adGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;text-align:center}
 .adGrid div{background:#EEF3FF;border:1px solid #D6E4FF;padding:10px 4px;border-radius:10px;font-size:12px;font-weight:700}
+.plan{border:2px solid #eee;border-radius:12px;padding:14px;margin-top:10px}
+.plan.active{border-color:#FFC107;background:#FFFEF5}
+.plan h3{font-size:16px}
+.plan ul{margin:8px 0 0 18px;font-size:13px;color:#444;line-height:1.6}
 </style>
 </head>
 <body>
-<!-- FRONT PAGE / LOGO -->
 <div class="top">
 <div class="logo">🌍📍</div>
 <h1>World<span>Spots</span></h1>
@@ -53,7 +56,6 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div class="wrap">
 
-<!-- LOGIN CHOICE - FRONT PAGE -->
 <div id="frontPage" class="card" style="text-align:center;border:2px solid #0B2A6B">
 <h2>Welcome to WorldSpots 👋</h2>
 <p>Your trusted place to <b>Advertise</b> anything to 13,000+ people.</p>
@@ -63,7 +65,6 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <p class="small">Guest can search & verify, but must login to Advertise.</p>
 </div>
 
-<!-- USER LOGIN -->
 <div id="userLogin" class="card hidden">
 <h2>👤 User Login / Create Account</h2>
 <p>First time? Just type a username + password, we create your account.</p>
@@ -73,7 +74,6 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <button class="btn" style="background:#eee" onclick="backToFront()">← Back</button>
 </div>
 
-<!-- ADMIN LOGIN - FIRST TIME PASSWORD -->
 <div id="adminLogin" class="card hidden" style="border:2px solid #d32f2f">
 <h2>🔐 Admin Login</h2>
 <p id="adminMsg">Username is <b>admin</b>. First time? You will CREATE your password now.</p>
@@ -82,10 +82,8 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <input id="aPass2" type="password" placeholder="Confirm Password (First Time Only)" class="hidden">
 <button class="btn red" onclick="adminLogin()">Enter Admin Dashboard →</button>
 <button class="btn" style="background:#eee" onclick="backToFront()">← Back</button>
-<p class="small">Only Godson Bas / Ekpo Bassey can enter here.</p>
 </div>
 
-<!-- MAIN SITE - AFTER LOGIN / GUEST -->
 <div id="mainSite" class="hidden">
 
 <div class="card" style="background:#0B2A6B;color:#fff">
@@ -94,14 +92,13 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <button class="btn gold" onclick="logout()">Logout</button>
 </div>
 
-<!-- WHAT CAN YOU ADVERTISE - NEW FRONT LIST -->
 <div class="card">
 <h2>📢 What Can You Advertise on WorldSpots?</h2>
-<p>Anything legal. Here are examples:</p>
+<p>Anything legal:</p>
 <div class="adGrid">
 <div>🏪<br>Business / Shop</div>
 <div>📱<br>Phones & Gadgets</div>
-<div>👗<br>Fashion / Clothes</div>
+<div>👗<br>Fashion</div>
 <div>🏫<br>Schools / Lessons</div>
 <div>⛪<br>Church / Events</div>
 <div>💼<br>Jobs / Vacancy</div>
@@ -112,7 +109,7 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <div>🔧<br>Services / Repair</div>
 <div>🎓<br>Scholarship / Travel</div>
 </div>
-<p style="margin-top:10px"><b>Advertising is FREE</b> for everyone. Verified sellers get more trust.</p>
+<p style="margin-top:10px"><b>Advertising is FREE</b> to post. <b>Verified = Monthly Subscription</b> for trust + top placement.</p>
 </div>
 
 <div class="card">
@@ -132,7 +129,6 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div class="card" style="border:2px solid #FFC107">
 <h2>✅ Verify Check — Don't Be Scammed</h2>
-<p>Type seller's name or phone before you pay.</p>
 <input id="verifyInput" placeholder="e.g. Godson Bas or 08147699555">
 <button class="btn gold" onclick="checkVerify()">Check Now →</button>
 <div id="verifyResult" class="result"></div>
@@ -140,7 +136,6 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 
 <div class="card">
 <h2>💬 Advertise in 30 Seconds</h2>
-<p>Fill this, tap Send. It opens WhatsApp to Admin.</p>
 <input id="fName" placeholder="Your Name">
 <input id="fWhat" placeholder="What do you want to Advertise? e.g. iPhone 11">
 <input id="fPrice" placeholder="Price e.g. ₦180,000">
@@ -150,10 +145,47 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <button class="btn green" onclick="sendWhatsApp()">Send to WhatsApp →</button>
 </div>
 
+<!-- NEW MONTHLY SUBSCRIPTION -->
 <div class="card" style="border:2px solid #FFC107">
-<h2>⭐ Verified Badge — ₦3,000</h2>
-<p>Get <b>Verified ✅</b>. More trust, more customers.</p>
-<div class="price">₦3,000 <span style="font-size:14px;color:#666">/ one-time</span></div>
+<h2>⭐ Verified Subscription — Pay Monthly</h2>
+<p>Choose your plan based on your business size. <b>You pay every month.</b> If you don't renew, your Verified badge is removed.</p>
+
+<div class="plan">
+<h3>🥉 SMALL — ₦3,000 / month</h3>
+<div class="price">₦3,000 <span style="font-size:13px;color:#666">/ month</span></div>
+<ul>
+<li>For: Small shop, food, salon, hawker, student vendor</li>
+<li>Verified ✅ badge</li>
+<li>1 Advert per week in group</li>
+<li>Appears in search</li>
+</ul>
+<button class="btn gold" onclick="choosePlan('SMALL - ₦3,000/month')">Choose Small — ₦3,000 →</button>
+</div>
+
+<div class="plan active">
+<h3>🥈 MEDIUM — ₦5,000 / month ⭐ POPULAR</h3>
+<div class="price">₦5,000 <span style="font-size:13px;color:#666">/ month</span></div>
+<ul>
+<li>For: Boutique, phone shop, school, restaurant</li>
+<li>Verified ✅ + Top placement</li>
+<li>3 Adverts per week</li>
+<li>WhatsApp support from Admin</li>
+</ul>
+<button class="btn gold" onclick="choosePlan('MEDIUM - ₦5,000/month')">Choose Medium — ₦5,000 →</button>
+</div>
+
+<div class="plan">
+<h3>🥇 BIG — ₦10,000 / month</h3>
+<div class="price">₦10,000 <span style="font-size:13px;color:#666">/ month</span></div>
+<ul>
+<li>For: Big store, hotel, car dealer, travel, estate</li>
+<li>Verified ✅ + PINNED at top</li>
+<li>Unlimited Adverts</li>
+<li>Featured on WorldSpots Frontpage</li>
+</ul>
+<button class="btn gold" onclick="choosePlan('BIG - ₦10,000/month')">Choose Big — ₦10,000 →</button>
+</div>
+
 <div class="payBox">
 <p style="font-size:13px;font-weight:800">💳 PAY HERE — OPay</p>
 <b>8147699555</b><br>
@@ -162,45 +194,39 @@ ol{margin:10px 0 0 18px;font-size:14px;line-height:1.6;color:#444}
 <button class="copyBtn" onclick="copyAcct()">📋 Copy Account Number</button>
 </div>
 <ol>
-<li>Transfer <b>₦3,000</b> to OPay above</li>
+<li>Transfer your plan amount to OPay above</li>
 <li>Screenshot receipt</li>
-<li>Tap below and send receipt + your name</li>
-<li>Admin confirms in 24hrs → Verified ✅</li>
+<li>Tap below and send receipt + your plan + your name</li>
+<li>Admin confirms → Verified ✅ for 30 days</li>
 </ol>
-<a class="btn green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid%20%C2%A63%2C000%20for%20Verified.%20Here%20is%20my%20receipt." target="_blank">I Have Paid — Send Receipt →</a>
+<a class="btn green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid%20for%20Verified%20Subscription.%20Here%20is%20my%20receipt." target="_blank">I Have Paid — Send Receipt →</a>
+<p class="small">⚠️ Only pay to 8147699555 / Ekpo Bassey. Don't pay any other account.</p>
 </div>
 
-<!-- ADMIN DASHBOARD - ONLY FOR ADMIN -->
 <div id="adminPanel" class="card hidden" style="border:3px solid #d32f2f">
 <h2>🛡️ Admin Dashboard — Godson Bas</h2>
 <p>Only you see this.</p>
 <input id="newVerified" placeholder="Add Verified Name e.g. John Agbor">
 <button class="btn red" onclick="addVerified()">+ Add to Verified List</button>
 <div id="verifiedListBox" style="margin-top:10px;font-size:13px"></div>
-<p class="small">When someone pays, add their name here. Then Verify Check will show ✅ for them.</p>
+<p class="small">Tip: When someone pays monthly, add them. After 30 days if they don't renew, remove them. That's how you keep making money.</p>
 </div>
 
 <div class="card">
 <h2>📚 EduNexus</h2>
-<p>Education, admissions, scholarships, JAMB / WAEC help.</p>
 <a class="btn blue" href="https://www.facebook.com/share/1EvTQAD9MQ/" target="_blank">Visit EduNexus Page →</a>
 </div>
-
 <div class="card">
 <h2>👥 13k Group — Future Pathways</h2>
-<p>Join 13,000+ members.</p>
 <a class="btn dark" href="https://www.facebook.com/share/g/1A88UfkYsc/" target="_blank">Join Future Pathways (13k) →</a>
 </div>
-
 <div class="card">
 <h2>👤 Admin</h2>
 <p><b>Godson Bas</b> / Ekpo Bassey<br>Owner — WorldSpots | EduNexus | Future Pathways</p>
 <a class="btn blue" href="https://www.facebook.com/share/1F7YRuN4Yb/" target="_blank">Message Godson Bas →</a>
 <a class="btn green" href="https://wa.me/2348147699555" target="_blank">WhatsApp: 0814 769 9555</a>
 </div>
-
 </div>
-
 <p class="small">© 2026 WorldSpots • EduNexus • Future Pathways</p>
 </div>
 
@@ -213,111 +239,43 @@ let POSTS=[
 {title:"Rice Wholesale",cat:"Food",loc:"Agbor",desc:"Rice, beans, garri wholesale.",phone:"080..."}
 ];
 let VERIFIED = JSON.parse(localStorage.getItem("ws_verified")||'["godson bas","ekpo bassey","edunexus","future pathways","8147699555"]');
-
 function showLogin(type){
   document.getElementById("frontPage").classList.add("hidden");
   if(type=='user') document.getElementById("userLogin").classList.remove("hidden");
   if(type=='admin'){
     document.getElementById("adminLogin").classList.remove("hidden");
     let hasPass = localStorage.getItem("ws_admin_pass");
-    if(!hasPass){
-      document.getElementById("adminMsg").innerHTML="⚠️ <b>FIRST TIME:</b> Username is <b>admin</b>. Create your password now. Remember it — you will need it next time.";
-      document.getElementById("aPass2").classList.remove("hidden");
-    } else {
-      document.getElementById("adminMsg").innerHTML="Welcome back Admin. Enter your password you created.";
-      document.getElementById("aPass2").classList.add("hidden");
-    }
+    if(!hasPass){ document.getElementById("adminMsg").innerHTML="⚠️ <b>FIRST TIME:</b> Username is <b>admin</b>. Create your password now."; document.getElementById("aPass2").classList.remove("hidden"); }
+    else { document.getElementById("adminMsg").innerHTML="Welcome back Admin. Enter your password."; document.getElementById("aPass2").classList.add("hidden"); }
   }
 }
-function backToFront(){
-  document.getElementById("userLogin").classList.add("hidden");
-  document.getElementById("adminLogin").classList.add("hidden");
-  document.getElementById("frontPage").classList.remove("hidden");
-}
-function enterAsGuest(){
-  document.getElementById("frontPage").classList.add("hidden");
-  document.getElementById("mainSite").classList.remove("hidden");
-  document.getElementById("whoIs").innerText="Guest";
-  document.getElementById("roleText").innerText="Guest — View only. Login to Advertise.";
-  renderPosts(POSTS); renderVerified();
-}
+function backToFront(){ document.getElementById("userLogin").classList.add("hidden"); document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
+function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only. Login to Advertise."; renderPosts(POSTS); renderVerified(); }
 function userLogin(){
-  let u=document.getElementById("uName").value.trim();
-  let p=document.getElementById("uPass").value.trim();
+  let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim();
   if(!u||!p){ alert("Type username and password"); return; }
   let users=JSON.parse(localStorage.getItem("ws_users")||"{}");
-  if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u+"! Welcome!"); }
-  else if(users[u]!==p){ alert("❌ Wrong password for "+u); return; }
-  localStorage.setItem("ws_current",JSON.stringify({type:"user",name:u}));
-  document.getElementById("userLogin").classList.add("hidden");
-  document.getElementById("mainSite").classList.remove("hidden");
-  document.getElementById("whoIs").innerText=u;
-  document.getElementById("roleText").innerText="User — You can Advertise";
-  renderPosts(POSTS); renderVerified();
+  if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u); }
+  else if(users[u]!==p){ alert("❌ Wrong password"); return; }
+  document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can Advertise"; renderPosts(POSTS); renderVerified();
 }
 function adminLogin(){
-  let u=document.getElementById("aName").value.trim();
-  let p=document.getElementById("aPass").value.trim();
-  let p2=document.getElementById("aPass2").value.trim();
+  let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim();
   if(u!=="admin"){ alert("Admin username is admin"); return; }
   let saved=localStorage.getItem("ws_admin_pass");
-  if(!saved){
-    // FIRST TIME - CREATE PASSWORD
-    if(!p||p.length<4){ alert("Create a password, at least 4 characters"); return; }
-    if(p!==p2){ alert("Passwords do not match. Type same password twice."); return; }
-    localStorage.setItem("ws_admin_pass",p);
-    alert("✅ Your Admin Password is CREATED! Remember it. You are now Admin.");
-  } else {
-    if(p!==saved){ alert("❌ Wrong Admin Password"); return; }
-  }
-  localStorage.setItem("ws_current",JSON.stringify({type:"admin",name:"Godson Bas"}));
-  document.getElementById("adminLogin").classList.add("hidden");
-  document.getElementById("mainSite").classList.remove("hidden");
-  document.getElementById("adminPanel").classList.remove("hidden");
-  document.getElementById("whoIs").innerText="Godson Bas (Admin)";
-  document.getElementById("roleText").innerText="Admin — You control everything";
-  renderPosts(POSTS); renderVerified();
+  if(!saved){ if(!p||p.length<4){ alert("Create password, at least 4 characters"); return; } if(p!==p2){ alert("Passwords do not match"); return; } localStorage.setItem("ws_admin_pass",p); alert("✅ Your Admin Password is CREATED!"); }
+  else { if(p!==saved){ alert("❌ Wrong Admin Password"); return; } }
+  document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("adminPanel").classList.remove("hidden"); document.getElementById("whoIs").innerText="Godson Bas (Admin)"; document.getElementById("roleText").innerText="Admin — You control everything"; renderPosts(POSTS); renderVerified();
 }
-function logout(){
-  localStorage.removeItem("ws_current");
-  document.getElementById("mainSite").classList.add("hidden");
-  document.getElementById("adminPanel").classList.add("hidden");
-  document.getElementById("frontPage").classList.remove("hidden");
-}
-function renderPosts(list){
-  let box=document.getElementById("postList");
-  box.innerHTML=list.map(p=>`<div class="postItem"><b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span></div>`).join("");
-}
-function doSearch(){
-  let q=document.getElementById("searchBox").value.toLowerCase();
-  let c=document.getElementById("catFilter").value;
-  renderPosts(POSTS.filter(p=>(!c||p.cat==c)&&(p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q))));
-}
-function checkVerify(){
-  let v=document.getElementById("verifyInput").value.trim().toLowerCase();
-  let r=document.getElementById("verifyResult"); r.style.display="block";
-  if(!v){ r.className="result no"; r.innerHTML="Type name or phone first"; return; }
-  let found=VERIFIED.some(x=>v.includes(x)||x.includes(v));
-  r.className=found?"result ok":"result no";
-  r.innerHTML=found?"✅ VERIFIED — Safe to deal.":"❌ NOT VERIFIED — Ask for video call.";
-}
+function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("adminPanel").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
+function renderPosts(list){ document.getElementById("postList").innerHTML=list.map(p=>`<div class="postItem"><b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span></div>`).join(""); }
+function doSearch(){ let q=document.getElementById("searchBox").value.toLowerCase(); let c=document.getElementById("catFilter").value; renderPosts(POSTS.filter(p=>(!c||p.cat==c)&&(p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q)))); }
+function checkVerify(){ let v=document.getElementById("verifyInput").value.trim().toLowerCase(); let r=document.getElementById("verifyResult"); r.style.display="block"; if(!v){ r.className="result no"; r.innerHTML="Type name or phone first"; return; } let found=VERIFIED.some(x=>v.includes(x)||x.includes(v)); r.className=found?"result ok":"result no"; r.innerHTML=found?"✅ VERIFIED — Safe to deal.":"❌ NOT VERIFIED — Ask for video call."; }
 function copyAcct(){ navigator.clipboard.writeText("8147699555"); alert("✅ Copied: 8147699555 - OPay / Ekpo Bassey"); }
-function addVerified(){
-  let n=document.getElementById("newVerified").value.trim().toLowerCase();
-  if(!n) return;
-  VERIFIED.push(n); localStorage.setItem("ws_verified",JSON.stringify(VERIFIED));
-  document.getElementById("newVerified").value=""; renderVerified(); alert("✅ Added: "+n);
-}
-function renderVerified(){
-  let b=document.getElementById("verifiedListBox");
-  if(b) b.innerHTML="<b>Verified List:</b><br>"+VERIFIED.join(" • ");
-}
-function sendWhatsApp(){
-  let name=document.getElementById("fName").value, what=document.getElementById("fWhat").value, price=document.getElementById("fPrice").value, loc=document.getElementById("fLoc").value, phone=document.getElementById("fPhone").value, desc=document.getElementById("fDesc").value;
-  if(!name||!what){ alert("Fill Name and What you want to Advertise"); return; }
-  let msg="Hello WorldSpots! I want to ADVERTISE%0A%0AName: "+encodeURIComponent(name)+"%0AAdvert: "+encodeURIComponent(what)+"%0APrice: "+encodeURIComponent(price)+"%0ALocation: "+encodeURIComponent(loc)+"%0AMy WhatsApp: "+encodeURIComponent(phone)+"%0ADetails: "+encodeURIComponent(desc);
-  window.open("https://wa.me/2348147699555?text="+msg,"_blank");
-}
+function choosePlan(plan){ let msg="Hello WorldSpots! I want "+encodeURIComponent(plan)+" Verified Subscription. I will pay to OPay 8147699555. My name is: "; window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
+function addVerified(){ let n=document.getElementById("newVerified").value.trim().toLowerCase(); if(!n) return; VERIFIED.push(n); localStorage.setItem("ws_verified",JSON.stringify(VERIFIED)); document.getElementById("newVerified").value=""; renderVerified(); alert("✅ Added: "+n); }
+function renderVerified(){ let b=document.getElementById("verifiedListBox"); if(b) b.innerHTML="<b>Verified List:</b><br>"+VERIFIED.join(" • "); }
+function sendWhatsApp(){ let name=document.getElementById("fName").value, what=document.getElementById("fWhat").value, price=document.getElementById("fPrice").value, loc=document.getElementById("fLoc").value, phone=document.getElementById("fPhone").value, desc=document.getElementById("fDesc").value; if(!name||!what){ alert("Fill Name and What you want to Advertise"); return; } let msg="Hello WorldSpots! I want to ADVERTISE%0A%0AName: "+encodeURIComponent(name)+"%0AAdvert: "+encodeURIComponent(what)+"%0APrice: "+encodeURIComponent(price)+"%0ALocation: "+encodeURIComponent(loc)+"%0AMy WhatsApp: "+encodeURIComponent(phone)+"%0ADetails: "+encodeURIComponent(desc); window.open("https://wa.me/2348147699555?text="+msg,"_blank"); }
 renderPosts(POSTS);
 </script>
 </body>
