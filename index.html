@@ -9,8 +9,8 @@
 body{background:#EEF1F5;color:#0F172A}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer}
-.topbar{position:sticky;top:0;z-index:100;background:#0F2340;color:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px}
-.menuBtn{background:#C9A227;border:none;color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;display:none}
+.topbar{position:sticky;top:0;z-index:200;background:#0F2340;color:#fff;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.menuBtn{background:#C9A227;border:none;color:#fff;width:38px;height:38px;border-radius:10px;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .logo{display:flex;align-items:center;gap:8px;flex:1}
 .logoIcon{width:36px;height:36px;background:#C9A227;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
 .logo b{font-size:19px;letter-spacing:.2px}
@@ -21,8 +21,10 @@ button{cursor:pointer}
 .bell{width:36px;height:36px;background:#1E3A5F;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
 .avatar{width:36px;height:36px;background:#C9A227;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
 .layout{max-width:1200px;margin:0 auto;display:flex;gap:14px;padding:14px}
-.sidebar{width:230px;flex-shrink:0;background:#fff;border-radius:16px;padding:14px;height:fit-content;position:sticky;top:70px;border:1px solid #E2E8F0}
+/* SIDEBAR - FIXED DRAWER */
+.sidebar{width:260px;flex-shrink:0;background:#fff;border-radius:16px;padding:14px;height:fit-content;position:sticky;top:70px;border:1px solid #E2E8F0}
 .sidebar h3{font-size:11px;color:#94A3B8;letter-spacing:1px;margin-bottom:10px}
+.sidebarHead{display:none}
 .navBtn{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border:none;background:transparent;border-radius:10px;font-size:14px;font-weight:600;text-align:left;color:#334155}
 .navBtn.active{background:#C9A227;color:#fff}
 .navBtn small{margin-left:auto;background:#F1F5F9;color:#334155;padding:2px 7px;border-radius:20px;font-size:11px}
@@ -78,18 +80,24 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 .checkRow{display:flex;gap:8px;align-items:center;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:9px;margin-top:7px;font-size:13px;font-weight:600}
 .checkRow input{width:18px;height:18px;margin-top:0}
 .payBox{background:#FFFBEB;border:1px dashed #C9A227;border-radius:12px;padding:14px;margin-top:10px;text-align:center}
-.payBox b{font-size:18px}
+.payBox b{font-size:20px;letter-spacing:1px}
 .copyBtn{background:#0F2340;color:#fff;border:none;padding:8px 14px;border-radius:20px;font-weight:700;margin-top:6px}
 .tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}
 .tab{flex-shrink:0;padding:8px 14px;border-radius:20px;background:#fff;border:1px solid #E2E8F0;font-size:13px;font-weight:600}
 .tab.active{background:#0F2340;color:#fff}
 .bottomNav{display:none}
+.ownerBox{background:#0F2340;color:#fff;border-radius:16px;padding:16px;margin-bottom:12px}
+.ownerBox b{color:#fff}
+.ownerBox p{color:#CBD5E1}
+/* OVERLAY FOR DRAWER */
+#sidebarOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.55);z-index:250;display:none}
 @media(max-width:820px){
-.menuBtn{display:flex;align-items:center;justify-content:center}
 .searchTop{display:none}
 .layout{flex-direction:column;padding:10px}
-.sidebar{width:100%;position:static;display:none}
-.sidebar.open{display:block}
+.sidebar{position:fixed;top:0;left:-280px;bottom:0;width:260px;z-index:300;border-radius:0 16px 16px 0;overflow-y:auto;transition:left .25s ease;max-height:100vh}
+.sidebar.open{left:0;display:block}
+.sidebarHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+#sidebarOverlay.show{display:block}
 .stats{grid-template-columns:1fr}
 .split{grid-template-columns:1fr}
 .bottomNav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E2E8F0;z-index:100}
@@ -102,9 +110,11 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 </head>
 <body>
 
+<div id="sidebarOverlay" onclick="closeSidebar()"></div>
+
 <div class="topbar">
 <button class="menuBtn" onclick="toggleSidebar()">☰</button>
-<div class="logo"><div class="logoIcon">📍</div><div><b>WorldSpots</b><p id="siteTownLine">Marketplace • Chat • Safe Trade</p></div></div>
+<div class="logo"><div class="logoIcon">📍</div><div><b>WorldSpots</b><p>Marketplace • Chat • Safe Trade • Ekpo Bassey</p></div></div>
 <input class="searchTop" placeholder="Search adverts, users, transactions..." oninput="syncSearch(this.value)">
 <div class="topRight"><div class="bell">🔔</div>
 <div onclick="showPage('profile')" style="cursor:pointer">
@@ -119,6 +129,7 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <div style="font-size:48px">🌍</div>
 <h2 style="font-size:22px;margin-top:8px">Welcome to WorldSpots</h2>
 <p>Real people. Real towns. Real deals. No fake adverts.</p>
+<p style="background:#FFFBEB;border:1px solid #C9A227;border-radius:10px;padding:10px;margin-top:10px"><b>Owner: Ekpo Bassey</b><br>WhatsApp: 0814 769 9555<br>OPay: 8147699555 • Ekpo Bassey</p>
 <button class="btn btn-dark" onclick="showLogin('user')">Continue as User</button>
 <button class="btn btn-white" onclick="showLogin('admin')">Login as Admin</button>
 <button class="btn btn-gold" onclick="enterAsGuest()">Continue as Guest</button>
@@ -130,7 +141,7 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <button class="btn btn-dark" onclick="userLogin()">Login / Create Account →</button><button class="btn btn-white" onclick="backToFront()">Back</button>
 </div>
 <div id="adminLogin" class="card hidden" style="max-width:480px;margin:20px auto">
-<h2>Admin Login</h2><p>Username is <b>admin</b>.</p>
+<h2>Admin Login — Ekpo Bassey 👑</h2><p>Username is <b>admin</b>.</p>
 <input id="aName" value="admin" readonly><input id="aPass" type="password" placeholder="Password / Create first time"><input id="aPass2" type="password" placeholder="Confirm password (first time only)" class="hidden">
 <button class="btn btn-dark" onclick="adminLogin()">Enter Dashboard →</button><button class="btn btn-white" onclick="backToFront()">Back</button>
 </div>
@@ -138,6 +149,7 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <div id="mainSite" class="hidden">
 <div class="layout">
 <aside class="sidebar" id="sidebar">
+<div class="sidebarHead"><b>☰ Menu</b><button onclick="closeSidebar()" style="background:#F1F5F9;border:none;width:32px;height:32px;border-radius:50%;font-weight:800">✕</button></div>
 <h3>MENU</h3>
 <button class="navBtn active" id="btn-home" onclick="showPage('home')">🏠 Home <small>Dashboard</small></button>
 <button class="navBtn" id="btn-market" onclick="showPage('market')">🛍️ Marketplace <small id="menuAdverts">0</small></button>
@@ -148,11 +160,17 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <button class="navBtn" id="btn-verified" onclick="showPage('verified')">✅ Verified</button>
 <button class="navBtn" id="btn-profile" onclick="showPage('profile')">👤 Profile</button>
 <div class="proCard"><b>Upgrade to Pro</b><p>Unlock advanced escrow & limits. Verified badge priority.</p><button class="btn btn-gold" onclick="showPage('verified')">Upgrade Now</button></div>
+<div class="proCard" style="background:#0F2340;border-color:#0F2340"><b style="color:#fff">👑 Owner — Ekpo Bassey</b><p style="color:#CBD5E1">WhatsApp: 0814 769 9555<br>OPay: 8147699555<br>IG: @edunexus2025</p><a href="https://wa.me/2348147699555" target="_blank" class="btn btn-gold" style="margin-top:6px">Chat Owner on WhatsApp →</a></div>
 <div class="proCard" id="adminMini" style="display:none"><b>Admin — Stage 20 👑</b><p>Escrow: <b id="miniEscrow">₦0</b> • Fee: <b id="miniFee">₦0</b></p></div>
 </aside>
 
 <main class="main">
 <div id="page-home">
+<div class="ownerBox">
+<b>👑 WorldSpots by Ekpo Bassey — Verified Owner</b>
+<p style="margin-top:6px">WhatsApp: <b style="color:#fff">0814 769 9555</b> • OPay: <b style="color:#fff">8147699555 — Ekpo Bassey</b> • Instagram: <b style="color:#fff">@edunexus2025</b></p>
+<div class="flex" style="margin-top:10px"><a href="https://wa.me/2348147699555" target="_blank" class="btn btn-gold" style="flex:1;margin-top:0">WhatsApp Owner →</a><button class="btn" style="background:#fff;color:#111;flex:1;margin-top:0" onclick="copyAcct()">Copy OPay 8147699555</button></div>
+</div>
 <div class="stats">
 <div class="stat"><span>↗ Live Adverts</span><b id="statAdverts">0</b><small>Active now • Real posts only</small></div>
 <div class="stat"><span>🪙 Coins</span><b><span id="statCoins">0</span> <span style="font-size:14px">Coins</span></b><small>₦2,000 = 20 Coins • <a href="#" onclick="showPage('wallet');return false" style="color:#0F2340;font-weight:700">Top Up →</a></small></div>
@@ -199,7 +217,7 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <input id="escrowAmount" placeholder="Amount e.g. 50000">
 <button class="btn btn-dark" onclick="calcEscrow()">Calculate & Lock →</button>
 <p id="escrowResult" style="font-weight:700;text-align:center;margin-top:8px"></p>
-<div class="payBox"><p style="font-size:12px;font-weight:800">PAY ESCROW — OPay</p><b id="opayNum">Not set — Admin will set</b><br><span>Account Name: <b id="opayName">Not set</b></span><br><button class="copyBtn" onclick="copyAcct()">Copy Account Number</button></div>
+<div class="payBox"><p style="font-size:12px;font-weight:800">💳 PAY ESCROW HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><span>WhatsApp: <b>0814 769 9555</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy 8147699555</button></div>
 <button class="btn btn-green" onclick="confirmDelivery()">I Received Product — Release Money</button>
 </div>
 </div>
@@ -260,6 +278,10 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <button class="btn btn-gold" onclick="buyCoins()">Buy Coins →</button>
 <button class="btn" style="background:#fff;color:#111" onclick="boostAdvert()">Boost Advert (500 Coins)</button>
 </div>
+<div class="card"><h2>💳 Pay Here — Your Owner Details</h2>
+<div class="payBox"><p style="font-size:12px;font-weight:800">PAY HERE — OPay</p><b>8147699555</b><br><span>Account Name: <b>Ekpo Bassey</b></span><br><span>Bank: <b>OPay Digital Services</b></span><br><span>WhatsApp: <b>0814 769 9555</b></span><br><button class="copyBtn" onclick="copyAcct()">📋 Copy 8147699555</button></div>
+<a class="btn btn-green" href="https://wa.me/2348147699555?text=Hello%20WorldSpots!%20I%20just%20paid." target="_blank">I Have Paid — Send Receipt on WhatsApp →</a>
+</div>
 <div class="card"><h2>Verified Subscription</h2>
 <div style="border:1px solid #E2E8F0;border-radius:12px;padding:12px;margin-top:8px"><b>Small — ₦3,000 / month</b><button class="btn btn-white" onclick="choosePlan('SMALL - ₦3,000/month')">Choose Small →</button></div>
 <div style="border:2px solid #C9A227;border-radius:12px;padding:12px;margin-top:8px;background:#FFFBEB"><b>Medium — ₦5,000 / month • Popular</b><button class="btn btn-gold" onclick="choosePlan('MEDIUM - ₦5,000/month')">Choose Medium →</button></div>
@@ -269,9 +291,9 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 
 <div id="page-verified" class="hidden">
 <div class="card"><h2>Verify a Seller</h2><input id="verifyInput" placeholder="Type name or phone to verify"><button class="btn btn-gold" onclick="checkVerify()">Check Verification →</button><div id="verifyResult" style="display:none;padding:10px;border-radius:10px;margin-top:8px;font-weight:700;text-align:center"></div></div>
-<div class="card" id="adminPanel" style="display:none;border:2px solid #0F2340"><h2>Admin Dashboard</h2><p>Escrow: <b id="tEscrow">₦0</b> • Fee: <b id="tFee">₦0</b> • Adverts: <b id="tTotal">0</b></p><input id="newVerified" placeholder="Type verified name to add"><button class="btn btn-dark" onclick="addVerified()">+ Add to Verified List</button><div id="verifiedListBox" style="margin-top:8px;font-size:13px"></div><div id="giftBox" style="display:none;margin-top:12px"><h2 style="font-size:14px">Gift Coins</h2><input id="giftUser" placeholder="Username to gift"><input id="giftAmt" placeholder="Amount"><button class="btn btn-gold" onclick="giftCoins()">Gift Coins →</button></div></div>
+<div class="card" id="adminPanel" style="display:none;border:2px solid #0F2340"><h2>Admin Dashboard — Ekpo Bassey 👑</h2><p>Owner: Ekpo Bassey • WhatsApp: 0814 769 9555 • OPay: 8147699555</p><p>Escrow: <b id="tEscrow">₦0</b> • Fee: <b id="tFee">₦0</b> • Adverts: <b id="tTotal">0</b></p><input id="newVerified" placeholder="Type verified name to add"><button class="btn btn-dark" onclick="addVerified()">+ Add to Verified List</button><div id="verifiedListBox" style="margin-top:8px;font-size:13px"></div><div id="giftBox" style="display:none;margin-top:12px"><h2 style="font-size:14px">Gift Coins</h2><input id="giftUser" placeholder="Username to gift"><input id="giftAmt" placeholder="Amount"><button class="btn btn-gold" onclick="giftCoins()">Gift Coins →</button></div></div>
 <div class="card" id="adminTownBox" style="display:none;border:1px dashed #0F2340"><h2>Admin — Set Your Town</h2><input id="siteTownInput" placeholder="Type your town"><button class="btn btn-dark" onclick="saveSiteTown()">Save My Town →</button></div>
-<div class="card" id="adminSettings" style="display:none;border:1px dashed #111"><h2>Admin Settings — Your Details</h2><input id="setOpayNum" placeholder="Your OPay number"><input id="setOpayName" placeholder="Your OPay account name"><input id="setWhatsApp" placeholder="Your WhatsApp number"><input id="setInsta" placeholder="Your Instagram handle"><button class="btn btn-dark" onclick="saveAdminSettings()">Save My Details →</button></div>
+<div class="card" id="adminSettings" style="display:none;border:1px dashed #111"><h2>Admin Settings — Your Details (Already Filled)</h2><input id="setOpayNum" value="8147699555"><input id="setOpayName" value="Ekpo Bassey"><input id="setWhatsApp" value="2348147699555"><input id="setInsta" value="edunexus2025"><button class="btn btn-dark" onclick="saveAdminSettings()">Save My Details →</button></div>
 </div>
 
 <div id="page-profile" class="hidden">
@@ -287,9 +309,10 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <button class="btn btn-white" onclick="openStages()">View All 20 Stages →</button>
 <button class="btn btn-white" onclick="removeProfilePhoto()">Remove My Photo</button>
 </div>
+<div class="card"><h2>👑 Owner — Ekpo Bassey</h2><p><b>WhatsApp:</b> 0814 769 9555<br><b>OPay:</b> 8147699555 — Ekpo Bassey<br><b>Bank:</b> OPay Digital Services<br><b>Instagram:</b> @edunexus2025</p><a class="btn btn-green" href="https://wa.me/2348147699555" target="_blank">WhatsApp Owner: 0814 769 9555 →</a><a class="btn btn-dark" href="https://instagram.com/edunexus2025" target="_blank">Instagram @edunexus2025 →</a></div>
 <div class="card"><h2>EduNexus</h2><a class="btn btn-dark" href="https://www.facebook.com/share/1EvTQAD9MQ/" target="_blank">Visit EduNexus →</a></div>
 <div class="card"><h2>Future Pathways Group</h2><a class="btn btn-white" href="https://www.facebook.com/share/g/1A88UfkYsc/" target="_blank">Join Group →</a></div>
-<div class="card"><h2>Support</h2><p id="supportLine">Support details set by Admin.</p><a class="btn btn-dark" id="waSupport" href="#" target="_blank">WhatsApp Admin</a><a class="btn btn-white" id="instaSupport" href="#" target="_blank">Instagram</a><button class="btn btn-white" onclick="logout()">Logout</button></div>
+<div class="card"><h2>Support</h2><p>WhatsApp: 0814 769 9555 • Instagram: @edunexus2025 • OPay: 8147699555 — Ekpo Bassey</p><a class="btn btn-dark" href="https://wa.me/2348147699555" target="_blank">WhatsApp Admin: 0814 769 9555</a><a class="btn btn-white" href="https://instagram.com/edunexus2025" target="_blank">Instagram @edunexus2025</a><button class="btn btn-white" onclick="logout()">Logout</button></div>
 </div>
 
 </main>
@@ -308,121 +331,81 @@ input:focus,select:focus,textarea:focus{border-color:#0F2340;background:#fff}
 <div id="groupModal" class="modal"><div class="modalBox"><h2>Push To Groups?</h2><p style="font-size:12px;color:#64748B">Tick groups. Then tap SEND.</p><label class="checkRow"><input type="checkbox" class="gCheck" value="FOODS AND EATERIES" checked> 🍲 Foods and Eateries</label><label class="checkRow"><input type="checkbox" class="gCheck" value="EDUCATION AND SCHOLARSHIPS" checked> 🎓 Education</label><label class="checkRow"><input type="checkbox" class="gCheck" value="ELECTRONICS AND PHONES" checked> 📱 Electronics and Phones</label><label class="checkRow"><input type="checkbox" class="gCheck" value="HOTELS AND RELAXATION" checked> 🏨 Hotels</label><label class="checkRow"><input type="checkbox" class="gCheck" value="SALOON AND MAKE OVERS" checked> 💇 Saloon</label><label class="checkRow"><input type="checkbox" class="gCheck" value="FASHION" checked> 👗 Fashion</label><label class="checkRow"><input type="checkbox" class="gCheck" value="PROPERTIES" checked> 🏠 Properties</label><button class="btn btn-white" onclick="toggleAllGroups()">Select All / Deselect All</button><button class="btn btn-dark" onclick="sendToSelectedGroups()">Send To Selected Groups →</button><button class="btn btn-white" onclick="closeGroupModal()">Skip</button></div></div>
 
 <script>
-let STAGES=[
-{logo:"🌱",name:"Newcomer"},{logo:"👀",name:"Visitor"},{logo:"💬",name:"Talker"},{logo:"☕",name:"Regular"},{logo:"😊",name:"Friendly Face"},{logo:"🏠",name:"Community Member"},{logo:"⚡",name:"Active Member"},{logo:"🤝",name:"Helper"},{logo:"⭐",name:"Star Talker"},{logo:"🌟",name:"Rising Star"},{logo:"📣",name:"Influencer"},{logo:"🦁",name:"Community Leader"},{logo:"🎤",name:"Voice of the Room"},{logo:"🏆",name:"Champion"},{logo:"🔥",name:"Legend"},{logo:"💎",name:"Super Legend"},{logo:"🧠",name:"Master"},{logo:"👑",name:"Grand Master"},{logo:"👸",name:"Royal"},{logo:"👑💎👑",name:"WORLDSPOTS KING"}
-];
-function coinsNeededForLevel(level){ return 20*level; }
+const OWNER_NAME="Ekpo Bassey"; const OWNER_OPAY="8147699555"; const OWNER_OPAY_NAME="Ekpo Bassey"; const OWNER_WHATSAPP="2348147699555"; const OWNER_WHATSAPP_DISPLAY="0814 769 9555"; const OWNER_INSTA="edunexus2025";
+let STAGES=[{logo:"🌱",name:"Newcomer"},{logo:"👀",name:"Visitor"},{logo:"💬",name:"Talker"},{logo:"☕",name:"Regular"},{logo:"😊",name:"Friendly Face"},{logo:"🏠",name:"Community Member"},{logo:"⚡",name:"Active Member"},{logo:"🤝",name:"Helper"},{logo:"⭐",name:"Star Talker"},{logo:"🌟",name:"Rising Star"},{logo:"📣",name:"Influencer"},{logo:"🦁",name:"Community Leader"},{logo:"🎤",name:"Voice of the Room"},{logo:"🏆",name:"Champion"},{logo:"🔥",name:"Legend"},{logo:"💎",name:"Super Legend"},{logo:"🧠",name:"Master"},{logo:"👑",name:"Grand Master"},{logo:"👸",name:"Royal"},{logo:"👑💎👑",name:"WORLDSPOTS KING"}];
+function coinsNeededForLevel(l){return 20*l;}
 let lastAdvert=""; let POSTS=[]; let BUY_POSTS=[];
-let VERIFIED = JSON.parse(localStorage.getItem("ws_verified")||'[]');
-let coins = parseInt(localStorage.getItem("ws_coins")||"0");
-let chatCoins = parseFloat(localStorage.getItem("ws_chat_coins")||"0");
-let msgCount = parseInt(localStorage.getItem("ws_msg_count")||"0");
-let myLevel = parseInt(localStorage.getItem("ws_level")||"1");
-let isAdminUser = false; let currentRoom="sports"; let currentPhoto=""; let currentVideo=""; let escrowHeld=0, feeEarned=0, escrowCount=0;
-let siteTown = localStorage.getItem("ws_site_town")||"";
-let chatData = {
-  sports:[{user:"Admin 👑",stage:20,text:"Welcome to Sports Room! No adverts here, just chat."}],
-  socials:[{user:"Admin 👑",stage:20,text:"Welcome to Socials! Talk music, gist, fun."}],
-  mingle:[{user:"Admin 👑",stage:20,text:"Welcome to Mingle! Be respectful."}],
-  education:[{user:"Admin 👑",stage:20,text:"Welcome to Education! Ask questions."}],
-  religion:[{user:"Admin 👑",stage:20,text:"Welcome to Religion! Share inspiration."}]
-};
-let roomMeta = {
-  sports:{title:"⚽ Sports Room",desc:"Football, matches, players. No marketing.",cls:"room-sports",count:"0 online"},
-  socials:{title:"🎉 Socials Room",desc:"Music, gist, movies, fun.",cls:"room-socials",count:"0 online"},
-  mingle:{title:"💕 Mingle Room",desc:"Make friends, chat. Be respectful.",cls:"room-mingle",count:"0 online"},
-  education:{title:"🎓 Education Room",desc:"Ask questions, learn.",cls:"room-education",count:"0 online"},
-  religion:{title:"🙏 Religion Room",desc:"Prayers, inspiration, peace.",cls:"room-religion",count:"0 online"}
-};
-function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); }
+let VERIFIED=JSON.parse(localStorage.getItem("ws_verified")||'["edunexus","future pathways","worldspots","8147699555","ekpo bassey"]');
+let coins=parseInt(localStorage.getItem("ws_coins")||"0"); let chatCoins=parseFloat(localStorage.getItem("ws_chat_coins")||"0"); let msgCount=parseInt(localStorage.getItem("ws_msg_count")||"0"); let myLevel=parseInt(localStorage.getItem("ws_level")||"1");
+let isAdminUser=false; let currentRoom="sports"; let currentPhoto=""; let currentVideo=""; let escrowHeld=0, feeEarned=0, escrowCount=0; let siteTown=localStorage.getItem("ws_site_town")||"";
+let chatData={sports:[{user:"Admin 👑",stage:20,text:"Welcome to Sports Room! No adverts here, just chat."}],socials:[{user:"Admin 👑",stage:20,text:"Welcome to Socials! Talk music, gist, fun."}],mingle:[{user:"Admin 👑",stage:20,text:"Welcome to Mingle! Be respectful."}],education:[{user:"Admin 👑",stage:20,text:"Welcome to Education! Ask questions."}],religion:[{user:"Admin 👑",stage:20,text:"Welcome to Religion! Share inspiration."}]};
+let roomMeta={sports:{title:"⚽ Sports Room",desc:"Football, matches, players. No marketing.",cls:"room-sports",count:"0 online"},socials:{title:"🎉 Socials Room",desc:"Music, gist, movies, fun.",cls:"room-socials",count:"0 online"},mingle:{title:"💕 Mingle Room",desc:"Make friends, chat. Be respectful.",cls:"room-mingle",count:"0 online"},education:{title:"🎓 Education Room",desc:"Ask questions, learn.",cls:"room-education",count:"0 online"},religion:{title:"🙏 Religion Room",desc:"Prayers, inspiration, peace.",cls:"room-religion",count:"0 online"}};
+// FIXED SIDEBAR - DRAWER
+function toggleSidebar(){ let sb=document.getElementById('sidebar'); let ov=document.getElementById('sidebarOverlay'); if(sb.classList.contains('open')){ closeSidebar(); } else { sb.classList.add('open'); ov.classList.add('show'); } }
+function openSidebar(){ document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('show'); }
+function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
 function showPage(page){
-  ['home','market','buy','chat','map','wallet','verified','profile'].forEach(p=>{
-    let el=document.getElementById('page-'+p); if(el) el.classList.add('hidden');
-    let b=document.getElementById('btn-'+p); if(b) b.classList.remove('active');
-  });
-  let target = page=='chat' ? 'home' : page;
-  document.getElementById('page-'+target).classList.remove('hidden');
-  let btn=document.getElementById('btn-'+target); if(btn) btn.classList.add('active');
-  if(window.innerWidth<=820) document.getElementById('sidebar').classList.remove('open');
-  window.scrollTo({top:0,behavior:'smooth'});
+  ['home','market','buy','chat','map','wallet','verified','profile'].forEach(p=>{ let el=document.getElementById('page-'+p); if(el) el.classList.add('hidden'); let b=document.getElementById('btn-'+p); if(b) b.classList.remove('active'); });
+  let target=page=='chat'?'home':page; document.getElementById('page-'+target).classList.remove('hidden'); let btn=document.getElementById('btn-'+target); if(btn) btn.classList.add('active');
+  closeSidebar(); window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.navItem').forEach(n=>n.classList.remove('active'));
 }
-function syncSearch(v){ let s=document.getElementById('searchBox'); if(s){ s.value=v; doSearch(); } showPage('market'); }
+function syncSearch(v){ let s=document.getElementById('searchBox'); if(s){s.value=v;doSearch();} showPage('market'); }
 function filterCat(c){ document.getElementById('catFilter').value=c; doSearch(); showPage('market'); }
-function applySiteTown(){ if(siteTown){ document.getElementById("siteTownLine").innerText="📍 "+siteTown+" • Marketplace • Chat • Safe Trade"; } }
-function saveSiteTown(){ siteTown=document.getElementById("siteTownInput").value.trim(); localStorage.setItem("ws_site_town",siteTown); applySiteTown(); alert("✅ Saved: "+(siteTown||"Not set")); }
-function saveAdminSettings(){ let n=document.getElementById("setOpayNum").value.trim(); let nm=document.getElementById("setOpayName").value.trim(); let wa=document.getElementById("setWhatsApp").value.trim(); let ig=document.getElementById("setInsta").value.trim(); if(n) localStorage.setItem("ws_opay_num",n); if(nm) localStorage.setItem("ws_opay_name",nm); if(wa) localStorage.setItem("ws_whatsapp",wa); if(ig) localStorage.setItem("ws_insta",ig); alert("✅ Your details saved."); loadAdminSettings(); }
-function loadAdminSettings(){ let n=localStorage.getItem("ws_opay_num")||""; let nm=localStorage.getItem("ws_opay_name")||""; let wa=localStorage.getItem("ws_whatsapp")||""; let ig=localStorage.getItem("ws_insta")||""; document.getElementById("opayNum").innerText=n||"Not set — Admin will set"; document.getElementById("opayName").innerText=nm||"Not set"; document.getElementById("waSupport").href=wa?"https://wa.me/"+wa:"#"; document.getElementById("waSupport").innerText=wa?"WhatsApp: "+wa:"WhatsApp Admin"; document.getElementById("instaSupport").href=ig?"https://instagram.com/"+ig.replace("@",""):"#"; document.getElementById("instaSupport").innerText=ig?"Instagram @"+ig:"Instagram"; document.getElementById("supportLine").innerText=(wa||ig)?("WhatsApp: "+wa+" • Instagram: @"+ig):"Support details set by Admin."; }
-function updateStageUI(){ if(isAdminUser){ myLevel=20; chatCoins=999999; } let st=STAGES[myLevel-1]; if(!document.getElementById("myAvatar").style.display || document.getElementById("myAvatar").style.display!="none"){ document.getElementById("myAvatar").innerText=st.logo; } document.getElementById("myStageBadge").innerText="Stage "+myLevel+" • "+st.name; document.getElementById("stageBig").innerText="Stage "+myLevel+" • "+st.logo; document.getElementById("chatCoins").innerText=chatCoins.toFixed(2); document.getElementById("msgCount").innerText=msgCount; document.getElementById("statCoins").innerText=coins; document.getElementById("menuCoins").innerText=coins; document.getElementById("statAdverts").innerText=POSTS.length; document.getElementById("menuAdverts").innerText=POSTS.length; document.getElementById("mapAds").innerText=POSTS.length; let totalChat=Object.values(chatData).reduce((a,b)=>a+b.length,0); document.getElementById("mapChats").innerText=totalChat; document.getElementById("mapEscrow").innerText=escrowCount; let need=myLevel>=20?0:coinsNeededForLevel(myLevel); document.getElementById("nextNeed").innerText=myLevel>=20?"MAX":need; document.getElementById("stageProgressText").innerText=myLevel>=20?"MAX — YOU ARE KING":chatCoins.toFixed(2)+" / "+need+" Coins to next stage"; let progress=myLevel>=20?100:Math.min(100,(chatCoins/need)*100); document.getElementById("stageProgress").style.width=progress+"%"; }
-function openStages(){ document.getElementById("stagesList").innerHTML=STAGES.map((s,i)=>{ let lvl=i+1; let isMe=lvl==myLevel; return `<div style="padding:8px 10px;border-radius:10px;${isMe?'background:#FFFBEB;border:1px solid #C9A227':''}">${s.logo} <b>Stage ${lvl} - ${s.name}</b> ${i==19?'- ADMIN ONLY':''} ${isMe?'← YOU':''} • Needs ${20*lvl} coins</div>`; }).join(""); document.getElementById("stagesModal").style.display="flex"; }
+function saveSiteTown(){ siteTown=document.getElementById("siteTownInput").value.trim(); localStorage.setItem("ws_site_town",siteTown); alert("✅ Saved: "+(siteTown||"Not set")); }
+function saveAdminSettings(){ let n=document.getElementById("setOpayNum").value.trim()||OWNER_OPAY; let nm=document.getElementById("setOpayName").value.trim()||OWNER_OPAY_NAME; let wa=document.getElementById("setWhatsApp").value.trim()||OWNER_WHATSAPP; let ig=document.getElementById("setInsta").value.trim()||OWNER_INSTA; localStorage.setItem("ws_opay_num",n); localStorage.setItem("ws_opay_name",nm); localStorage.setItem("ws_whatsapp",wa); localStorage.setItem("ws_insta",ig); alert("✅ Saved: "+n+" / "+nm); }
+function loadAdminSettings(){ let n=localStorage.getItem("ws_opay_num")||OWNER_OPAY; let nm=localStorage.getItem("ws_opay_name")||OWNER_OPAY_NAME; if(!localStorage.getItem("ws_opay_num")) localStorage.setItem("ws_opay_num",n); if(!localStorage.getItem("ws_whatsapp")) localStorage.setItem("ws_whatsapp",OWNER_WHATSAPP); }
+function updateStageUI(){ if(isAdminUser){myLevel=20;chatCoins=999999;} let st=STAGES[myLevel-1]; let av=document.getElementById("myAvatar"); if(av&&av.style.display!="none"){av.innerText=st.logo;} document.getElementById("myStageBadge").innerText="Stage "+myLevel+" • "+st.name; document.getElementById("stageBig").innerText="Stage "+myLevel+" • "+st.logo; document.getElementById("chatCoins").innerText=chatCoins.toFixed(2); document.getElementById("msgCount").innerText=msgCount; document.getElementById("statCoins").innerText=coins; document.getElementById("menuCoins").innerText=coins; document.getElementById("statAdverts").innerText=POSTS.length; document.getElementById("menuAdverts").innerText=POSTS.length; document.getElementById("mapAds").innerText=POSTS.length; let totalChat=Object.values(chatData).reduce((a,b)=>a+b.length,0); document.getElementById("mapChats").innerText=totalChat; document.getElementById("mapEscrow").innerText=escrowCount; let need=myLevel>=20?0:coinsNeededForLevel(myLevel); document.getElementById("nextNeed").innerText=myLevel>=20?"MAX":need; document.getElementById("stageProgressText").innerText=myLevel>=20?"MAX — YOU ARE KING":chatCoins.toFixed(2)+" / "+need+" Coins to next stage"; let progress=myLevel>=20?100:Math.min(100,(chatCoins/need)*100); document.getElementById("stageProgress").style.width=progress+"%"; }
+function openStages(){ document.getElementById("stagesList").innerHTML=STAGES.map((s,i)=>{let lvl=i+1;let isMe=lvl==myLevel;return `<div style="padding:8px 10px;border-radius:10px;${isMe?'background:#FFFBEB;border:1px solid #C9A227':''}">${s.logo} <b>Stage ${lvl} - ${s.name}</b> ${i==19?'- ADMIN ONLY':''} ${isMe?'← YOU':''} • Needs ${20*lvl} coins</div>`;}).join(""); document.getElementById("stagesModal").style.display="flex"; }
 function closeStages(){ document.getElementById("stagesModal").style.display="none"; }
 function setManualTown(){ let t=document.getElementById("manualTown").value.trim(); if(!t){alert("Type your town first");return;} document.getElementById("mapFrame").src="https://www.google.com/maps?q="+encodeURIComponent(t)+"&output=embed"; document.getElementById("mapFrame2").src="https://www.google.com/maps?q="+encodeURIComponent(t)+"&output=embed"; document.getElementById("locText").innerText="📍 Location: "+t+" (typed by you)"; document.getElementById("mapLink").href="https://www.google.com/maps?q="+encodeURIComponent(t); document.getElementById("mapLink").classList.remove("hidden"); }
 function updateCoins(){ document.getElementById("coinBal").innerText=coins; document.getElementById("statCoins").innerText=coins; document.getElementById("menuCoins").innerText=coins; }
-function showLogin(type){ document.getElementById("frontPage").classList.add("hidden"); if(type=='user') document.getElementById("userLogin").classList.remove("hidden"); if(type=='admin'){ document.getElementById("adminLogin").classList.remove("hidden"); let hasPass=localStorage.getItem("ws_admin_pass"); if(!hasPass){ document.getElementById("aPass2").classList.remove("hidden"); } else { document.getElementById("aPass2").classList.add("hidden"); } } }
+function showLogin(type){ document.getElementById("frontPage").classList.add("hidden"); if(type=='user') document.getElementById("userLogin").classList.remove("hidden"); if(type=='admin'){ document.getElementById("adminLogin").classList.remove("hidden"); let hasPass=localStorage.getItem("ws_admin_pass"); if(!hasPass){document.getElementById("aPass2").classList.remove("hidden");} else {document.getElementById("aPass2").classList.add("hidden");} } }
 function backToFront(){ document.getElementById("userLogin").classList.add("hidden"); document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("frontPage").classList.remove("hidden"); }
 function enterAsGuest(){ document.getElementById("frontPage").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText="Guest"; document.getElementById("roleText").innerText="Guest — View only"; document.getElementById("topAvatar").innerText="G"; isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Guest"); }
-function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){ users[u]=p; localStorage.setItem("ws_users",JSON.stringify(users)); alert("✅ Account created for "+u); } else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can post and chat"; document.getElementById("topAvatar").innerText=u[0].toUpperCase(); isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser(u); }
-function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("adminPanel").style.display="block"; document.getElementById("giftBox").style.display="block"; document.getElementById("adminTownBox").style.display="block"; document.getElementById("adminSettings").style.display="block"; document.getElementById("adminMini").style.display="block"; document.getElementById("whoIs").innerText="Admin 👑"; document.getElementById("roleText").innerText="Admin — Stage 20 • WORLDSPOTS KING"; document.getElementById("topAvatar").innerText="👑"; isAdminUser=true; myLevel=20; chatCoins=999999; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Admin"); }
-function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("bottomNav").style.display="none"; document.getElementById("adminPanel").style.display="none"; document.getElementById("giftBox").style.display="none"; document.getElementById("adminTownBox").style.display="none"; document.getElementById("adminSettings").style.display="none"; document.getElementById("adminMini").style.display="none"; document.getElementById("frontPage").classList.remove("hidden"); }
-// PROFILE PHOTO
-function uploadProfilePhoto(e){
-  let file=e.target.files[0]; if(!file) return;
-  if(file.size>2*1024*1024){ alert("Photo too big. Use photo under 2MB"); return; }
-  let reader=new FileReader();
-  reader.onload=function(){
-    let photo=reader.result;
-    let who=document.getElementById("whoIs").innerText||"Guest";
-    localStorage.setItem("ws_photo_"+who, photo);
-    localStorage.setItem("ws_photo_current", photo);
-    applyProfilePhoto(photo);
-    alert("✅ Profile photo uploaded!");
-    renderChat();
-  };
-  reader.readAsDataURL(file);
-}
-function applyProfilePhoto(photo){
-  let topImg=document.getElementById("topAvatarImg"); let topAv=document.getElementById("topAvatar");
-  if(photo){ topImg.src=photo; topImg.style.display="block"; topAv.style.display="none"; } else { topImg.style.display="none"; topAv.style.display="flex"; }
-  let myImg=document.getElementById("myAvatarImg"); let myAv=document.getElementById("myAvatar");
-  if(myImg){ if(photo){ myImg.src=photo; myImg.style.display="block"; myAv.style.display="none"; } else { myImg.style.display="none"; myAv.style.display="flex"; } }
-}
+function userLogin(){ let u=document.getElementById("uName").value.trim(); let p=document.getElementById("uPass").value.trim(); if(!u||!p){alert("Type username and password");return;} let users=JSON.parse(localStorage.getItem("ws_users")||"{}"); if(!users[u]){users[u]=p;localStorage.setItem("ws_users",JSON.stringify(users));alert("✅ Account created for "+u);} else if(users[u]!==p){alert("❌ Wrong password");return;} document.getElementById("userLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("whoIs").innerText=u; document.getElementById("roleText").innerText="User — You can post and chat"; document.getElementById("topAvatar").innerText=u[0].toUpperCase(); isAdminUser=false; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser(u); }
+function adminLogin(){ let u=document.getElementById("aName").value.trim(); let p=document.getElementById("aPass").value.trim(); let p2=document.getElementById("aPass2").value.trim(); if(u!=="admin"){alert("Admin username is admin");return;} let saved=localStorage.getItem("ws_admin_pass"); if(!saved){ if(!p||p.length<4){alert("Create password, at least 4 chars");return;} if(p!==p2){alert("Passwords do not match");return;} localStorage.setItem("ws_admin_pass",p); alert("✅ Admin Password CREATED!"); } else { if(p!==saved){alert("❌ Wrong Admin Password");return;} } document.getElementById("adminLogin").classList.add("hidden"); document.getElementById("mainSite").classList.remove("hidden"); document.getElementById("bottomNav").style.display="flex"; document.getElementById("adminPanel").style.display="block"; document.getElementById("giftBox").style.display="block"; document.getElementById("adminTownBox").style.display="block"; document.getElementById("adminSettings").style.display="block"; document.getElementById("adminMini").style.display="block"; document.getElementById("whoIs").innerText="Admin 👑 — "+OWNER_NAME; document.getElementById("roleText").innerText="Admin — Stage 20 • WORLDSPOTS KING • "+OWNER_NAME; document.getElementById("topAvatar").innerText="👑"; isAdminUser=true; myLevel=20; chatCoins=999999; renderPosts(POSTS); renderBuy(); renderVerified(); updateCoins(); updateStageUI(); renderChat(); showPage('home'); loadProfilePhotoForUser("Admin"); }
+function logout(){ document.getElementById("mainSite").classList.add("hidden"); document.getElementById("bottomNav").style.display="none"; document.getElementById("adminPanel").style.display="none"; document.getElementById("giftBox").style.display="none"; document.getElementById("adminTownBox").style.display="none"; document.getElementById("adminSettings").style.display="none"; document.getElementById("adminMini").style.display="none"; closeSidebar(); document.getElementById("frontPage").classList.remove("hidden"); }
+function uploadProfilePhoto(e){ let file=e.target.files[0]; if(!file) return; if(file.size>2*1024*1024){alert("Photo too big. Use photo under 2MB");return;} let reader=new FileReader(); reader.onload=function(){ let photo=reader.result; let who=document.getElementById("whoIs").innerText||"Guest"; localStorage.setItem("ws_photo_"+who,photo); localStorage.setItem("ws_photo_current",photo); applyProfilePhoto(photo); alert("✅ Profile photo uploaded!"); renderChat(); }; reader.readAsDataURL(file); }
+function applyProfilePhoto(photo){ let topImg=document.getElementById("topAvatarImg"); let topAv=document.getElementById("topAvatar"); if(photo){topImg.src=photo;topImg.style.display="block";topAv.style.display="none";} else {topImg.style.display="none";topAv.style.display="flex";} let myImg=document.getElementById("myAvatarImg"); let myAv=document.getElementById("myAvatar"); if(myImg){ if(photo){myImg.src=photo;myImg.style.display="block";myAv.style.display="none";} else {myImg.style.display="none";myAv.style.display="flex";} } }
 function removeProfilePhoto(){ let who=document.getElementById("whoIs").innerText||"Guest"; localStorage.removeItem("ws_photo_"+who); localStorage.removeItem("ws_photo_current"); applyProfilePhoto(null); alert("Photo removed."); }
 function loadProfilePhotoForUser(username){ let photo=localStorage.getItem("ws_photo_"+username)||null; applyProfilePhoto(photo); if(photo) localStorage.setItem("ws_photo_current",photo); else localStorage.removeItem("ws_photo_current"); }
-function rebuildLocFilter(){ let towns=[...new Set(POSTS.map(p=>p.loc).filter(Boolean))]; let sel=document.getElementById("locFilter"); sel.innerHTML='<option value="">All Locations — From Real Posts</option>'+towns.map(t=>`<option>${t}</option>`).join(""); if(siteTown && !towns.includes(siteTown)) sel.innerHTML+=`<option>${siteTown} (Admin Town)</option>`; }
+function rebuildLocFilter(){ let towns=[...new Set(POSTS.map(p=>p.loc).filter(Boolean))]; let sel=document.getElementById("locFilter"); sel.innerHTML='<option value="">All Locations — From Real Posts</option>'+towns.map(t=>`<option>${t}</option>`).join(""); }
 function renderPosts(list){ rebuildLocFilter(); if(list.length==0){ document.getElementById("postList").innerHTML=`<div class="emptyBox"><b>No adverts yet.</b><br>Be the first to post. Your real name + real town will appear here.</div>`; } else { let sorted=[...list].sort((a,b)=>(b.boosted?1:0)-(a.boosted?1:0)); document.getElementById("postList").innerHTML=sorted.map((p,i)=>`<div class="postItem">${p.wantToBuy?'<span class="tag" style="background:#7c3aed;color:#fff">I WANT TO BUY</span> ':''}${p.boosted?'<span class="tag" style="background:#FEF3C7;color:#92400E">BOOSTED</span> ':''}<b>${p.title}</b><br><span style="font-size:13px;color:#64748B">${p.loc} • ${p.desc}</span><br><span class="tag">${p.cat}</span> <span class="tag">📞 ${p.phone}</span><br><div class="flex" style="margin-top:8px"><a class="btn btn-dark" href="tel:${p.phone}" style="flex:1;margin-top:0">📞 Call</a><button class="btn btn-white" onclick="flashSeller()" style="flex:1;margin-top:0">📲 Flash Me</button></div>${p.img?`<img src="${p.img}" style="width:100%;border-radius:12px;margin-top:8px;max-height:180px;object-fit:cover">`:''}<button class="btn btn-dark" onclick="requestSafeTrade('${p.title.replace(/'/g,"")}','${p.desc.replace(/'/g,"")}')">Safe Trade — Max ₦200,000</button><button class="btn btn-white" onclick="startSmallSmall('${p.title.replace(/'/g,"")}')">Pay Small Small</button></div>`).join(""); } let t=document.getElementById("tTotal"); if(t) t.innerText=POSTS.length; document.getElementById("statAdverts").innerText=POSTS.length; document.getElementById("menuAdverts").innerText=POSTS.length; }
-function renderBuy(){ let el=document.getElementById("buyList"); if(!el) return; if(BUY_POSTS.length==0){ el.innerHTML=`<div class="emptyBox">No I Want To Buy requests yet. Be first.</div>`; } else { el.innerHTML=BUY_POSTS.map(p=>`<div class="postItem"><b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">📞 ${p.phone}</span></div>`).join(""); } }
+function renderBuy(){ let el=document.getElementById("buyList"); if(!el) return; if(BUY_POSTS.length==0){el.innerHTML=`<div class="emptyBox">No I Want To Buy requests yet. Be first.</div>`;} else {el.innerHTML=BUY_POSTS.map(p=>`<div class="postItem"><b>${p.title}</b><br><span>${p.loc} • ${p.desc}</span><br><span class="tag">📞 ${p.phone}</span></div>`).join("");} }
 function doSearch(){ let q=document.getElementById("searchBox").value.toLowerCase(); let c=document.getElementById("catFilter").value; let l=document.getElementById("locFilter").value; renderPosts(POSTS.filter(p=>(!c||p.cat==c)&&(!l||p.loc==l)&&(p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.loc.toLowerCase().includes(q)))); }
-function checkVerify(){ let v=document.getElementById("verifyInput").value.trim().toLowerCase(); let r=document.getElementById("verifyResult"); r.style.display="block"; if(!v){r.style.background="#FEE2E2";r.innerHTML="Type name or phone first";return;} if(VERIFIED.length==0){r.style.background="#FEE2E2";r.innerHTML="No verified names yet. Admin has not added any.";return;} let found=VERIFIED.some(x=>v.includes(x)||x.includes(v)); r.style.background=found?"#D1FAE5":"#FEE2E2"; r.innerHTML=found?"✅ VERIFIED — Safe to deal.":"❌ NOT VERIFIED — Ask for video call."; }
-function copyAcct(){ let n=localStorage.getItem("ws_opay_num")||""; if(!n){alert("Admin has not set OPay number yet");return;} navigator.clipboard.writeText(n); alert("✅ Copied: "+n); }
-function choosePlan(plan){ let wa=localStorage.getItem("ws_whatsapp")||""; if(!wa){alert("Admin has not set WhatsApp yet");return;} window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! I want "+plan+" Verified Subscription."),"_blank"); }
+function checkVerify(){ let v=document.getElementById("verifyInput").value.trim().toLowerCase(); let r=document.getElementById("verifyResult"); r.style.display="block"; if(!v){r.style.background="#FEE2E2";r.innerHTML="Type name or phone first";return;} let found=VERIFIED.some(x=>v.includes(x)||x.includes(v)); r.style.background=found?"#D1FAE5":"#FEE2E2"; r.innerHTML=found?"✅ VERIFIED — Safe to deal. Owner: "+OWNER_NAME:"❌ NOT VERIFIED — Ask for video call. Owner WhatsApp: "+OWNER_WHATSAPP_DISPLAY; }
+function copyAcct(){ navigator.clipboard.writeText(OWNER_OPAY); alert("✅ Copied: "+OWNER_OPAY+" — "+OWNER_OPAY_NAME); }
+function choosePlan(plan){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want "+plan+" Verified Subscription. I will pay to "+OWNER_OPAY+" - "+OWNER_OPAY_NAME),"_blank"); }
 function addVerified(){ let n=document.getElementById("newVerified").value.trim().toLowerCase(); if(!n) return; VERIFIED.push(n); localStorage.setItem("ws_verified",JSON.stringify(VERIFIED)); document.getElementById("newVerified").value=""; renderVerified(); alert("✅ Added: "+n); }
-function renderVerified(){ let b=document.getElementById("verifiedListBox"); if(b) b.innerHTML=VERIFIED.length==0?"<b>Verified List:</b><br>No verified names yet.":"<b>Verified List:</b><br>"+VERIFIED.join(" • "); }
-function previewPhoto(e){ let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){ currentPhoto=r.result; let img=document.getElementById("photoPreview"); img.src=currentPhoto; img.classList.remove("hidden"); }; r.readAsDataURL(f); }
+function renderVerified(){ let b=document.getElementById("verifiedListBox"); if(b) b.innerHTML="<b>Verified List:</b><br>"+VERIFIED.join(" • "); }
+function previewPhoto(e){ let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(){currentPhoto=r.result;let img=document.getElementById("photoPreview");img.src=currentPhoto;img.classList.remove("hidden");}; r.readAsDataURL(f); }
 function previewVideo(e){ let f=e.target.files[0]; if(!f) return; let url=URL.createObjectURL(f); currentVideo=url; let v=document.getElementById("videoPreview"); v.src=url; v.classList.remove("hidden"); document.getElementById("videoCheck").checked=true; }
 function callSeller(){ let phone=document.getElementById("fPhone").value||""; if(!phone){alert("Type seller phone first");return;} window.location.href="tel:"+phone; }
 function flashSeller(){ alert("📲 Flash sent. Seller will call you back."); }
-function joinDaily(){ let wa=localStorage.getItem("ws_whatsapp")||""; if(!wa){alert("Admin has not set WhatsApp yet");return;} window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! Add me to 7am Daily Deals Broadcast."),"_blank"); }
+function joinDaily(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! Add me to 7am Daily Deals Broadcast."),"_blank"); }
 function joinRoom(room){ currentRoom=room; let meta=roomMeta[room]; document.getElementById("chatHeadWrap").className="chatHead "+meta.cls; document.getElementById("roomTitle").innerText=meta.title; document.getElementById("roomDesc").innerText=meta.desc; document.getElementById("roomCount").innerText=meta.count; document.querySelectorAll(".roomPill").forEach(c=>c.classList.remove("active")); document.getElementById("pill-"+room).classList.add("active"); renderChat(); }
-function renderChat(){ let box=document.getElementById("chatMessages"); let msgs=chatData[currentRoom]||[]; let myPhoto=localStorage.getItem("ws_photo_current"); let who=document.getElementById("whoIs")?document.getElementById("whoIs").innerText:"Guest"; box.innerHTML=msgs.map(m=>{ let st=STAGES[m.stage-1]; let avatar = (m.user==who && myPhoto) ? `<img src="${myPhoto}">` : st.logo; return `<div class="chatMsg"><div class="chatAvatar">${avatar}</div><div><b>${m.user}</b> <span class="badge">${st.logo} Stage ${m.stage} - ${st.name}</span><br>${m.text}</div></div>`; }).join(""); box.scrollTop=box.scrollHeight; }
+function renderChat(){ let box=document.getElementById("chatMessages"); let msgs=chatData[currentRoom]||[]; let myPhoto=localStorage.getItem("ws_photo_current"); let who=document.getElementById("whoIs")?document.getElementById("whoIs").innerText:"Guest"; box.innerHTML=msgs.map(m=>{let st=STAGES[m.stage-1]; let avatar=(m.user==who&&myPhoto)?`<img src="${myPhoto}">`:st.logo; return `<div class="chatMsg"><div class="chatAvatar">${avatar}</div><div><b>${m.user}</b> <span class="badge">${st.logo} Stage ${m.stage} - ${st.name}</span><br>${m.text}</div></div>`;}).join(""); box.scrollTop=box.scrollHeight; }
 function isMarketing(text){ let t=text.toLowerCase(); let bad=["buy now","for sale","price","₦","naira","whatsapp me to buy","dm to buy","my shop","my product","order now","discount","promo","advert","i sell","selling","call me to buy"]; return bad.some(w=>t.includes(w)); }
-function sendChat(){ let inp=document.getElementById("chatInput"); let text=inp.value.trim(); if(!text) return; if(isMarketing(text)){ alert("🚫 No marketing in chat. Go to Advertise section."); return; } let who=document.getElementById("whoIs").innerText||"Guest"; chatData[currentRoom].push({user:who,stage:myLevel,text:text}); inp.value=""; msgCount++; chatCoins+=0.001; let need=coinsNeededForLevel(myLevel); if(myLevel<20 && chatCoins>=need && !isAdminUser){ chatCoins-=need; myLevel++; alert("🎉 You moved to Stage "+myLevel+" - "+STAGES[myLevel-1].logo+" "+STAGES[myLevel-1].name); if(myLevel>=20){ myLevel=19; chatCoins=0; alert("Stage 20 is ADMIN ONLY."); } } localStorage.setItem("ws_chat_coins",chatCoins); localStorage.setItem("ws_msg_count",msgCount); localStorage.setItem("ws_level",myLevel); updateStageUI(); renderChat(); }
+function sendChat(){ let inp=document.getElementById("chatInput"); let text=inp.value.trim(); if(!text) return; if(isMarketing(text)){alert("🚫 No marketing in chat. Go to Advertise section.");return;} let who=document.getElementById("whoIs").innerText||"Guest"; chatData[currentRoom].push({user:who,stage:myLevel,text:text}); inp.value=""; msgCount++; chatCoins+=0.001; let need=coinsNeededForLevel(myLevel); if(myLevel<20&&chatCoins>=need&&!isAdminUser){chatCoins-=need;myLevel++;alert("🎉 You moved to Stage "+myLevel+" - "+STAGES[myLevel-1].logo+" "+STAGES[myLevel-1].name); if(myLevel>=20){myLevel=19;chatCoins=0;alert("Stage 20 is ADMIN ONLY.");}} localStorage.setItem("ws_chat_coins",chatCoins); localStorage.setItem("ws_msg_count",msgCount); localStorage.setItem("ws_level",myLevel); updateStageUI(); renderChat(); }
 function giftCoins(){ if(!isAdminUser){alert("Only Admin can gift");return;} let user=document.getElementById("giftUser").value; let amt=parseFloat(document.getElementById("giftAmt").value); if(!user||!amt){alert("Type user + amount");return;} chatCoins+=amt; localStorage.setItem("ws_chat_coins",chatCoins); alert("🎁 Admin gifted "+amt+" Coins to "+user+"."); updateStageUI(); }
-function buyChatCoins(){ let wa=localStorage.getItem("ws_whatsapp")||""; if(!wa){alert("Admin has not set WhatsApp yet");return;} window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy 20 Chat Coins for ₦2,000."),"_blank"); }
-function buyChatCoins100(){ let wa=localStorage.getItem("ws_whatsapp")||""; if(!wa){alert("Admin has not set WhatsApp yet");return;} window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy 100 Chat Coins for ₦10,000."),"_blank"); }
+function buyChatCoins(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy 20 Chat Coins for ₦2,000. I will pay to "+OWNER_OPAY+" - "+OWNER_OPAY_NAME),"_blank"); }
+function buyChatCoins100(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy 100 Chat Coins for ₦10,000."),"_blank"); }
 function postWantToBuy(){ let want=document.getElementById("wWant").value; let budget=document.getElementById("wBudget").value; let loc=document.getElementById("wLoc").value.trim(); let phone=document.getElementById("wPhone").value.trim(); if(!want){alert("What do you want to buy?");return;} if(!loc){alert("Type your town / location");return;} let item={title:"I WANT TO BUY: "+want+" - Budget "+budget,cat:"Business",loc:loc,desc:"Buyer has cash. Budget: "+budget,phone:phone,boosted:true,wantToBuy:true}; POSTS.unshift(item); BUY_POSTS.unshift(item); renderPosts(POSTS); renderBuy(); alert("✅ Posted!"); document.getElementById("groupModal").style.display="flex"; lastAdvert=`I WANT TO BUY\n\n${want}\nBudget: ${budget}\nLocation: ${loc}\nMy WhatsApp: ${phone}`; navigator.clipboard.writeText(lastAdvert); }
 function post50People(){ let name=document.getElementById("fName").value.trim(); let what=document.getElementById("fWhat").value.trim(); let price=document.getElementById("fPrice").value.trim(); let loc=document.getElementById("fLoc").value.trim(); let phone=document.getElementById("fPhone").value.trim(); let desc=document.getElementById("fDesc").value.trim(); let cat=document.getElementById("fCat").value; let size=document.getElementById("fSize").value; let video=document.getElementById("videoCheck").checked; let small=document.getElementById("paySmall").checked; if(!what||!name){alert("Type your name and what you want to advertise");return;} if(!loc){alert("Type your town / location");return;} if(!video){ if(!confirm("No Video Proof. Safe Trade will NOT work. Continue?")) return; } let tag=(video?" • Video Proof":"")+(small?" • Pay Small Small":""); POSTS.unshift({title:what+tag,cat:"Business",loc:loc,desc:desc||what,phone:phone||"Not provided",img:currentPhoto,boosted:false}); renderPosts(POSTS); lastAdvert=`WORLDSPOTS ADVERT\n\n${what}\nPrice: ${price}\nCategory: ${cat}\nSize: ${size}\nLocation: ${loc}\nMy WhatsApp: ${phone}\nVideo Proof: ${video?"YES":"NO"}\nPay Small Small: ${small?"YES":"NO"}\n\n${desc}`; navigator.clipboard.writeText(lastAdvert); document.getElementById("pushStatus").innerText="✅ LIVE NOW! Your town '"+loc+"' is showing."; document.getElementById("groupModal").style.display="flex"; }
 function toggleAllGroups(){ let boxes=document.querySelectorAll(".gCheck"); let all=[...boxes].every(b=>b.checked); boxes.forEach(b=>b.checked=!all); }
 function closeGroupModal(){ document.getElementById("groupModal").style.display="none"; }
 function sendToSelectedGroups(){ let selected=[...document.querySelectorAll(".gCheck:checked")].map(b=>b.value); if(selected.length==0){alert("Tick at least 1 group");return;} closeGroupModal(); let advertWithGroups=lastAdvert+"\n\nGroups: "+selected.join(", "); navigator.clipboard.writeText(advertWithGroups); alert("✅ You ticked "+selected.length+" groups. Facebook will open. Tap POST once."); let url="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent("https://assey01-glitch.github.io")+ "&quote="+encodeURIComponent(advertWithGroups); window.open(url,"_blank"); }
-function getLocation(){ if(!navigator.geolocation){alert("Location not supported");return;} document.getElementById("locText").innerText="Getting your real location..."; navigator.geolocation.getCurrentPosition(pos=>{ let lat=pos.coords.latitude, lon=pos.coords.longitude; document.getElementById("locText").innerText="📍 Your real location: "+lat.toFixed(3)+", "+lon.toFixed(3); let m=document.getElementById("mapLink"); m.href="https://www.google.com/maps?q="+lat+","+lon; m.classList.remove("hidden"); document.getElementById("mapFrame").src="https://www.google.com/maps?q="+lat+","+lon+"&output=embed"; document.getElementById("mapFrame2").src="https://www.google.com/maps?q="+lat+","+lon+"&output=embed"; alert("✅ Location found!"); },()=>{alert("Please allow location");}); }
-function voiceSearch(){ if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){ alert("Voice needs Chrome. Type instead."); return; } let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; let rec=new Rec(); rec.lang='en-NG'; rec.onresult=e=>{ let t=e.results[0][0].transcript; document.getElementById("searchBox").value=t; doSearch(); alert("🎤 You said: "+t); }; rec.start(); }
-function calcEscrow(){ let amt=parseFloat(document.getElementById("escrowAmount").value)||0; let fee=amt*0.05; let seller=amt-fee; document.getElementById("escrowResult").innerText=`Total: ₦${amt} | WorldSpots 5%: ₦${fee} | Seller Gets: ₦${seller}`; escrowHeld+=amt; feeEarned+=fee; escrowCount++; let e=document.getElementById("tEscrow"); if(e) e.innerText='₦'+escrowHeld; let f=document.getElementById("tFee"); if(f) f.innerText='₦'+feeEarned; document.getElementById("miniEscrow").innerText='₦'+escrowHeld; document.getElementById("miniFee").innerText='₦'+feeEarned; updateStageUI(); }
+function getLocation(){ if(!navigator.geolocation){alert("Location not supported");return;} document.getElementById("locText").innerText="Getting your real location..."; navigator.geolocation.getCurrentPosition(pos=>{let lat=pos.coords.latitude, lon=pos.coords.longitude; document.getElementById("locText").innerText="📍 Your real location: "+lat.toFixed(3)+", "+lon.toFixed(3); let m=document.getElementById("mapLink"); m.href="https://www.google.com/maps?q="+lat+","+lon; m.classList.remove("hidden"); document.getElementById("mapFrame").src="https://www.google.com/maps?q="+lat+","+lon+"&output=embed"; document.getElementById("mapFrame2").src="https://www.google.com/maps?q="+lat+","+lon+"&output=embed"; alert("✅ Location found!");},()=>{alert("Please allow location");}); }
+function voiceSearch(){ if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){alert("Voice needs Chrome. Type instead.");return;} let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; let rec=new Rec(); rec.lang='en-NG'; rec.onresult=e=>{let t=e.results[0][0].transcript; document.getElementById("searchBox").value=t; doSearch(); alert("🎤 You said: "+t);}; rec.start(); }
+function calcEscrow(){ let amt=parseFloat(document.getElementById("escrowAmount").value)||0; let fee=amt*0.05; let seller=amt-fee; document.getElementById("escrowResult").innerText=`Total: ₦${amt} | WorldSpots 5%: ₦${fee} | Seller Gets: ₦${seller} | Pay to ${OWNER_OPAY} - ${OWNER_OPAY_NAME}`; escrowHeld+=amt; feeEarned+=fee; escrowCount++; let e=document.getElementById("tEscrow"); if(e) e.innerText='₦'+escrowHeld; let f=document.getElementById("tFee"); if(f) f.innerText='₦'+feeEarned; document.getElementById("miniEscrow").innerText='₦'+escrowHeld; document.getElementById("miniFee").innerText='₦'+feeEarned; updateStageUI(); }
 function calcSmallSmall(){ let total=parseFloat(document.getElementById("smallSmallTotal").value)||0; if(!total){alert("Enter total price");return;} let part=Math.ceil(total/3); let fee=total*0.05; document.getElementById("smallSmallResult").innerText=`Pay Small Small: ₦${part} x 3 = ₦${total} | WorldSpots 5%: ₦${fee} | Seller Gets: ₦${total-fee}`; }
-function startSmallSmall(title){ alert("Pay Small Small started for: "+title); let wa=localStorage.getItem("ws_whatsapp")||""; if(wa) window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! I want Pay Small Small for: "+title),"_blank"); }
-function confirmDelivery(){ alert('Thank you! Admin will now release money to seller minus 5%.'); }
-function requestSafeTrade(title,desc){ let amount=prompt("What is the price? (Max ₦200,000)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){ alert("ABOVE ₦200,000 limit. Chat Admin first."); return; } if(num<5000){ alert("Safe Trade is from ₦5,000."); return; } let wa=localStorage.getItem("ws_whatsapp")||""; if(wa) window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! I REQUEST SAFE TRADE - Product: "+title+" Price: ₦"+num),"_blank"); }
-function buyCoins(){ let wa=localStorage.getItem("ws_whatsapp")||""; if(!wa){alert("Admin has not set WhatsApp yet");return;} window.open("https://wa.me/"+wa+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy Coins for Boost."),"_blank"); }
-function boostAdvert(){ if(coins<500){ alert("You need 500 Coins to Boost. Tap Buy Coins."); return; } coins-=500; localStorage.setItem("ws_coins",coins); updateCoins(); alert("Boosted! Your advert will stay at TOP for 1 day."); }
-renderPosts(POSTS); renderBuy(); updateCoins(); updateStageUI(); renderChat(); applySiteTown(); loadAdminSettings();
+function startSmallSmall(title){ alert("Pay Small Small started for: "+title); window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want Pay Small Small for: "+title),"_blank"); }
+function confirmDelivery(){ alert('Thank you! Admin '+OWNER_NAME+' will now release money to seller minus 5%.'); }
+function requestSafeTrade(title,desc){ let amount=prompt("What is the price? (Max ₦200,000)"); if(!amount) return; let num=parseInt(amount.replace(/[^0-9]/g,"")); if(num>200000){alert("ABOVE ₦200,000 limit. Chat Admin first.");return;} if(num<5000){alert("Safe Trade is from ₦5,000.");return;} window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I REQUEST SAFE TRADE - Product: "+title+" Price: ₦"+num+" Pay to "+OWNER_OPAY),"_blank"); }
+function buyCoins(){ window.open("https://wa.me/"+OWNER_WHATSAPP+"?text="+encodeURIComponent("Hello WorldSpots! I want to buy Coins for Boost. I will pay to "+OWNER_OPAY),"_blank"); }
+function boostAdvert(){ if(coins<500){alert("You need 500 Coins to Boost. Tap Buy Coins.");return;} coins-=500; localStorage.setItem("ws_coins",coins); updateCoins(); alert("Boosted! Your advert will stay at TOP for 1 day."); }
+renderPosts(POSTS); renderBuy(); updateCoins(); updateStageUI(); renderChat(); loadAdminSettings();
 </script>
 </body>
 </html>
